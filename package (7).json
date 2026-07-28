@@ -1,0 +1,12 @@
+{
+  "name": "labguru-functions",
+  "description": "Cloud Functions for LabGuru: Paystack verification/webhook + FCM notifications",
+  "engines": { "node": "18" },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^4.9.0",
+    "node-fetch": "^2.7.0"
+  },
+  "private": true
+}
