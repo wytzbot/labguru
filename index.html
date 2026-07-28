@@ -122,7 +122,58 @@ async function pay(){
 }
 
 function showConverter(){if(!isPremium){showPremium();return} toggleMenu(); /* converter UI here */ }
-function showQA(){toggleMenu();let html=`<h2 style="padding:12px">Q & A</h2>`;LAB_DATA.questions.forEach((q,i)=>{html+=`<div class="card"><b>Q${i+1}: ${q.q}</b><details><summary>Answer</summary><p>${q.a}</p><p><i>${q.exp}</i></p></details></div>`});document.getElementById('app').innerHTML=html}
+function showQA(){
+  toggleMenu();
+  let html=`<h2 style="padding:12px">Examination Questions</h2>`;
+  LAB_DATA.questions.forEach((q)=>{
+    let saved = JSON.parse(localStorage.getItem('qa_answers')||'{}');
+    let userAns = saved[q.id];
+    let locked = userAns === undefined;
+
+    html+=`
+    <div class="card" id="q${q.id}">
+      <b>Q${q.id}: ${q.q}</b>
+      <div style="margin:10px 0">
+        ${q.options.map((opt,i)=>`
+          <label style="display:block;margin:5px 0">
+            <input type="radio" name="q${q.id}" value="${i}" ${userAns==i?'checked':''} onchange="saveAnswer(${q.id},${i})"> ${opt}
+          </label>
+        `).join('')}
+      </div>
+      <button id="btn${q.id}" class="btn" onclick="toggleAns(${q.id})" ${locked?'disabled':''} style="${locked?'opacity:0.5':''}">
+        ${locked?'Select an answer first':'Show Answer ▼'}
+      </button>
+      <div id="ans${q.id}" class="hidden" style="margin-top:10px;padding:10px;background:var(--lightgray);border-radius:8px">
+        <b>Answer:</b> ${q.options[q.answer]}<br>
+        <b>Explanation:</b> ${q.exp}
+      </div>
+    </div>`;
+  });
+  document.getElementById('app').innerHTML=html;
+}
+
+function saveAnswer(qid, ans){
+  let saved = JSON.parse(localStorage.getItem('qa_answers')||'{}');
+  saved[qid] = ans;
+  localStorage.setItem('qa_answers', JSON.stringify(saved));
+
+  // Unlock button
+  document.getElementById(`btn${qid}`).disabled = false;
+  document.getElementById(`btn${qid}`).style.opacity = 1;
+  document.getElementById(`btn${qid}`).innerText = 'Show Answer ▼';
+}
+
+function toggleAns(qid){
+  let ansDiv = document.getElementById(`ans${qid}`);
+  let btn = document.getElementById(`btn${qid}`);
+  if(ansDiv.classList.contains('hidden')){
+    ansDiv.classList.remove('hidden');
+    btn.innerText = 'Hide Answer ▲';
+  } else {
+    ansDiv.classList.add('hidden');
+    btn.innerText = 'Show Answer ▼';
+  }
+  }
 function showFAQs(){toggleMenu();let html=`<h2 style="padding:12px">FAQs</h2>`;LAB_DATA.faqs.forEach(f=>{html+=`<div class="card"><b>${f.q}</b><p>${f.a}</p></div>`});document.getElementById('app').innerHTML=html}
 function search(q){/* search logic */}
 
