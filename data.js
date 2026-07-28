@@ -3,7 +3,7 @@ const LAB_DATA = {
     freeLimit:5,
     premiumPrice:2200,
     premiumDurationDays:60, // renews every 2 months
-    paystackPublicKey:"pk_test_YOUR_KEY", // replace with your LIVE public key (pk_live_...) — never put the secret key (sk_...) in this file
+    paystackPublicKey:"pk_test_c7e019ceeeed3e83bcdd2d0e55bf6419ec18e9ad", // replace with your LIVE public key (pk_live_...) — never put the secret key (sk_...) in this file
     paystackPlanCode:"PLN_REPLACE_WITH_YOUR_PLAN_CODE", // create a recurring Plan in the Paystack dashboard (Payments > Plans), ₦2,200 every 60 days
     verifyEndpoint:"https://YOUR-CLOUD-FUNCTIONS-REGION-labguru-af7f8.cloudfunctions.net/verifyPayment"
   },
