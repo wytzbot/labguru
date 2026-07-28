@@ -100,4 +100,67 @@ const LAB_DATA = {
 
   {id:"donor_screen",title:"Donor Blood Screening",intro:"Screens donor blood for TTIs.",aim:"To ensure safe blood.",principles:"Test for HIV, HBV, HCV, Syphilis.",materials:["Donor blood","Test kits"],procedure:["Collect sample","Test for 4 markers","Label unit"],result:"Reactive or Non-reactive",normal:"Non-reactive",safety:["BSL2"],tips:"Window period risk still exists."}
 ]},
-    
+  {id:"virology",name:"Virology",analyses:[
+  {id:"hiv_elisa",title:"HIV ELISA Test",intro:"ELISA detects HIV antibodies or antigens in serum with high sensitivity.",aim:"To confirm HIV infection by detecting HIV antibodies.",principles:"Antigen-antibody reaction. Enzyme linked to antibody produces color with substrate.",materials:["ELISA kit","ELISA reader","Serum","Wash buffer"],procedure:["Add serum to antigen coated wells","Incubate 30min","Wash","Add conjugate","Add substrate","Read at 450nm"],result:"OD > Cut-off = Reactive",normal:"Non-reactive",safety:["BSL2","PPE"],tips:"Used as confirmatory test after rapid screening."},
+
+  {id:"hbv_dna",title:"Hepatitis B Viral Load",intro:"HBV DNA quantifies Hepatitis B virus in blood.",aim:"To measure HBV viral load.",principles:"Real-time PCR amplifies HBV DNA and quantifies it.",materials:["PCR kit","RNA extractor","Serum","Thermal cycler"],procedure:["Extract DNA","Add to PCR mix","Run PCR 40 cycles","Analyze Ct value"],result:"IU/mL",normal:"Undetectable",safety:["BSL2","Avoid contamination"],tips:"Used to monitor treatment response."},
+
+  {id:"hcv_antibody",title:"Hepatitis C Antibody Test",intro:"Detects antibodies to Hepatitis C virus.",aim:"To screen for HCV infection.",principles:"Immunoassay. HCV antigens bind to anti-HCV in serum.",materials:["HCV ELISA kit","Serum"],procedure:["Add serum to well","Incubate","Wash","Add conjugate","Read"],result:"Reactive or Non-reactive",normal:"Non-reactive",safety:["Blood precautions"],tips:"Reactive result needs PCR confirmation."},
+
+  {id:"dengue",title:"Dengue NS1 Antigen Test",intro:"NS1 antigen appears in first week of dengue fever.",aim:"To detect acute dengue infection.",principles:"Immunochromatographic test for NS1 antigen.",materials:["Dengue RDT kit","Serum"],procedure:["Add serum to sample pad","Add buffer","Read in 15min"],result:"Line = Positive",normal:"Negative",safety:["PPE"],tips:"Best in first 7 days of fever."},
+
+  {id:"rotavirus",title:"Rotavirus Antigen Test",intro:"Detects rotavirus in stool of children with diarrhea.",aim:"To diagnose rotavirus gastroenteritis.",principles:"Lateral flow immunoassay for rotavirus antigen.",materials:["Rotavirus kit","Stool"],procedure:["Mix stool with buffer","Add to test device","Read 10min"],result:"2 lines = Positive",normal:"Negative",safety:["BSL2"],tips:"Common in children <5 years."},
+
+  {id:"covid_pcr",title:"SARS-CoV-2 PCR Test",intro:"PCR detects SARS-CoV-2 RNA.",aim:"To diagnose COVID-19.",principles:"RT-PCR amplifies viral RNA from nasopharyngeal swab.",materials:["VTM","Swab","RNA extraction kit","PCR kit"],procedure:["Collect NP swab","Extract RNA","RT-PCR","Analyze"],result:"Detected or Not detected",normal:"Not detected",safety:["BSL2","PPE"],tips:"Gold standard for COVID diagnosis."},
+
+  {id:"influenza",title:"Influenza Rapid Test",intro:"Detects influenza A and B antigens.",aim:"To diagnose influenza.",principles:"Antigen detection in nasopharyngeal swab.",materials:["Flu kit","Swab"],procedure:["Collect swab","Add to device","Read 10min"],result:"A line or B line",normal:"Negative",safety:["PPE"],tips:"Most sensitive in first 48hrs of symptoms."},
+
+  {id:"measles",title:"Measles IgM Test",intro:"IgM indicates recent measles infection.",aim:"To diagnose measles.",principles:"ELISA detects measles IgM antibodies.",materials:["Measles IgM kit","Serum"],procedure:["Add serum","Incubate","Wash","Read"],result:"Positive or Negative",normal:"Negative",safety:["Gloves"],tips:"Collect sample 3 days after rash."},
+
+  {id:"herpes",title:"Herpes Simplex PCR",intro:"Detects HSV DNA in lesions or CSF.",aim:"To diagnose HSV infection.",principles:"PCR amplifies HSV DNA.",materials:["PCR kit","Swab or CSF"],procedure:["Extract DNA","Run PCR","Analyze"],result:"Detected or Not detected",normal:"Not detected",safety:["BSL2"],tips:"CSF PCR for HSV encephalitis."},
+
+  {id:"yellow_fever",title:"Yellow Fever IgM",intro:"Detects recent yellow fever infection.",aim:"To confirm yellow fever.",principles:"ELISA for YF IgM antibodies.",materials:["YF IgM kit","Serum"],procedure:["Add serum","Incubate","Wash","Read"],result:"Positive or Negative",normal:"Negative",safety:["BSL2"],tips:"Cross-reacts with other flaviviruses."}
+]},
+{id:"cytology",name:"Cytology",analyses:[
+  {id:"pap",title:"Pap Smear",intro:"Screens for cervical cancer and precancerous lesions.",aim:"To detect abnormal cervical cells.",principles:"Cells collected from cervix and stained with Pap stain.",materials:["Speculum","Ayre spatula","Slide","Fixative","Pap stain"],procedure:["Collect cells from cervix","Smear on slide","Fix immediately","Stain"],result:"NILM, LSIL, HSIL",normal:"Negative for intraepithelial lesion",safety:["Gloves"],tips:"Best taken mid-cycle. Avoid during menses."},
+
+  {id:"fnac_breast",title:"FNAC Breast",intro:"Fine needle aspiration of breast lump.",aim:"To diagnose breast lesions cytologically.",principles:"Cells aspirated and examined microscopically.",materials:["Needle","Syringe","Slides","Stain"],procedure:["Aspirate lump","Make smear","Air dry/Fix","Stain"],result:"Benign, Suspicious, Malignant",normal:"N/A",safety:["Sharps safety"],tips:"Multiple passes increase yield."},
+
+  {id:"sputum_cyto",title:"Sputum Cytology",intro:"Detects malignant cells in sputum.",aim:"To diagnose lung cancer.",principles:"Sputum cells stained and examined.",materials:["Sputum container","Slide","Stain"],procedure:["Collect early morning sputum","Make smear","Stain"],result:"Malignant cells or Negative",normal:"Negative",safety:["BSL2"],tips:"3 consecutive morning samples."},
+
+  {id:"urine_cyto",title:"Urine Cytology",intro:"Detects bladder and urinary tract cancer cells.",aim:"To screen for urothelial carcinoma.",principles:"Centrifuged urine sediment examined.",materials:["Urine","Centrifuge","Slide","Stain"],procedure:["Centrifuge urine","Make smear","Stain"],result:"Malignant cells or Negative",normal:"Negative",safety:["PPE"],tips:"First morning urine best."},
+
+  {id:"csf_cyto",title:"CSF Cytology",intro:"Detects malignant cells in CSF.",aim:"To diagnose CNS malignancy.",principles:"Centrifuged CSF examined for tumor cells.",materials:["CSF","Centrifuge","Slide"],procedure:["Centrifuge","Make smear","Stain"],result:"Malignant cells or Negative",normal:"No malignant cells",safety:["BSL2"],tips:"Process immediately."},
+
+  {id:"pleural",title:"Pleural Fluid Cytology",intro:"Analyzes pleural effusion for malignancy.",aim:"To detect cancer cells in pleural fluid.",principles:"Fluid centrifuged and cells examined.",materials:["Pleural fluid","Centrifuge"],procedure:["Centrifuge","Smear","Stain"],result:"Adenocarcinoma cells etc",normal:"Mesothelial cells only",safety:["PPE"],tips:"Large volume increases yield."},
+
+  {id:"ascitic",title:"Ascitic Fluid Cytology",intro:"Detects malignant cells in ascites.",aim:"To diagnose peritoneal malignancy.",principles:"Centrifuged ascitic fluid examined.",materials:["Ascitic fluid","Centrifuge"],procedure:["Centrifuge","Smear","Stain"],result:"Malignant cells",normal:"Mesothelial cells",safety:["PPE"],tips:"Look for adenocarcinoma cells."},
+
+  {id:"thyroid_fnac",title:"Thyroid FNAC",intro:"Diagnoses thyroid nodules.",aim:"To classify thyroid nodule.",principles:"Aspiration of thyroid nodule.",materials:["Needle","Slides"],procedure:["Aspirate nodule","Smear","Stain"],result:"Benign, Follicular, Malignant",normal:"N/A",safety:["Sharps"],tips:"Ultrasound guided for small nodules."},
+
+  {id:"saliva",title:"Salivary Gland FNAC",intro:"Evaluates salivary gland swelling.",aim:"To diagnose salivary gland tumors.",principles:"Aspiration cytology.",materials:["Needle","Slides"],procedure:["Aspirate","Smear","Stain"],result:"Pleomorphic adenoma, Warthin",normal:"N/A",safety:["Gloves"],tips:"Avoid facial nerve."},
+
+  {id:"bone_marrow",title:"Bone Marrow Aspirate Cytology",intro:"Examines bone marrow cells.",aim:"To diagnose hematologic disorders.",principles:"Marrow aspirated and stained.",materials:["Bone marrow needle","Slides"],procedure:["Aspirate marrow","Make smear","Stain"],result:"Cellularity, blast %",normal:"<5% blasts",safety:["Asepsis"],tips:"Used in leukemia diagnosis."}
+]},
+{id:"parasitology",name:"Parasitology",analyses:[
+  {id:"stool_ova",title:"Stool Ova and Parasite Exam",intro:"Detects intestinal parasites in stool.",aim:"To identify ova, cysts and trophozoites.",principles:"Direct saline and iodine wet mount microscopy.",materials:["Fresh stool","Slide","Saline","Iodine","Microscope"],procedure:["Make saline preparation","Make iodine preparation","Examine under 10x and 40x"],result:"Ascaris ova, Giardia cyst, Entamoeba troph",normal:"No parasite seen",safety:["BSL2","Hand washing"],tips:"Submit 3 samples on alternate days for best yield."},
+
+  {id:"thick_malaria",title:"Thick Blood Film for Malaria",intro:"Concentrates blood to detect malaria parasites.",aim:"To detect and quantify malaria parasites.",principles:"RBCs lyse, parasites concentrated in thick film.",materials:["Slide","Giemsa stain","Finger prick blood"],procedure:["Make thick smear","Air dry","Stain 10min","Examine 100x oil"],result:"Plasmodium species and parasite count",normal:"No parasite seen",safety:["Gloves"],tips:"Count parasites per 200 WBCs."},
+
+  {id:"thin_malaria",title:"Thin Blood Film for Malaria",intro:"Identifies Plasmodium species.",aim:"To speciate malaria parasite.",principles:"Intact RBCs allow morphological identification.",materials:["Slide","Methanol","Giemsa","Blood"],procedure:["Make thin smear","Fix with methanol","Stain 20min","Examine"],result:"P.falciparum, P.vivax, P.ovale, P.malariae",normal:"Negative",safety:["Gloves"],tips:"Used alongside thick film."},
+
+  {id:"urine_schisto",title:"Urine for Schistosoma haematobium",intro:"Detects urinary schistosomiasis.",aim:"To find S.haematobium eggs in urine.",principles:"Eggs seen in centrifuged urine sediment.",materials:["Urine","Centrifuge","Slide","Microscope"],procedure:["Collect terminal urine 10am-2pm","Centrifuge","Examine sediment"],result:"S.haematobium eggs",normal:"No eggs",safety:["PPE"],tips:"Eggs have terminal spine."},
+
+  {id:"stool_concentration",title:"Formalin-Ether Concentration",intro:"Increases detection of parasites.",aim:"To concentrate ova and cysts.",principles:"Ether extracts fat and debris, parasites sediment.",materials:["Formalin","Ether","Stool","Tube"],procedure:["Mix stool with formalin","Add ether","Centrifuge","Examine sediment"],result:"Higher yield of parasites",normal:"Negative",safety:["Ether is flammable"],tips:"More sensitive than direct smear."},
+
+  {id:"tape_test",title:"Scotch Tape Test",intro:"Detects Enterobius vermicularis eggs.",aim:"To diagnose pinworm infection.",principles:"Eggs collected from perianal skin on tape.",materials:["Clear tape","Slide","Microscope"],procedure:["Press tape to perianal area on waking","Mount on slide","Examine"],result:"Enterobius eggs",normal:"Negative",safety:["Hygiene"],tips:"Collect before bathing or defecation."},
+
+  {id:"wet_mount",title:"Vaginal Wet Mount",intro:"Examines vaginal discharge.",aim:"To detect Trichomonas and Candida.",principles:"Direct microscopy of vaginal fluid.",materials:["Swab","Slide","Saline","Microscope"],procedure:["Mix swab with saline","Cover slip","Examine immediately"],result:"T.vaginalis, Yeast, Clue cells",normal:"Lactobacilli only",safety:["Gloves"],tips:"Examine within 10 minutes."},
+
+  {id:"blood_filaria",title:"Blood Film for Microfilaria",intro:"Detects filarial worms.",aim:"To diagnose lymphatic filariasis.",principles:"Thick blood film collected at night.",materials:["Slide","Giemsa","Blood"],procedure:["Collect blood 10pm-2am","Make thick film","Stain"],result:"W.bancrofti microfilaria",normal:"Negative",safety:["Gloves"],tips:"Microfilaria are nocturnal."},
+
+  {id:"skin_snip",title:"Skin Snip for Onchocerca",intro:"Detects Onchocerca volvulus.",aim:"To diagnose river blindness.",principles:"Skin incubated in saline, microfilaria emerge.",materials:["Scalpel","Saline","Microscope"],procedure:["Take skin snip","Incubate in saline","Examine for mf"],result:"O.volvulus microfilaria",normal:"Negative",safety:["Sharps"],tips:"Take from iliac crest."},
+
+  {id:"toxo_serology",title:"Toxoplasma IgG/IgM",intro:"Detects Toxoplasma gondii infection.",aim:"To diagnose toxoplasmosis.",principles:"ELISA detects IgG and IgM antibodies.",materials:["Toxo ELISA kit","Serum"],procedure:["Add serum","Incubate","Wash","Read"],result:"IgG+, IgM+",normal:"Negative",safety:["PPE"],tips:"IgM = recent infection. Important in pregnancy."}
+]},
+ 
