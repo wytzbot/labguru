@@ -163,4 +163,66 @@ const LAB_DATA = {
 
   {id:"toxo_serology",title:"Toxoplasma IgG/IgM",intro:"Detects Toxoplasma gondii infection.",aim:"To diagnose toxoplasmosis.",principles:"ELISA detects IgG and IgM antibodies.",materials:["Toxo ELISA kit","Serum"],procedure:["Add serum","Incubate","Wash","Read"],result:"IgG+, IgM+",normal:"Negative",safety:["PPE"],tips:"IgM = recent infection. Important in pregnancy."}
 ]},
- 
+   {id:"chempath",name:"Chemical Pathology",analyses:[
+  {id:"lft",title:"Liver Function Test",intro:"LFT assesses liver synthetic, excretory and metabolic function. Used in hepatitis, cirrhosis and drug toxicity.",aim:"To measure ALT, AST, ALP, Bilirubin, Total Protein and Albumin.",principles:"ALT/AST: Kinetic method. Bilirubin: Diazotization. Protein: Biuret reaction. Albumin: BCG dye binding.",materials:["LFT reagent kit","Serum","Spectrophotometer","Cuvettes"],procedure:["Collect venous blood, separate serum","Pipette serum and reagents as per kit","Incubate at 37°C","Read absorbance at specific wavelength","Calculate concentration"],result:"Enzyme activity in IU/L, Bilirubin in mg/dL, Protein in g/dL",normal:"ALT:<40 AST:<40 ALP:40-120 T.Bili:<1.2 T.Protein:6-8 Albumin:3.5-5.0",safety:["Wear PPE","Dispose reagents properly"],tips:"AST:ALT >2 suggests alcoholic liver disease. ALP + Bilirubin high = cholestasis."},
+
+  {id:"rft",title:"Renal Function Test",intro:"RFT evaluates kidney filtration and waste excretion.",aim:"To measure Urea, Creatinine, Uric acid and Electrolytes.",principles:"Urea: Urease method. Creatinine: Jaffe reaction. Electrolytes: Ion Selective Electrode.",materials:["RFT kit","ISE machine","Serum"],procedure:["Collect serum","Run on analyzer","Record results"],result:"mg/dL and mmol/L",normal:"Urea:15-40 Creatinine:0.6-1.2 Na:135-145 K:3.5-5.0",safety:["Universal precautions"],tips:"Creatinine is more specific for GFR. BUN:Creat ratio >20:1 suggests pre-renal cause."},
+
+  {id:"lipid",title:"Lipid Profile",intro:"Assesses cardiovascular risk by measuring blood lipids.",aim:"To measure Total Cholesterol, Triglyceride, HDL and calculate LDL.",principles:"Enzymatic colorimetric method. LDL = TC - HDL - TG/5",materials:["Lipid kit","Fasting serum","Spectro"],procedure:["12hr fasting sample","Add reagents","Incubate","Read"],result:"mg/dL",normal:"TC<200 TG<150 HDL>40 LDL<100",safety:["PPE"],tips:"Fasting 9-12hrs. Non-fasting TG unreliable."},
+
+  {id:"fbg",title:"Fasting Blood Glucose",intro:"Measures blood glucose to screen for diabetes.",aim:"To determine plasma glucose concentration.",principles:"Glucose oxidase-peroxidase method produces colored dye.",materials:["Glucose kit","Fluoride oxalate tube","Spectro"],procedure:["Collect fasting blood","Separate plasma","Mix with reagent","Incubate 10min","Read 500nm"],result:"mg/dL",normal:"Fasting:70-100 Impaired:101-125 Diabetic:>126",safety:["Sharps disposal"],tips:"Use fluoride tube to prevent glycolysis. RBG >200 with symptoms = Diabetes."},
+
+  {id:"hba1c",title:"Glycated Hemoglobin HbA1c",intro:"Reflects average blood glucose over 3 months.",aim:"To monitor long term glycemic control.",principles:"HbA1c is glucose bound to hemoglobin. Measured by HPLC or immunoassay.",materials:["EDTA blood","HbA1c analyzer"],procedure:["Collect EDTA blood","Load on analyzer","Run test"],result:"%",normal:"Normal:<5.7 Pre-diabetic:5.7-6.4 Diabetic:>6.5",safety:["Blood safety"],tips:"Not affected by recent meals. Used for diabetes monitoring."},
+
+  {id:"electrolytes",title:"Serum Electrolytes",intro:"Na, K, Cl, HCO3 maintain fluid and acid-base balance.",aim:"To measure electrolyte levels.",principles:"Ion Selective Electrode measures ion activity.",materials:["ISE analyzer","Serum"],procedure:["Load sample","Calibrate","Run"],result:"mmol/L",normal:"Na:135-145 K:3.5-5.0 Cl:98-106 HCO3:22-28",safety:["Machine safety"],tips:"Hemolysis causes pseudohyperkalemia. Critical K >6.5 or <2.5."},
+
+  {id:"cardiac",title:"Cardiac Troponin I",intro:"Troponin I is specific for myocardial injury.",aim:"To diagnose acute myocardial infarction.",principles:"Immunoassay. Antibodies bind to cardiac troponin I.",materials:["Troponin kit","Serum"],procedure:["Add serum to test cassette","Wait 15min","Read"],result:"Positive or Negative",normal:"<0.04 ng/mL",safety:["PPE"],tips:"Rises 3-6hrs, peaks 24hrs, stays 10-14 days. Gold standard for MI."},
+
+  {id:"thyroid",title:"Thyroid Function Test",intro:"T3, T4, TSH assess thyroid status.",aim:"To measure TSH, Free T3 and Free T4.",principles:"Competitive chemiluminescent immunoassay.",materials:["TFT kit","Serum","Analyzer"],procedure:["Add serum","Incubate","Wash","Read luminescence"],result:"μIU/mL and ng/dL",normal:"TSH:0.4-4.0 FT4:0.8-1.8 FT3:2.3-4.2",safety:["Gloves"],tips:"TSH first line. High TSH + Low T4 = Hypothyroidism."},
+
+  {id:"calcium",title:"Serum Calcium",intro:"Calcium important for nerve, muscle and bone.",aim:"To measure total and ionized calcium.",principles:"Forms colored complex with cresolphthalein.",materials:["Calcium kit","Serum"],procedure:["Mix","Incubate","Read 570nm"],result:"mg/dL",normal:"Total:8.5-10.5 Ionized:4.6-5.3",safety:["Reagent caution"],tips:"Correct for albumin: Corrected Ca = Ca + 0.8(4-Alb)"},
+
+  {id:"amylase",title:"Serum Amylase and Lipase",intro:"Pancreatic enzymes elevated in pancreatitis.",aim:"To measure amylase and lipase.",principles:"Amylase: Hydrolysis of starch. Lipase: Hydrolysis of triglyceride.",materials:["Amylase/Lipase kit","Serum"],procedure:["Mix","Incubate","Read"],result:"IU/L",normal:"Amylase:30-110 Lipase:10-140",safety:["PPE"],tips:"Lipase more specific and stays elevated longer than amylase."}
+]}
+   questions: [
+  {id:1,q:"What is the normal PCV range for adult male?",options:["30-40%","40-54%","55-65%","35-45%"],answer:1,exp:"Normal PCV for males is 40-54%. Females: 37-47%. Low PCV indicates anemia."},
+  {id:2,q:"Which method is used for Hemoglobin estimation in Sahli's method?",options:["Cyanmethemoglobin","Acid hematin","Oxyhemoglobin","Carboxyhemoglobin"],answer:1,exp:"Sahli method converts Hb to acid hematin with N/10 HCl and color is matched."},
+  {id:3,q:"ESR is markedly raised in:",options:["Polycythemia","Inflammation","Dehydration","Hemoconcentration"],answer:1,exp:"ESR increases in inflammation due to fibrinogen and immunoglobulins causing rouleaux formation."},
+  {id:4,q:"Normal WBC count range is:",options:["2000-5000","4000-11000","12000-20000","5000-15000"],answer:1,exp:"Normal total WBC count is 4000-11000 cells/μL."},
+  {id:5,q:"Platelets are counted using:",options:["WBC pipette","Platelet pipette and Rees-Ecker fluid","RBC pipette","Direct method"],answer:1,exp:"Platelet count uses 1:100 dilution with Rees-Ecker fluid in Neubauer chamber."},
+  {id:6,q:"Glucose oxidase method measures:",options:["Protein","Glucose","Urea","Creatinine"],answer:1,exp:"Glucose oxidase converts glucose to gluconic acid and H2O2 which forms colored dye."},
+  {id:7,q:"Jaffe reaction is used for:",options:["Urea","Creatinine","Bilirubin","Cholesterol"],answer:1,exp:"Creatinine reacts with alkaline picrate to form orange-red complex."},
+  {id:8,q:"ALT is more specific for:",options:["Heart","Kidney","Liver","Muscle"],answer:2,exp:"ALT is primarily found in liver. Raised in hepatitis."},
+  {id:9,q:"Normal fasting blood glucose is:",options:["50-70","70-100","100-140","140-180"],answer:1,exp:"Fasting glucose 70-100 mg/dL. >126 on 2 occasions = Diabetes."},
+  {id:10,q:"HbA1c reflects average glucose for:",options:["1 week","2 weeks","3 months","6 months"],answer:2,exp:"HbA1c reflects average glucose over 120 days, approx 3 months."},
+  {id:11,q:"Principle of Gram stain is based on:",options:["Cell wall","Capsule","Flagella","Nucleus"],answer:0,exp:"Thick peptidoglycan in Gram +ve retains crystal violet."},
+  {id:12,q:"ZN stain is used for:",options:["E.coli","Staphylococcus","Mycobacterium","Candida"],answer:2,exp:"ZN stains acid-fast bacilli like TB due to mycolic acid."},
+  {id:13,q:"Significant bacteriuria is:",options:[">1000 CFU/mL",">10000 CFU/mL",">100000 CFU/mL",">1000000 CFU/mL"],answer:2,exp:">100,000 CFU/mL in clean catch is significant."},
+  {id:14,q:"Blood culture is used to diagnose:",options:["UTI","Sepsis","Pneumonia","Diarrhea"],answer:1,exp:"Blood culture detects bacteremia and sepsis."},
+  {id:15,q:"Kirby-Bauer test is for:",options:["Identification","Sensitivity","Culture","Staining"],answer:1,exp:"Disk diffusion test to check antibiotic sensitivity."},
+  {id:16,q:"HIV rapid test detects:",options:["Antigen","Antibody","RNA","DNA"],answer:1,exp:"Most rapid tests detect HIV 1/2 antibodies."},
+  {id:17,q:"HBsAg indicates:",options:["Immunity","Past infection","Current infection","Vaccination"],answer:2,exp:"HBsAg = current HBV infection."},
+  {id:18,q:"Widal test is for:",options:["Typhoid","Malaria","TB","Hepatitis"],answer:0,exp:"Detects anti-O and anti-H antibodies against Salmonella."},
+  {id:19,q:"CRP is an:",options:["Antibody","Enzyme","Acute phase protein","Hormone"],answer:2,exp:"CRP rises within 6hrs of inflammation."},
+  {id:20,q:"ASOT is raised in:",options:["Strep infection","Staph infection","E.coli","Salmonella"],answer:0,exp:"Anti-streptolysin O titer rises after Group A Strep."},
+  {id:21,q:"Fixation is done with:",options:["Alcohol","Acetone","10% Formalin","Xylene"],answer:2,exp:"10% buffered formalin is routine fixative."},
+  {id:22,q:"H&E stains nuclei:",options:["Pink","Blue","Yellow","Red"],answer:1,exp:"Hematoxylin stains nuclei blue, Eosin stains cytoplasm pink."},
+  {id:23,q:"IHC is used to detect:",options:["Bacteria","Antigen","DNA","RNA"],answer:1,exp:"Immunohistochemistry detects specific antigens using antibodies."},
+  {id:24,q:"Frozen section is for:",options:["Routine","Rapid diagnosis","Special stain","Culture"],answer:1,exp:"Frozen section gives diagnosis within 15 minutes during surgery."},
+  {id:25,q:"ABO grouping is based on:",options:["Antigens on RBC","Antibodies in serum","Both","None"],answer:2,exp:"Cell grouping + Serum grouping must agree."},
+  {id:26,q:"Crossmatching is done to prevent:",options:["Infection","Transfusion reaction","Clotting","Hemolysis"],answer:1,exp:"Checks compatibility between donor and recipient."},
+  {id:27,q:"DAT is positive in:",options:["Iron deficiency","AIHA","Thalassemia","Sickle cell"],answer:1,exp:"Direct Coombs detects antibodies on RBCs in autoimmune hemolytic anemia."},
+  {id:28,q:"Blood is stored at:",options:["Room temp","2-6°C","-20°C","37°C"],answer:1,exp:"PRBC stored at 2-6°C for 42 days."},
+  {id:29,q:"Pap smear screens for:",options:["Breast cancer","Cervical cancer","Ovarian cancer","Uterine cancer"],answer:1,exp:"Pap smear detects cervical precancerous lesions."},
+  {id:30,q:"FNAC is used for:",options:["Blood","Lump","Urine","Stool"],answer:1,exp:"Fine needle aspiration cytology for palpable lumps."},
+  {id:31,q:"Thick film is used for:",options:["Species ID","Parasite concentration","Culture","Sensitivity"],answer:1,exp:"Thick film lyses RBCs to concentrate parasites."},
+  {id:32,q:"Malaria parasite is identified in:",options:["Thick film","Thin film","Both","None"],answer:2,exp:"Thick for detection, Thin for species."},
+  {id:33,q:"S.haematobium eggs are found in:",options:["Stool","Urine","Blood","CSF"],answer:1,exp:"Urinary schistosomiasis eggs in urine with terminal spine."},
+  {id:34,q:"Scotch tape test is for:",options:["Ascaris","Hookworm","Pinworm","Tapeworm"],answer:2,exp:"Enterobius vermicularis eggs collected from perianal area."},
+  {id:35,q:"Microfilaria are collected at:",options:["Morning","Afternoon","Night","Anytime"],answer:2,exp:"W.bancrofti microfilaria are nocturnal 10pm-2am."},
+  {id:36,q:"PCR is used to detect:",options:["Antibody","Antigen","DNA/RNA","Protein"],answer:2,exp:"PCR amplifies nucleic acid."},
+  {id:37,q:"NS1 antigen is for:",options:["HIV","Dengue","Hepatitis","COVID"],answer:1,exp:"Dengue NS1 appears in first week."},
+  {id:38,q:"RT-PCR is gold standard for:",options:["HIV","TB","COVID","Malaria"],answer:2,exp:"SARS-CoV-2 RT-PCR from NP swab."},
+  {id:39,q:"Toxoplasma IgM indicates:",options:["Past infection","Recent infection","Immunity","Vaccination"],answer:1,exp:"IgM appears early, IgG persists."},
+  {id:40,q:"Corrected calcium formula is:",options:["Ca + 0.8(4-Alb)","Ca - 0.8(4-Alb)","Ca x Alb","Ca/Alb"],answer:0,exp:"Correct for low albumin: Ca + 0.8(4-Alb)"}
+]
