@@ -1251,6 +1251,687 @@ const LAB_DATA = {
     }
   ]
 },
-      
+      // ==================== UNIT 8: CYTOLOGY ====================
+    {
+      id:"cytology",
+      name:"Cytology",
+      analyses:[
+        {
+          id:"pap",
+          title:"Pap Smear - Cervical Cytology",
+          introduction:"Pap smear screens for cervical cancer and precancerous lesions.\n\nIt is the most successful cancer screening test in history. It detects dysplasia before it becomes cancer.\n\nPerformed by collecting cells from transformation zone of cervix.\n\nIn MLS, students must learn proper sampling, fixation, and Bethesda reporting.",
+          aim:"To detect abnormal cervical cells and precancerous lesions.",
+          principle:"Cells are collected, fixed, and stained with Papanicolaou stain. Nuclear and cytoplasmic changes are assessed microscopically.",
+          materials:["Speculum","Ayre Spatula","Endocervical Brush","Slides","95% Alcohol","Pap Stain"],
+          procedure:[
+            "Insert speculum and visualize cervix.",
+            "Collect cells from ectocervix with spatula.",
+            "Collect cells from endocervix with brush.",
+            "Smear cells thinly on slide.",
+            "Fix immediately in 95% alcohol for 15 minutes.",
+            "Stain with Pap stain and mount."
+          ],
+          possibleResult:"NILM: Negative for intraepithelial lesion.\nLSIL: Low grade squamous intraepithelial lesion.\nHSIL: High grade lesion. Requires colposcopy.\nMalignant: Cancer cells present.",
+          normalRange:{all:"Negative for intraepithelial lesion"},
+          safetyPrecautions:["Gloves","Dispose sharps","Fix immediately to prevent air drying artifact"],
+          examTips:["Keyword: Bethesda System","Common mistake: Air drying","Best time: Mid-cycle"],
+          faqs:[{q:"How often?", a:"Every 3 years after 2 normal tests"}]
+        },
+        {
+          id:"fnac_breast",
+          title:"FNAC Breast Lump",
+          introduction:"FNAC is rapid method to diagnose breast lumps.\n\nAvoids unnecessary surgery. Can differentiate benign vs malignant.\n\nDone under ultrasound guidance for small lesions.",
+          aim:"To obtain cells from breast lump for cytological diagnosis.",
+          principle:"Cells aspirated with fine needle and examined after staining.",
+          materials:["Needle","Syringe","Slides","MGG Stain","USG Machine"],
+          procedure:[
+            "Palpate lump and clean skin.",
+            "Insert needle and aspirate while moving needle.",
+            "Expel material on slide and make smear.",
+            "Air dry one slide and alcohol fix another.",
+            "Stain and examine."
+          ],
+          possibleResult:"Benign: Fibroadenoma, Fibrocystic change.\nSuspicious: Atypical cells.\nMalignant: Ductal carcinoma cells.",
+          normalRange:{note:"Descriptive"},
+          safetyPrecautions:["Sharps safety","Multiple passes increase yield"],
+          examTips:["Keyword: Cellular yield","Common mistake: Blood only aspirate"],
+          faqs:[{q:"Best stain?", a:"MGG for air-dried"}]
+        },
+        {
+          id:"sputum_cyto",
+          title:"Sputum Cytology",
+          introduction:"Screens for lung cancer. Detects malignant cells in sputum.\n\n3 consecutive morning samples increase yield.\n\nImportant in smokers.",
+          aim:"To detect malignant cells in sputum.",
+          principle:"Sputum cells are smeared and stained to look for malignant features.",
+          materials:["Sputum Container","Slides","Stain"],
+          procedure:[
+            "Collect early morning deep cough sputum for 3 days.",
+            "Select purulent part and make smear.",
+            "Fix and stain with Pap or MGG.",
+            "Examine under microscope."
+          ],
+          possibleResult:"Negative: No malignant cells.\nPositive: Malignant cells seen. Type: Squamous, Adeno.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["BSL-2","TB precautions"],
+          examTips:["Reject saliva","Keyword: Malignant criteria"],
+          faqs:[{q:"Yield?", a:"60-80% for central tumors"}]
+        },
+        {
+          id:"urine_cyto",
+          title:"Urine Cytology",
+          introduction:"Screens for bladder and urinary tract cancer.\n\nFirst morning urine has highest cellularity.\n\nUsed to monitor bladder cancer patients.",
+          aim:"To detect malignant urothelial cells in urine.",
+          principle:"Urine is centrifuged and sediment examined.",
+          materials:["Urine","Centrifuge","Slides","Stain"],
+          procedure:[
+            "Collect 50mL first morning urine.",
+            "Centrifuge at 2000rpm for 5min.",
+            "Make smear from sediment.",
+            "Fix and stain."
+          ],
+          possibleResult:"Negative: No malignant cells.\nPositive: Transitional cell carcinoma cells.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["PPE"],
+          examTips:["High grade tumors shed more cells"],
+          faqs:[{q:"Best sample?", a:"First morning"}]
+        },
+        {
+          id:"csf_cyto",
+          title:"CSF Cytology",
+          introduction:"Detects CNS malignancy and meningitis.\n\nMust be processed immediately as cells degenerate.\n\nCritical in leukemia CNS involvement.",
+          aim:"To detect malignant cells in CSF.",
+          principle:"CSF centrifuged and cells examined.",
+          materials:["CSF","Centrifuge","Slides"],
+          procedure:["Centrifuge CSF","Make smear","Stain","Examine"],
+          possibleResult:"Negative: No malignant cells.\nPositive: Leukemic cells, carcinoma cells.",
+          normalRange:{all:"No malignant cells"},
+          safetyPrecautions:["BSL-2","Process immediately"],
+          examTips:["Urgent processing"],
+          faqs:[{q:"Volume needed?", a:"At least 3mL"}]
+        },
+        {
+          id:"pleural",
+          title:"Pleural Fluid Cytology",
+          introduction:"Analyzes pleural effusion for malignancy.\n\nCommon in lung and breast cancer metastasis.\n\nLarge volume increases yield.",
+          aim:"To detect malignant cells in pleural fluid.",
+          principle:"Fluid centrifuged and cells examined.",
+          materials:["Pleural Fluid","Centrifuge"],
+          procedure:["Centrifuge","Make smear","Stain"],
+          possibleResult:"Adenocarcinoma cells, Mesothelioma cells.",
+          normalRange:{all:"Mesothelial cells only"},
+          safetyPrecautions:["PPE"],
+          examTips:["Large volume = 50mL"],
+          faqs:[{q:"Transudate vs Exudate?", a:"Protein and LDH"}]
+        },
+        {
+          id:"ascitic",
+          title:"Ascitic Fluid Cytology",
+          introduction:"Detects peritoneal malignancy.\n\nCommon in ovarian and GI cancers.",
+          aim:"To detect malignant cells in ascites.",
+          principle:"Centrifuged fluid examined.",
+          materials:["Ascitic Fluid","Centrifuge"],
+          procedure:["Centrifuge","Smear","Stain"],
+          possibleResult:"Adenocarcinoma cells.",
+          normalRange:{all:"Mesothelial cells"},
+          safetyPrecautions:["PPE"],
+          examTips:["Look for cell clusters"],
+          faqs:[{q:"SAAG?", a:"Serum-ascites albumin gradient"}]
+        },
+        {
+          id:"thyroid_fnac",
+          title:"Thyroid FNAC",
+          introduction:"Classifies thyroid nodules.\n\nAvoids unnecessary thyroidectomy.\n\nUSG guided for small nodules.",
+          aim:"To classify thyroid nodule cytologically.",
+          principle:"Aspiration of thyroid cells.",
+          materials:["Needle","Slides","USG"],
+          procedure:["USG guidance","Aspirate","Smear","Stain"],
+          possibleResult:"Benign, Follicular, Suspicious, Malignant.",
+          normalRange:{note:"Descriptive"},
+          safetyPrecautions:["Avoid carotid"],
+          examTips:["Bethesda for thyroid"],
+          faqs:[{q:"Follicular needs histology?", a:"Yes, for capsular invasion"}]
+        },
+        {
+          id:"saliva",
+          title:"Salivary Gland FNAC",
+          introduction:"Evaluates salivary gland swelling.\n\nDifferentiates tumor types.",
+          aim:"To diagnose salivary gland tumors.",
+          principle:"Aspiration cytology.",
+          materials:["Needle","Slides"],
+          procedure:["Aspirate","Smear","Stain"],
+          possibleResult:"Pleomorphic adenoma, Warthin tumor, Malignant.",
+          normalRange:{note:"Descriptive"},
+          safetyPrecautions:["Avoid facial nerve"],
+          examTips:["Keyword: Pleomorphic adenoma"],
+          faqs:[{q:"Common tumor?", a:"Pleomorphic adenoma"}]
+        },
+        {
+          id:"bone_marrow",
+          title:"Bone Marrow Aspirate Cytology",
+          introduction:"Examines bone marrow for hematologic disorders.\n\nGold standard for leukemia diagnosis.\n\nDone from posterior iliac crest.",
+          aim:"To assess marrow cellularity and blast percentage.",
+          principle:"Marrow aspirated and stained to count cells.",
+          materials:["Bone Marrow Needle","Slides","Stain"],
+          procedure:["Aspirate marrow","Make smear","Stain","Count 500 cells"],
+          possibleResult:"Normal: <5% blasts.\nLeukemia: >20% blasts.",
+          normalRange:{blasts:"<5%"},
+          safetyPrecautions:["Asepsis","Pain management"],
+          examTips:["Keyword: Blast percentage"],
+          faqs:[{q:"Trephine vs Aspirate?", a:"Trephine for cellularity"}]
+        }
+      ],
+      normalRanges:[
+        {test:"Pap Smear", all:"NILM"},
+        {test:"Urine Cytology", all:"Negative"},
+        {test:"CSF Cytology", all:"No malignant cells"},
+        {test:"Bone Marrow Blasts", all:"<5%"}
+      ],
+      faqs:[{q:"Best fixative for Pap?", a:"95% Alcohol"}]
+    },
+
+    // ==================== UNIT 9: PARASITOLOGY ====================
+    {
+      id:"parasitology",
+      name:"Parasitology",
+      analyses:[
+        {
+          id:"stool_ova",
+          title:"Stool Ova and Parasite Examination",
+          introduction:"Detects intestinal parasites. Major cause of morbidity in tropics.\n\n3 samples on alternate days increase yield.\n\nDirect smear and concentration methods used.",
+          aim:"To identify ova, cysts and trophozoites in stool.",
+          principle:"Microscopy of saline and iodine wet mounts. Parasites identified by morphology.",
+          materials:["Fresh Stool","Slide","Saline","Iodine","Microscope"],
+          procedure:[
+            "Make saline preparation: mix stool with saline.",
+            "Make iodine preparation.",
+            "Examine under 10x and 40x objective.",
+            "Report parasites seen."
+          ],
+          possibleResult:"Ascaris ova, Hookworm ova, Giardia cyst, Entamoeba histolytica trophozoite.",
+          normalRange:{all:"No parasite seen"},
+          safetyPrecautions:["BSL-2","Hand washing","Disinfect bench"],
+          examTips:["Keyword: Ova vs Cyst vs Troph","Common mistake: Old sample"],
+          faqs:[{q:"Best sample?", a:"Fresh, unpreserved"}]
+        },
+        {
+          id:"thick_malaria",
+          title:"Thick Blood Film for Malaria",
+          introduction:"Concentrates blood to detect malaria parasites.\n\nMore sensitive than thin film.\n\nUsed for parasite count.",
+          aim:"To detect and quantify malaria parasites.",
+          principle:"RBCs lyse, parasites concentrated. Stained with Giemsa.",
+          materials:["Slide","Giemsa","Finger Prick Blood"],
+          procedure:[
+            "Make thick smear.",
+            "Air dry without fixing.",
+            "Stain 10min with 10% Giemsa.",
+            "Examine 100x oil. Count parasites per 200 WBCs."
+          ],
+          possibleResult:"P.falciparum, P.vivax seen.\nReported as + to +++ or parasites/µL.",
+          normalRange:{all:"No parasite seen"},
+          safetyPrecautions:["Gloves"],
+          examTips:["Keyword: Parasite density","Do not fix thick film"],
+          faqs:[{q:"Why not fix?", a:"To lyse RBCs"}]
+        },
+        {
+          id:"thin_malaria",
+          title:"Thin Blood Film for Malaria",
+          introduction:"Identifies Plasmodium species.\n\nMorphology of parasite in RBC needed.\n\nAlways done with thick film.",
+          aim:"To speciate malaria parasite.",
+          principle:"Intact RBCs allow morphological identification.",
+          materials:["Slide","Methanol","Giemsa","Blood"],
+          procedure:[
+            "Make thin smear.",
+            "Fix with methanol.",
+            "Stain 20min.",
+            "Examine for species features."
+          ],
+          possibleResult:"P.falciparum: Ring forms, gametocytes.\nP.vivax: Enlarged RBCs, Schüffner dots.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["Gloves"],
+          examTips:["Fix before staining"],
+          faqs:[{q:"Difference from thick?", a:"Species ID"}]
+        },
+        {
+          id:"urine_schisto",
+          title:"Urine for Schistosoma haematobium",
+          introduction:"Diagnoses urinary schistosomiasis.\n\nCommon in endemic areas.\n\nEggs cause hematuria.",
+          aim:"To find S.haematobium eggs in urine.",
+          principle:"Eggs seen in centrifuged urine sediment.",
+          materials:["Urine","Centrifuge","Slide"],
+          procedure:[
+            "Collect terminal urine 10am-2pm.",
+            "Centrifuge.",
+            "Examine sediment for eggs."
+          ],
+          possibleResult:"Eggs with terminal spine seen.",
+          normalRange:{all:"No eggs"},
+          safetyPrecautions:["PPE"],
+          examTips:["Terminal spine = S.haematobium"],
+          faqs:[{q:"Best time?", a:"10am-2pm"}]
+        },
+        {
+          id:"stool_concentration",
+          title:"Formalin-Ether Concentration",
+          introduction:"Increases detection of parasites 10x.\n\nRemoves debris and concentrates ova.",
+          aim:"To concentrate ova and cysts.",
+          principle:"Ether extracts fat. Centrifugation sediments parasites.",
+          materials:["Formalin","Ether","Stool","Tube"],
+          procedure:["Mix stool with formalin","Add ether","Centrifuge","Examine sediment"],
+          possibleResult:"Higher yield than direct.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["Ether is flammable","Fume hood"],
+          examTips:["More sensitive"],
+          faqs:[{q:"When to use?", a:"Low parasite load"}]
+        },
+        {
+          id:"tape_test",
+          title:"Scotch Tape Test",
+          introduction:"Diagnoses Enterobius vermicularis.\n\nEggs laid on perianal skin at night.",
+          aim:"To detect pinworm eggs.",
+          principle:"Eggs collected on tape and examined.",
+          materials:["Clear Tape","Slide","Microscope"],
+          procedure:["Press tape to perianal area on waking","Mount on slide","Examine"],
+          possibleResult:"Enterobius eggs seen.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["Hygiene"],
+          examTips:["Before bathing"],
+          faqs:[{q:"Why morning?", a:"Eggs laid at night"}]
+        },
+        {
+          id:"wet_mount",
+          title:"Vaginal Wet Mount",
+          introduction:"Examines vaginal discharge.\n\nDetects Trichomonas and Candida.\n\nRapid bedside test.",
+          aim:"To detect Trichomonas and yeast.",
+          principle:"Direct microscopy of vaginal fluid.",
+          materials:["Swab","Slide","Saline","Microscope"],
+          procedure:["Mix swab with saline","Cover slip","Examine immediately"],
+          possibleResult:"T.vaginalis: Motile flagellates.\nYeast: Budding cells.",
+          normalRange:{all:"Lactobacilli only"},
+          safetyPrecautions:["Gloves"],
+          examTips:["Examine within 10min"],
+          faqs:[{q:"Motility important?", a:"Yes for Trichomonas"}]
+        },
+        {
+          id:"blood_filaria",
+          title:"Blood Film for Microfilaria",
+          introduction:"Diagnoses lymphatic filariasis.\n\nW.bancrofti microfilaria are nocturnal.",
+          aim:"To detect microfilaria in blood.",
+          principle:"Thick film collected at night.",
+          materials:["Slide","Giemsa","Blood"],
+          procedure:["Collect blood 10pm-2am","Make thick film","Stain"],
+          possibleResult:"W.bancrofti microfilaria seen.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["Gloves"],
+          examTips:["Nocturnal periodicity"],
+          faqs:[{q:"Why night?", a:"Vector feeds at night"}]
+        },
+        {
+          id:"skin_snip",
+          title:"Skin Snip for Onchocerca",
+          introduction:"Diagnoses river blindness.\n\nSkin snip incubated in saline.",
+          aim:"To detect O.volvulus microfilaria.",
+          principle:"Microfilaria emerge from skin in saline.",
+          materials:["Scalpel","Saline","Microscope"],
+          procedure:["Take skin snip","Incubate in saline","Examine for mf"],
+          possibleResult:"O.volvulus microfilaria seen.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["Sharps"],
+          examTips:["Site: Iliac crest"],
+          faqs:[{q:"Disease?", a:"Onchocerciasis"}]
+        },
+        {
+          id:"toxo_serology",
+          title:"Toxoplasma IgG/IgM",
+          introduction:"Important in pregnancy.\n\nIgM = recent infection.\n\nCan cause congenital defects.",
+          aim:"To diagnose toxoplasmosis.",
+          principle:"ELISA detects IgG and IgM antibodies.",
+          materials:["Toxo ELISA Kit","Serum"],
+          procedure:["Add serum","Incubate","Wash","Read"],
+          possibleResult:"IgM+ = Recent. IgG+ = Past.",
+          normalRange:{all:"Negative"},
+          safetyPrecautions:["PPE"],
+          examTips:["Avidity test for timing"],
+          faqs:[{q:"Risk in pregnancy?", a:"Congenital toxoplasmosis"}]
+        }
+      ],
+      normalRanges:[
+        {test:"Stool O&P", all:"No parasite seen"},
+        {test:"Malaria Film", all:"No parasite seen"},
+        {test:"Urine Schisto", all:"No eggs"},
+        {test:"Tape Test", all:"Negative"},
+        {test:"Vaginal Wet Mount", all:"Lactobacilli only"},
+        {test:"Blood Filaria", all:"Negative"},
+        {test:"Toxo Serology", all:"Negative"}
+      ],
+      faqs:[{q:"3 stool samples why?", a:"Intermittent shedding"}]
+    }
+  ]
+          },
+      // ==================== UNIT 10: CHEMICAL PATHOLOGY ====================
+    {
+      id:"chempath",
+      name:"Chemical Pathology",
+      analyses:[
+        {
+          id:"lft",
+          title:"Liver Function Test - LFT",
+          introduction:"LFT assesses liver synthetic, excretory and metabolic function.\n\nIncludes ALT, AST, ALP, Bilirubin, Total Protein, Albumin.\n\nUsed in hepatitis, cirrhosis, drug toxicity, and jaundice workup.\n\nIn MLS, LFT teaches students enzyme kinetics and liver physiology.",
+          aim:"To measure liver enzymes, bilirubin and proteins to assess liver function.",
+          principle:"ALT/AST: Kinetic UV method. ALP: p-nitrophenyl phosphate. Bilirubin: Diazotization. Protein: Biuret. Albumin: BCG dye binding.",
+          materials:["LFT Reagent Kit","Serum","Spectrophotometer","Cuvettes"],
+          procedure:[
+            "Collect venous blood and separate serum.",
+            "Pipette serum and reagents as per kit insert.",
+            "Incubate at 37°C.",
+            "Read absorbance at specific wavelength.",
+            "Calculate concentration from standard."
+          ],
+          possibleResult:"High ALT/AST: Hepatocellular damage.\nHigh ALP + Bilirubin: Cholestasis.\nLow Albumin: Chronic liver disease, malnutrition.",
+          normalRange:{alt:"<40 IU/L", ast:"<40 IU/L", alp:"40-120 IU/L", tbili:"<1.2 mg/dL", tprotein:"6-8 g/dL", albumin:"3.5-5.0 g/dL"},
+          safetyPrecautions:["Wear PPE","Dispose reagents properly"],
+          examTips:["Keyword: AST:ALT >2 = Alcoholic","ALP + Bilirubin = Cholestasis"],
+          faqs:[{q:"Most specific for liver?", a:"ALT"}]
+        },
+        {
+          id:"rft",
+          title:"Renal Function Test - RFT",
+          introduction:"RFT evaluates kidney filtration and waste excretion.\n\nIncludes Urea, Creatinine, Uric Acid, Electrolytes.\n\nCreatinine is the best marker of GFR.\n\nCritical for drug dosing and dialysis monitoring.",
+          aim:"To assess kidney function by measuring waste products.",
+          principle:"Urea: Urease method. Creatinine: Jaffe reaction. Electrolytes: ISE.",
+          materials:["RFT Kit","ISE Machine","Serum"],
+          procedure:["Collect serum","Run on analyzer","Record results"],
+          possibleResult:"High Urea/Creatinine: Renal failure.\nHigh K: Risk of arrhythmia.\nLow Na: SIADH, dehydration.",
+          normalRange:{urea:"15-40 mg/dL", creatinine_male:"0.7-1.3 mg/dL", creatinine_female:"0.6-1.1 mg/dL", uric_acid_male:"3.5-7.0 mg/dL", uric_acid_female:"2.5-6.0 mg/dL"},
+          safetyPrecautions:["Universal precautions"],
+          examTips:["Keyword: GFR","BUN:Creat >20:1 = Pre-renal"],
+          faqs:[{q:"Better than urea?", a:"Creatinine"}]
+        },
+        {
+          id:"lipid",
+          title:"Lipid Profile",
+          introduction:"Assesses cardiovascular risk.\n\nIncludes TC, TG, HDL, LDL, VLDL.\n\nUsed in diabetes, obesity, and cardiac risk assessment.\n\nFasting sample is critical for TG.",
+          aim:"To measure blood lipids and calculate cardiovascular risk.",
+          principle:"Enzymatic colorimetric method. LDL = TC - HDL - TG/5",
+          materials:["Lipid Kit","Fasting Serum","Spectro"],
+          procedure:["12hr fasting sample","Add reagents","Incubate","Read"],
+          possibleResult:"High LDL: Atherosclerosis risk.\nLow HDL: Risk factor.\nHigh TG: Pancreatitis risk.",
+          normalRange:{tc:"<200 mg/dL", tg:"<150 mg/dL", hdl_male:">40 mg/dL", hdl_female:">50 mg/dL", ldl:"<100 mg/dL"},
+          safetyPrecautions:["PPE"],
+          examTips:["Fasting 9-12hrs","Keyword: Friedewald formula"],
+          faqs:[{q:"Non-fasting ok?", a:"Only for TC and HDL"}]
+        },
+        {
+          id:"fbg",
+          title:"Fasting Blood Glucose",
+          introduction:"Screens for diabetes mellitus.\n\nFasting = 8-12 hours no calories.\n\nGold standard for diabetes diagnosis.",
+          aim:"To determine plasma glucose concentration.",
+          principle:"GOD-POD method produces colored dye measured at 500nm.",
+          materials:["Glucose Kit","Fluoride Tube","Spectro"],
+          procedure:["Collect fasting blood","Separate plasma","Mix with reagent","Incubate","Read"],
+          possibleResult:"Normal: 70-100.\nImpaired: 101-125.\nDiabetic: >126 on 2 occasions.",
+          normalRange:{fasting:"70-100 mg/dL", impaired:"101-125 mg/dL", diabetic:">126 mg/dL"},
+          safetyPrecautions:["Sharps disposal"],
+          examTips:["Use fluoride tube","Keyword: ADA criteria"],
+          faqs:[{q:"Why fluoride?", a:"Prevents glycolysis"}]
+        },
+        {
+          id:"hba1c",
+          title:"Glycated Hemoglobin HbA1c",
+          introduction:"Reflects average blood glucose over 3 months.\n\nNot affected by recent meals.\n\nUsed to monitor diabetic control.",
+          aim:"To monitor long term glycemic control.",
+          principle:"HbA1c is glucose bound to Hb. Measured by HPLC or immunoassay.",
+          materials:["EDTA Blood","HbA1c Analyzer"],
+          procedure:["Collect EDTA blood","Load on analyzer","Run test"],
+          possibleResult:"Normal: <5.7%.\nPre-diabetic: 5.7-6.4%.\nDiabetic: >6.5%.",
+          normalRange:{normal:"<5.7%", prediabetic:"5.7-6.4%", diabetic:">6.5%"},
+          safetyPrecautions:["Blood safety"],
+          examTips:["120 days RBC lifespan","Keyword: Glycated"],
+          faqs:[{q:"Advantage over FBG?", a:"No fasting needed"}]
+        },
+        {
+          id:"electrolytes",
+          title:"Serum Electrolytes",
+          introduction:"Na, K, Cl, HCO3 maintain fluid and acid-base balance.\n\nCritical values need urgent reporting.\n\nHemolysis causes pseudohyperkalemia.",
+          aim:"To measure electrolyte levels.",
+          principle:"Ion Selective Electrode measures ion activity.",
+          materials:["ISE Analyzer","Serum"],
+          procedure:["Load sample","Calibrate","Run"],
+          possibleResult:"High K: Cardiac arrest risk.\nLow Na: Cerebral edema.\nLow HCO3: Metabolic acidosis.",
+          normalRange:{na:"135-145 mmol/L", k:"3.5-5.0 mmol/L", cl:"98-106 mmol/L", hco3:"22-28 mmol/L"},
+          safetyPrecautions:["Machine safety"],
+          examTips:["Critical K >6.5 or <2.5","Keyword: ISE"],
+          faqs:[{q:"Cause of pseudohyperkalemia?", a:"Hemolysis"}]
+        },
+        {
+          id:"cardiac",
+          title:"Cardiac Troponin I",
+          introduction:"Most specific marker for myocardial injury.\n\nRises 3-6hrs, peaks 24hrs, stays 14 days.\n\nGold standard for MI diagnosis.",
+          aim:"To diagnose acute myocardial infarction.",
+          principle:"Immunoassay. Antibodies bind to cardiac troponin I.",
+          materials:["Troponin Kit","Serum"],
+          procedure:["Add serum to cassette","Wait 15min","Read"],
+          possibleResult:"Positive: Myocardial injury.\nNegative: No MI.",
+          normalRange:{all:"<0.04 ng/mL"},
+          safetyPrecautions:["PPE"],
+          examTips:["Keyword: Cardiac specific","Rises before CK-MB"],
+          faqs:[{q:"Why better than CK-MB?", a:"More specific and longer"}]
+        },
+        {
+          id:"thyroid",
+          title:"Thyroid Function Test - TFT",
+          introduction:"T3, T4, TSH assess thyroid status.\n\nTSH is first line test.\n\nUsed in hypothyroidism, hyperthyroidism.",
+          aim:"To measure thyroid hormones.",
+          principle:"Competitive chemiluminescent immunoassay.",
+          materials:["TFT Kit","Serum","Analyzer"],
+          procedure:["Add serum","Incubate","Wash","Read luminescence"],
+          possibleResult:"High TSH + Low T4: Hypothyroidism.\nLow TSH + High T4: Hyperthyroidism.",
+          normalRange:{tsh:"0.4-4.0 µIU/mL", ft4:"0.8-1.8 ng/dL", ft3:"2.3-4.2 pg/mL"},
+          safetyPrecautions:["Gloves"],
+          examTips:["TSH first line","Keyword: Feedback mechanism"],
+          faqs:[{q:"Free vs Total?", a:"Free is active"}]
+        },
+        {
+          id:"calcium",
+          title:"Serum Calcium",
+          introduction:"Important for nerve, muscle and bone.\n\n50% bound to albumin. Must correct for low albumin.\n\nCritical in tetany and cardiac function.",
+          aim:"To measure total and ionized calcium.",
+          principle:"Forms colored complex with cresolphthalein.",
+          materials:["Calcium Kit","Serum"],
+          procedure:["Mix","Incubate","Read 570nm"],
+          possibleResult:"High: Hyperparathyroidism, malignancy.\nLow: Hypoparathyroidism, Vitamin D deficiency.",
+          normalRange:{total:"8.5-10.5 mg/dL", ionized:"4.6-5.3 mg/dL"},
+          safetyPrecautions:["Reagent caution"],
+          examTips:["Corrected Ca = Ca + 0.8(4-Alb)"],
+          faqs:[{q:"Ionized vs Total?", a:"Ionized is active"}]
+        },
+        {
+          id:"amylase_lipase",
+          title:"Serum Amylase and Lipase",
+          introduction:"Pancreatic enzymes elevated in pancreatitis.\n\nLipase is more specific and stays elevated longer.\n\nAmylase also in salivary glands.",
+          aim:"To measure pancreatic enzymes.",
+          principle:"Amylase: Hydrolysis of starch. Lipase: Hydrolysis of triglyceride.",
+          materials:["Amylase/Lipase Kit","Serum"],
+          procedure:["Mix","Incubate","Read"],
+          possibleResult:"High: Acute pancreatitis.\nNormal: Rules out pancreatitis.",
+          normalRange:{amylase:"30-110 IU/L", lipase:"10-140 IU/L"},
+          safetyPrecautions:["PPE"],
+          examTips:["Lipase >3x normal = Pancreatitis","Keyword: More specific"],
+          faqs:[{q:"Which is better?", a:"Lipase"}]
+        }
+      ],
+      normalRanges:[
+        {test:"ALT", all:"<40 IU/L"},
+        {test:"AST", all:"<40 IU/L"},
+        {test:"ALP", all:"40-120 IU/L"},
+        {test:"Total Bilirubin", all:"<1.2 mg/dL"},
+        {test:"Total Protein", all:"6-8 g/dL"},
+        {test:"Albumin", all:"3.5-5.0 g/dL"},
+        {test:"Urea", all:"15-40 mg/dL"},
+        {test:"Creatinine", male:"0.7-1.3 mg/dL", female:"0.6-1.1 mg/dL"},
+        {test:"Uric Acid", male:"3.5-7.0 mg/dL", female:"2.5-6.0 mg/dL"},
+        {test:"Total Cholesterol", all:"<200 mg/dL"},
+        {test:"Triglyceride", all:"<150 mg/dL"},
+        {test:"HDL", male:">40 mg/dL", female:">50 mg/dL"},
+        {test:"LDL", all:"<100 mg/dL"},
+        {test:"Fasting Glucose", all:"70-100 mg/dL"},
+        {test:"HbA1c", all:"<5.7%"},
+        {test:"Sodium", all:"135-145 mmol/L"},
+        {test:"Potassium", all:"3.5-5.0 mmol/L"},
+        {test:"Chloride", all:"98-106 mmol/L"},
+        {test:"Bicarbonate", all:"22-28 mmol/L"},
+        {test:"Troponin I", all:"<0.04 ng/mL"},
+        {test:"TSH", all:"0.4-4.0 µIU/mL"},
+        {test:"Free T4", all:"0.8-1.8 ng/dL"},
+        {test:"Free T3", all:"2.3-4.2 pg/mL"},
+        {test:"Total Calcium", all:"8.5-10.5 mg/dL"},
+        {test:"Amylase", all:"30-110 IU/L"},
+        {test:"Lipase", all:"10-140 IU/L"}
+      ],
+      faqs:[{q:"Best kidney marker?", a:"Creatinine"}, {q:"Best liver marker?", a:"ALT"}]
+    },
+
+    // ==================== EXAM QUESTIONS BANK ====================
+  ],
+  questions: [
+    {id:1,q:"What is the normal PCV range for adult male?",options:["30-40%","40-54%","55-65%","35-45%"],answer:1,exp:"Normal PCV for males is 40-54%. Rule of 3: Hb x 3 ≈ PCV."},
+    {id:2,q:"Sahli method converts Hb to:",options:["Cyanmethemoglobin","Acid hematin","Oxyhemoglobin","Carboxyhemoglobin"],answer:1,exp:"Sahli uses N/10 HCl to form brown acid hematin."},
+    {id:3,q:"ESR is markedly raised in:",options:["Polycythemia","Inflammation","Dehydration","Hemoconcentration"],answer:1,exp:"Fibrinogen causes rouleaux formation and faster settling."},
+    {id:4,q:"Normal WBC count range is:",options:["2000-5000","4000-11000","12000-20000","5000-15000"],answer:1,exp:"4000-11000 cells/µL"},
+    {id:5,q:"Platelets counted using:",options:["WBC pipette","Platelet pipette and Rees-Ecker fluid","RBC pipette","Direct method"],answer:1,exp:"1:100 dilution with Rees-Ecker fluid."},
+    {id:6,q:"Glucose oxidase method measures:",options:["Protein","Glucose","Urea","Creatinine"],answer:1,exp:"GOD-POD produces colored dye at 500nm."},
+    {id:7,q:"Jaffe reaction is used for:",options:["Urea","Creatinine","Bilirubin","Cholesterol"],answer:1,exp:"Creatinine + alkaline picrate = orange-red complex."},
+    {id:8,q:"ALT is more specific for:",options:["Heart","Kidney","Liver","Muscle"],answer:2,exp:"ALT is primarily in liver."},
+    {id:9,q:"Normal fasting blood glucose is:",options:["50-70","70-100","100-140","140-180"],answer:1,exp:"70-100 mg/dL. >126 = Diabetes."},
+    {id:10,q:"HbA1c reflects average glucose for:",options:["1 week","2 weeks","3 months","6 months"],answer:2,exp:"120 days, approx 3 months."},
+    {id:11,q:"Principle of Gram stain is based on:",options:["Cell wall","Capsule","Flagella","Nucleus"],answer:0,exp:"Thick peptidoglycan in Gram +ve."},
+    {id:12,q:"ZN stain is used for:",options:["E.coli","Staphylococcus","Mycobacterium","Candida"],answer:2,exp:"Acid-fast bacilli like TB."},
+    {id:13,q:"Significant bacteriuria is:",options:[">1000 CFU/mL",">10000 CFU/mL",">100000 CFU/mL",">1000000 CFU/mL"],answer:2,exp:">100,000 CFU/mL in clean catch."},
+    {id:14,q:"Blood culture is used to diagnose:",options:["UTI","Sepsis","Pneumonia","Diarrhea"],answer:1,exp:"Bacteremia and sepsis."},
+    {id:15,q:"Kirby-Bauer test is for:",options:["Identification","Sensitivity","Culture","Staining"],answer:1,exp:"Antibiotic disk diffusion."},
+    {id:16,q:"HIV rapid test detects:",options:["Antigen","Antibody","RNA","DNA"],answer:1,exp:"HIV 1/2 antibodies."},
+    {id:17,q:"HBsAg indicates:",options:["Immunity","Past infection","Current infection","Vaccination"],answer:2,exp:"Current HBV infection."},
+    {id:18,q:"Widal test is for:",options:["Typhoid","Malaria","TB","Hepatitis"],answer:0,exp:"Salmonella typhi antibodies."},
+    {id:19,q:"CRP is an:",options:["Antibody","Enzyme","Acute phase protein","Hormone"],answer:2,exp:"Rises within 6hrs of inflammation."},
+    {id:20,q:"ASOT is raised in:",options:["Strep infection","Staph infection","E.coli","Salmonella"],answer:0,exp:"Group A Streptococcus."},
+    {id:21,q:"Fixation is done with:",options:["Alcohol","Acetone","10% Formalin","Xylene"],answer:2,exp:"10% buffered formalin."},
+    {id:22,q:"H&E stains nuclei:",options:["Pink","Blue","Yellow","Red"],answer:1,exp:"Hematoxylin = blue nuclei."},
+    {id:23,q:"IHC is used to detect:",options:["Bacteria","Antigen","DNA","RNA"],answer:1,exp:"Specific antigens using antibodies."},
+    {id:24,q:"Frozen section is for:",options:["Routine","Rapid diagnosis","Special stain","Culture"],answer:1,exp:"Intraoperative diagnosis in 15min."},
+    {id:25,q:"ABO grouping is based on:",options:["Antigens on RBC","Antibodies in serum","Both","None"],answer:2,exp:"Cell + Serum grouping must agree."},
+    {id:26,q:"Crossmatching is done to prevent:",options:["Infection","Transfusion reaction","Clotting","Hemolysis"],answer:1,exp:"Donor-recipient compatibility."},
+    {id:27,q:"DAT is positive in:",options:["Iron deficiency","AIHA","Thalassemia","Sickle cell"],answer:1,exp:"Autoimmune hemolytic anemia."},
+    {id:28,q:"Blood is stored at:",options:["Room temp","2-6°C","-20°C","37°C"],answer:1,exp:"PRBC at 2-6°C for 42 days."},
+    {id:29,q:"Pap smear screens for:",options:["Breast cancer","Cervical cancer","Ovarian cancer","Uterine cancer"],answer:1,exp:"Cervical precancerous lesions."},
+    {id:30,q:"FNAC is used for:",options:["Blood","Lump","Urine","Stool"],answer:1,exp:"Palpable lumps."},
+    {id:31,q:"Thick film is used for:",options:["Species ID","Parasite concentration","Culture","Sensitivity"],answer:1,exp:"Concentrates parasites."},
+    {id:32,q:"Malaria parasite is identified in:",options:["Thick film","Thin film","Both","None"],answer:2,exp:"Thick for detection, Thin for species."},
+    {id:33,q:"S.haematobium eggs are found in:",options:["Stool","Urine","Blood","CSF"],answer:1,exp:"Urine with terminal spine."},
+    {id:34,q:"Scotch tape test is for:",options:["Ascaris","Hookworm","Pinworm","Tapeworm"],answer:2,exp:"Enterobius vermicularis."},
+    {id:35,q:"Microfilaria are collected at:",options:["Morning","Afternoon","Night","Anytime"],answer:2,exp:"W.bancrofti nocturnal 10pm-2am."},
+    {id:36,q:"PCR is used to detect:",options:["Antibody","Antigen","DNA/RNA","Protein"],answer:2,exp:"Amplifies nucleic acid."},
+    {id:37,q:"NS1 antigen is for:",options:["HIV","Dengue","Hepatitis","COVID"],answer:1,exp:"Dengue in first week."},
+    {id:38,q:"RT-PCR is gold standard for:",options:["HIV","TB","COVID","Malaria"],answer:2,exp:"SARS-CoV-2 from NP swab."},
+    {id:39,q:"Toxoplasma IgM indicates:",options:["Past infection","Recent infection","Immunity","Vaccination"],answer:1,exp:"Recent infection. Important in pregnancy."},
+    {id:40,q:"Corrected calcium formula is:",options:["Ca + 0.8(4-Alb)","Ca - 0.8(4-Alb)","Ca x Alb","Ca/Alb"],answer:0,exp:"Correct for low albumin."}
+  ],
+
+  // ==================== MASTER NORMAL RANGES FOR ALL MLS TESTS ====================
+  masterNormalRanges:[
+    // HEMATOLOGY
+    {test:"Packed Cell Volume PCV", desc:"Proportion of blood made of RBCs", male:"40-54%", female:"37-47%", infant:"30-40%"},
+    {test:"Hemoglobin Hb", desc:"Oxygen carrying protein", male:"13.5-17.5 g/dL", female:"12-15.5 g/dL", infant:"9.5-14 g/dL"},
+    {test:"ESR", desc:"Inflammation marker", male:"0-15 mm/hr", female:"0-20 mm/hr", infant:"0-10 mm/hr"},
+    {test:"Total WBC", desc:"Total leukocytes", male:"4000-11000 /µL", female:"4000-11000 /µL", infant:"6000-17500 /µL"},
+    {test:"Platelet Count", desc:"Clotting cells", male:"150000-450000 /µL", female:"150000-450000 /µL", infant:"150000-450000 /µL"},
+    {test:"Neutrophils", desc:"Bacterial infection cells", male:"40-75%", female:"40-75%", infant:"30-50%"},
+    {test:"Lymphocytes", desc:"Viral infection cells", male:"20-45%", female:"20-45%", infant:"40-60%"},
+    {test:"Reticulocytes", desc:"Young RBCs", male:"0.5-2.5%", female:"0.5-2.5%", infant:"0.5-4%"},
+    {test:"Bleeding Time", desc:"Platelet function", male:"2-9 min", female:"2-9 min", infant:"2-9 min"},
+    {test:"Clotting Time", desc:"Coagulation time", male:"5-10 min", female:"5-10 min", infant:"5-10 min"},
+
+    // CLINICAL CHEMISTRY
+    {test:"Fasting Blood Glucose", desc:"Blood sugar", male:"70-100 mg/dL", female:"70-100 mg/dL", infant:"60-100 mg/dL"},
+    {test:"Urea", desc:"Kidney waste product", male:"15-40 mg/dL", female:"15-40 mg/dL", infant:"5-18 mg/dL"},
+    {test:"Creatinine", desc:"GFR marker", male:"0.7-1.3 mg/dL", female:"0.6-1.1 mg/dL", infant:"0.2-0.4 mg/dL"},
+    {test:"ALT", desc:"Liver enzyme", male:"<41 IU/L", female:"<33 IU/L", infant:"<50 IU/L"},
+    {test:"AST", desc:"Liver/cardiac enzyme", male:"<40 IU/L", female:"<32 IU/L", infant:"<60 IU/L"},
+    {test:"Total Bilirubin", desc:"Jaundice marker", male:"<1.2 mg/dL", female:"<1.2 mg/dL", infant:"<1.0 mg/dL"},
+    {test:"Total Cholesterol", desc:"Lipid risk", male:"<200 mg/dL", female:"<200 mg/dL", infant:"<170 mg/dL"},
+    {test:"Total Protein", desc:"Nutritional status", male:"6-8 g/dL", female:"6-8 g/dL", infant:"5.7-6.7 g/dL"},
+    {test:"Sodium", desc:"Fluid balance", male:"135-145 mmol/L", female:"135-145 mmol/L", infant:"133-142 mmol/L"},
+    {test:"Potassium", desc:"Cardiac function", male:"3.5-5.0 mmol/L", female:"3.5-5.0 mmol/L", infant:"3.6-5.8 mmol/L"},
+    {test:"Amylase", desc:"Pancreatic enzyme", male:"30-110 IU/L", female:"30-110 IU/L", infant:"5-65 IU/L"},
+
+    // MICROBIOLOGY
+    {test:"Urine Culture", desc:"UTI detection", male:"<10000 CFU/mL", female:"<10000 CFU/mL", infant:"<10000 CFU/mL"},
+    {test:"Blood Culture", desc:"Bacteremia", male:"No growth", female:"No growth", infant:"No growth"},
+    {test:"CSF Cells", desc:"Meningitis", male:"<5 /µL", female:"<5 /µL", infant:"<30 /µL"},
+    {test:"CSF Glucose", desc:"Meningitis", male:"50-80 mg/dL", female:"50-80 mg/dL", infant:"40-80 mg/dL"},
+    {test:"Gram Stain", desc:"Bacterial type", male:"Report morphology", female:"Report morphology", infant:"Report morphology"},
+
+    // IMMUNOLOGY
+    {test:"HIV", desc:"HIV screening", male:"Non-reactive", female:"Non-reactive", infant:"Non-reactive"},
+    {test:"HBsAg", desc:"Hepatitis B", male:"Negative", female:"Negative", infant:"Negative"},
+    {test:"Widal", desc:"Typhoid antibodies", male:"<1:80", female:"<1:80", infant:"<1:80"},
+    {test:"RF", desc:"Rheumatoid arthritis", male:"<20 IU/mL", female:"<20 IU/mL", infant:"<20 IU/mL"},
+    {test:"CRP", desc:"Inflammation", male:"<10 mg/L", female:"<10 mg/L", infant:"<10 mg/L"},
+    {test:"ASOT", desc:"Strep infection", male:"<200 IU/mL", female:"<200 IU/mL", infant:"<100 IU/mL"},
+    {test:"Malaria RDT", desc:"Malaria antigen", male:"Negative", female:"Negative", infant:"Negative"},
+    {test:"Pregnancy Test", desc:"hCG hormone", male:"N/A", female:"Negative", infant:"N/A"},
+    {test:"VDRL", desc:"Syphilis screen", male:"Non-reactive", female:"Non-reactive", infant:"Non-reactive"},
+
+    // BLOOD BANK
+    {test:"ABO Group", desc:"Blood group", male:"A/B/AB/O", female:"A/B/AB/O", infant:"A/B/AB/O"},
+    {test:"Rh Type", desc:"Rh status", male:"Positive/Negative", female:"Positive/Negative", infant:"Positive/Negative"},
+    {test:"Crossmatch", desc:"Compatibility", male:"Compatible", female:"Compatible", infant:"Compatible"},
+    {test:"Antibody Screen", desc:"Irregular antibodies", male:"Negative", female:"Negative", infant:"Negative"},
+    {test:"DAT", desc:"Antibodies on RBCs", male:"Negative", female:"Negative", infant:"Negative"},
+
+    // VIROLOGY
+    {test:"HIV ELISA", desc:"Confirmatory HIV", male:"Non-reactive", female:"Non-reactive", infant:"Non-reactive"},
+    {test:"HBV DNA", desc:"HBV viral load", male:"Undetectable", female:"Undetectable", infant:"Undetectable"},
+    {test:"HCV Antibody", desc:"Hepatitis C", male:"Non-reactive", female:"Non-reactive", infant:"Non-reactive"},
+    {test:"Dengue NS1", desc:"Dengue antigen", male:"Negative", female:"Negative", infant:"Negative"},
+    {test:"COVID PCR", desc:"SARS-CoV-2", male:"Not detected", female:"Not detected", infant:"Not detected"},
+
+    // CYTOLOGY
+    {test:"Pap Smear", desc:"Cervical cancer screen", male:"N/A", female:"NILM", infant:"N/A"},
+    {test:"Urine Cytology", desc:"Bladder cancer", male:"Negative", female:"Negative", infant:"Negative"},
+    {test:"Bone Marrow Blasts", desc:"Leukemia", male:"<5%", female:"<5%", infant:"<5%"},
+
+    // PARASITOLOGY
+    {test:"Stool O&P", desc:"Intestinal parasites", male:"No parasite seen", female:"No parasite seen", infant:"No parasite seen"},
+    {test:"Malaria Film", desc:"Malaria parasite", male:"No parasite seen", female:"No parasite seen", infant:"No parasite seen"},
+    {test:"Urine Schisto", desc:"S.haematobium", male:"No eggs", female:"No eggs", infant:"No eggs"},
+
+    // CHEMICAL PATHOLOGY
+    {test:"ALP", desc:"Liver/bone enzyme", male:"40-120 IU/L", female:"40-120 IU/L", infant:"150-420 IU/L"},
+    {test:"Albumin", desc:"Liver synthetic function", male:"3.5-5.0 g/dL", female:"3.5-5.0 g/dL", infant:"3.0-5.0 g/dL"},
+    {test:"HbA1c", desc:"3 month glucose avg", male:"<5.7%", female:"<5.7%", infant:"<5.7%"},
+    {test:"TSH", desc:"Thyroid function", male:"0.4-4.0 µIU/mL", female:"0.4-4.0 µIU/mL", infant:"0.5-5.0 µIU/mL"},
+    {test:"Free T4", desc:"Thyroid hormone", male:"0.8-1.8 ng/dL", female:"0.8-1.8 ng/dL", infant:"0.8-2.0 ng/dL"},
+    {test:"Total Calcium", desc:"Nerve/muscle function", male:"8.5-10.5 mg/dL", female:"8.5-10.5 mg/dL", infant:"8.8-10.8 mg/dL"},
+    {test:"Lipase", desc:"Pancreatic enzyme", male:"10-140 IU/L", female:"10-140 IU/L", infant:"10-140 IU/L"}
+  ],
+
+  // ==================== MASTER FAQ BANK ====================
+  masterFAQs:[
+    {q:"Rule of 3 in Hematology", a:"Hb x 3 ≈ PCV"},
+    {q:"Best anticoagulant for CBC", a:"EDTA"},
+    {q:"Gold standard for diabetes diagnosis", a:"Fasting Glucose >126 on 2 occasions"},
+    {q:"Best kidney function test", a:"Creatinine"},
+    {q:"Best liver function test", a:"ALT"},
+    {q:"Significant bacteriuria", a:">100,000 CFU/mL"},
+    {q:"Window period for HIV", a:"3 months for antibodies, 2-4 weeks for 4th gen"},
+    {test:"Thick vs Thin malaria film", a:"Thick for detection, Thin for species"},
+    {q:"Fixative for histopathology", a:"10% Neutral Buffered Formalin"},
+    {q:"Most important pre-transfusion test", a:"Crossmatching"},
+    {q:"Gold standard for COVID", a:"RT-PCR"},
+    {q:"Normal CSF cells", a:"<5 /µL"},
+    {q:"Corrected calcium formula", a:"Ca + 0.8(4-Alb)"},
+    {q:"LDL calculation", a:"TC - HDL - TG/5"},
+    {q:"AST:ALT >2 suggests", a:"Alcoholic liver disease"}
+  ]
+}
 
 export default LAB_DATA;
