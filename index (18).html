@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#B71C1C">
+<title>LabGuru - MLS Learning Companion</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<style>
+:root{--blood:#B71C1C;--blood-dark:#7f0f0f;--white:#FFFFFF;--lightgray:#F5F5F5;--text:#212121;--bg:#FFFFFF;--font:16px}
+[data-theme="dark"]{--bg:#121212;--text:#E0E0E0;--lightgray:#1E1E1E}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',Arial,sans-serif}
+body{background:var(--bg);color:var(--text);font-size:var(--font)}
+header{background:var(--blood);color:var(--white);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:150}
+header button{background:transparent;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:6px 10px;border-radius:8px}
+header button:active{background:rgba(255,255,255,.2)}
+.btn{background:var(--blood);color:var(--white);padding:12px 20px;border:none;border-radius:8px;font-weight:600;cursor:pointer;width:100%;margin-top:10px;font-size:1rem}
+.btn:active{background:var(--blood-dark)}
+.btn.secondary{background:transparent;color:var(--blood);border:2px solid var(--blood)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.card{background:var(--lightgray);margin:10px;border-radius:12px;padding:16px;cursor:pointer;transition:transform .15s}
+.card:active{transform:scale(.98)}
+.search{width:96%;margin:10px;padding:12px;border-radius:8px;border:1px solid #ccc;background:var(--bg);color:var(--text)}
+
+/* ===== Blood-red menu, white readable text ===== */
+.menu{position:fixed;left:-280px;top:0;width:280px;height:100%;background:linear-gradient(180deg,var(--blood),var(--blood-dark));color:#fff;transition:.3s;z-index:200;padding:20px;box-shadow:2px 0 16px rgba(0,0,0,.35);overflow-y:auto}
+.menu.active{left:0}
+.menu h3{color:#fff;font-size:1.3rem}
+.menu small{color:#ffd9d9}
+.menu hr{border:none;border-top:1px solid rgba(255,255,255,.25);margin:12px 0}
+.menu-item{display:flex;align-items:center;gap:10px;color:#fff;padding:12px 8px;border-radius:8px;cursor:pointer;font-size:1.02rem;font-weight:500}
+.menu-item:active,.menu-item:hover{background:rgba(255,255,255,.15)}
+.menu-item .emoji{font-size:1.15rem}
+.menu label{color:#fff;font-size:.9rem;display:block;margin-top:6px}
+.menu select{margin-top:4px;padding:6px;border-radius:6px;border:none}
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:190;opacity:0;pointer-events:none;transition:.3s}
+.menu-overlay.active{opacity:1;pointer-events:auto}
+.auth-box{background:rgba(255,255,255,.12);border-radius:10px;padding:12px;margin-top:14px;font-size:.9rem}
+.google-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#333;border:none;border-radius:8px;padding:10px;width:100%;font-weight:600;cursor:pointer;margin-top:8px}
+
+.analysis{padding:16px} .analysis h2{color:var(--blood)} .analysis h3{margin-top:16px;color:var(--blood)}
+.premium{text-align:center;padding:40px 20px} .hidden{display:none}
+mark{background:yellow}
+.offline-banner{background:#333;color:#fff;text-align:center;padding:6px;font-size:.85rem;position:sticky;top:0;z-index:140}
+.perk{text-align:left;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.range-card{background:var(--lightgray);margin:10px;border-radius:12px;padding:14px 16px}
+.range-card h4{color:var(--blood);font-size:1rem}
+.range-card p.desc{opacity:.75;font-size:.85rem;margin:2px 0 8px}
+.range-row{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;padding:4px 0;border-top:1px solid rgba(0,0,0,.06)}
+.range-row b{opacity:.7;font-weight:600}
+.progress-bar{background:var(--lightgray);border-radius:6px;height:10px;overflow:hidden;margin:6px 0}
+.progress-fill{background:var(--blood);height:100%;transition:width .4s}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--blood);color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:400;max-width:90%;font-size:.92rem;opacity:0;transition:.3s}
+.toast.show{opacity:1;bottom:36px}
+
+/* ===== Welcome / home hero ===== */
+.hero{position:relative;overflow:hidden;border-radius:16px;margin:12px;color:#fff}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-inner{position:relative;z-index:2;padding:40px 20px;text-align:center;background:linear-gradient(160deg,rgba(183,28,28,.92),rgba(90,10,10,.92))}
+.hero-inner .flask{font-size:3.4rem}
+.rotator{height:1.4em;overflow:hidden;position:relative;margin:6px auto 4px;font-weight:600;font-size:1.05rem}
+.rotator span{position:absolute;left:0;right:0;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+.rotator span.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<div class="offline-banner hidden" id="offlineBanner">📴 You're offline — showing saved content</div>
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<header>
+  <button onclick="toggleMenu()" aria-label="Menu">☰</button>
+  <h1>LabGuru</h1>
+  <button onclick="toggleTheme()" aria-label="Theme">🌙</button>
+</header>
+
+<div class="menu" id="menu">
+  <h3>🧪 LabGuru</h3><p><small>MLS Learning Companion</small></p><hr>
+  <div class="menu-item" onclick="showHome()"><span class="emoji">🏠</span> Home</div>
+  <div class="menu-item" onclick="showUnits()"><span class="emoji">📚</span> Course Outline</div>
+  <div class="menu-item" onclick="showNormalRanges()"><span class="emoji">📏</span> Normal Ranges</div>
+  <div class="menu-item" onclick="showSearch()"><span class="emoji">🔍</span> Search</div>
+  <div class="menu-item" onclick="showQA()"><span class="emoji">❓</span> Q &amp; A</div>
+  <div class="menu-item" onclick="showConverter()"><span class="emoji">🧮</span> Unit Converter</div>
+  <div class="menu-item" onclick="showProgress()"><span class="emoji">📊</span> My Progress</div>
+  <div class="menu-item" onclick="showPremium()"><span class="emoji">👑</span> Premium</div>
+  <div class="menu-item" onclick="showFAQs()"><span class="emoji">📖</span> FAQs</div>
+  <hr>
+  <label>Font size
+    <select onchange="setFont(this.value)">
+      <option>14px</option><option selected>16px</option><option>18px</option>
+    </select>
+  </label>
+
+  <div class="auth-box" id="authBox">
+    <div id="authStatus">Not signed in</div>
+    <button class="google-btn" id="googleBtn" onclick="signInGoogle()">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.9 32.7 29.4 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 6 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 6 29.5 4 24 4c-7.6 0-14.1 4.3-17.4 10.7z"/><path fill="#4CAF50" d="M24 44c5.3 0 10.1-2 13.7-5.4l-6.3-5.3C29.4 35 26.8 36 24 36c-5.3 0-9.8-3.3-11.3-8l-6.5 5C9.8 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1.1 3-3.3 5.4-6.1 6.9l6.3 5.3C39.6 37 44 31 44 24c0-1.2-.1-2.4-.4-3.5z"/></svg>
+      Sign in with Google
+    </button>
+    <button class="btn secondary hidden" id="signOutBtn" onclick="signOutUser()" style="margin-top:6px">Sign out</button>
+    <div id="notifRow" class="hidden">
+      <div class="menu-item" onclick="enableNotifications()"><span class="emoji">🔔</span> <span id="notifLabel">Enable Notifications</span></div>
+    </div>
+  </div>
+</div>
+
+<main id="app"></main>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+<script src="data.js"></script>
+<script>
+/* =========================================================
+   STATE — always read from localStorage first (instant, offline-safe).
+   Cloud (Firestore) is synced on top once the user signs in.
+   ========================================================= */
+let readCount = +localStorage.getItem('readCount') || 0;
+let premiumExpiry = +localStorage.getItem('premiumExpiry') || 0;
+let isPremium = premiumExpiry > Date.now();
+let visited = JSON.parse(localStorage.getItem('visited') || '[]');
+let currentUser = null;
+let fcmToken = localStorage.getItem('fcmToken') || null;
+let messaging = null;
+let particleRAF = null;
+
+// keep a stale "premium expired" flag from silently granting access
+if (!isPremium) localStorage.setItem('isPremium', 'false');
+
+/* ---------- Firebase init ---------- */
+const firebaseConfig = {
+  apiKey: "AIzaSyDiwHX3WZsri83Nsv6khD56yas7KkTzA3c",
+  authDomain: "labguru-af7f8.firebaseapp.com",
+  projectId: "labguru-af7f8",
+  storageBucket: "labguru-af7f8.firebasestorage.app",
+  messagingSenderId: "337649838006",
+  appId: "1:337649838006:web:f300b8a145a25174e9c317",
+  measurementId: "G-4XQBDEK9C6"
+};
+const VAPID_KEY = "BNFLX1oeOLk7d2q-AbLzd61zs0iIesZhBg5Y-cDbH95Gz46Z7AgwieTOEc-OHgvP2wz_p2KZ64zt82HdH6K_1Dw";
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+db.enablePersistence({ synchronizeTabs: true }).catch(() => {}); // offline Firestore cache
+
+try { messaging = firebase.messaging(); } catch (e) { messaging = null; }
+
+let swRegistration = null;
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+  navigator.serviceWorker.register('firebase-messaging-sw.js')
+    .then(reg => { swRegistration = reg; })
+    .catch(() => {});
+}
+
+/* ---------- Toast ---------- */
+function toast(msg, ms) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), ms || 3000);
+}
+
+/* =========================================================
+   ROUTER — every screen function below calls pushRoute() as its
+   first line. Without this, the app never added any browser history
+   entries, so the device/OS back button had nothing to go "back" to
+   and closed the app instead of returning to the previous screen.
+   pushRoute() records {fn, args} so popstate (back/forward) can
+   re-render the exact same screen. The very first screen (Home) uses
+   replaceState so back-from-Home still correctly exits the app.
+   ========================================================= */
+let suppressPush = false;
+function pushRoute(fn, args) {
+  if (suppressPush) return;
+  const state = { fn, args: args || [] };
+  if (!history.state) history.replaceState(state, '', '#' + fn);
+  else history.pushState(state, '', '#' + fn);
+}
+window.addEventListener('popstate', (e) => {
+  suppressPush = true;
+  const st = e.state;
+  if (st && st.fn && typeof window[st.fn] === 'function') {
+    window[st.fn](...(st.args || []));
+  } else {
+    showHome();
+  }
+  suppressPush = false;
+});
+
+/* ---------- Menu (FIX: open/close are now separate actions) ----------
+   Previously every screen used toggleMenu(), which — since the menu was
+   already closed — flipped it OPEN instead of navigating. That's why
+   "Start Learning" (and the Back button, and every menu link) landed on
+   the menu instead of the destination screen. */
+function toggleMenu() {
+  document.getElementById('menu').classList.toggle('active');
+  document.getElementById('menuOverlay').classList.toggle('active');
+}
+function closeMenu() {
+  document.getElementById('menu').classList.remove('active');
+  document.getElementById('menuOverlay').classList.remove('active');
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next === 'dark' ? 'dark' : '');
+  localStorage.setItem('theme', next);
+}
+function setFont(s) { document.documentElement.style.setProperty('--font', s); localStorage.setItem('font', s) }
+
+/* =========================================================
+   SCREENS
+   ========================================================= */
+function showHome() {
+  pushRoute('showHome');
+  closeMenu();
+  stopParticles();
+  const words = ["Hematology 🩸", "Clinical Chemistry 🧫", "Microbiology 🦠", "Immunology 🛡️", "Histopathology 🔬", "Parasitology 🪱", "Blood Banking 🩹"];
+  document.getElementById('app').innerHTML = `
+  <div class="hero" id="hero">
+    <canvas id="particles"></canvas>
+    <div class="hero-inner">
+      <div class="flask">🧪</div>
+      <h2>LabGuru</h2>
+      <div class="rotator" id="rotator"></div>
+      <p style="opacity:.9;font-size:.9rem">Your Medical Laboratory Science companion</p>
+    </div>
+  </div>
+  <div style="text-align:center;padding:0 20px 20px">
+    <div class="card" style="text-align:left"><h3>What is MLS?</h3><p>Medical Laboratory Science is the study of laboratory analysis of body fluids, tissues and cells to aid in diagnosis, treatment and prevention of disease. This app teaches you principles, procedures and interpretation in simple steps for students and exam prep.</p></div>
+    <button class="btn" onclick="showUnits()">▶️ Start Learning</button>
+    <button class="btn secondary" onclick="showQA()">📝 Practice Q&amp;A</button>
+  </div>`;
+  startRotator(words);
+  startParticles();
+}
+
+function startRotator(words) {
+  const el = document.getElementById('rotator');
+  if (!el) return;
+  let i = 0;
+  function render() {
+    el.innerHTML = `<span class="show">${words[i]}</span>`;
+    i = (i + 1) % words.length;
+  }
+  render();
+  clearInterval(window._rotatorTimer);
+  window._rotatorTimer = setInterval(render, 2200);
+}
+
+// Lightweight canvas particle background — vanilla, no library, capped
+// particle count, and it fully stops when you leave Home or the tab is
+// hidden so it never burns battery/CPU in the background.
+function startParticles() {
+  const canvas = document.getElementById('particles');
+  if (!canvas) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles;
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight || 220;
+  }
+  resize();
+  const COUNT = w < 400 ? 22 : 34;
+  particles = Array.from({ length: COUNT }, () => ({
+    x: Math.random() * w, y: Math.random() * h,
+    vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+    r: Math.random() * 2 + 1
+  }));
+  function tick() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,0.55)';
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 90) {
+          ctx.strokeStyle = `rgba(255,255,255,${0.12 * (1 - dist / 90)})`;
+          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+        }
+      }
+    }
+    particleRAF = requestAnimationFrame(tick);
+  }
+  tick();
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopParticles(); else if (document.getElementById('particles')) startParticles();
+  }, { once: true });
+}
+function stopParticles() { if (particleRAF) cancelAnimationFrame(particleRAF); particleRAF = null; }
+
+function showUnits() {
+  pushRoute('showUnits');
+  closeMenu(); stopParticles();
+  document.getElementById('app').innerHTML = `
+    <input class="search" placeholder="🔍 Search analyses..." oninput="search(this.value)">
+    <div id="unitsResults"></div>`;
+  renderUnitsList();
+}
+function renderUnitsList() {
+  let html = `<h2 style="padding:12px">📚 MLS Units</h2>`;
+  LAB_DATA.units.forEach(u => {
+    const done = u.analyses.filter(a => visited.includes(a.id)).length;
+    html += `<div class="card" onclick="openUnit('${u.id}')"><h3>${u.name}</h3><p>${u.analyses.length} Analyses ${done ? `· ✅ ${done} studied` : ''}</p></div>`;
+  });
+  html += `<div class="card" onclick="showNormalRanges()"><h3>📏 Normal Ranges</h3><p>Reference ranges for all ${LAB_DATA.normalRanges.length} MLS tests — Male, Female &amp; Infant</p></div>`;
+  document.getElementById('unitsResults').innerHTML = html;
+}
+
+/* ---------- Normal Ranges reference page ---------- */
+function showNormalRanges() {
+  pushRoute('showNormalRanges');
+  closeMenu(); stopParticles();
+  document.getElementById('app').innerHTML = `
+    <div style="padding:12px"><button class="btn secondary" style="width:auto;padding:8px 14px" onclick="showUnits()">← Back</button></div>
+    <h2 style="padding:0 12px">📏 Normal Ranges</h2>
+    <p style="padding:0 12px;opacity:.7;font-size:.85rem">Reference ranges for every test covered in MLS.</p>
+    <input class="search" placeholder="🔍 Search a test..." oninput="searchNormalRanges(this.value)">
+    <div id="rangesResults"></div>`;
+  renderNormalRangesList(LAB_DATA.normalRanges);
+}
+function renderNormalRangesList(list) {
+  let html = '';
+  if (!list.length) html += `<p style="padding:0 16px;opacity:.7">No matches — try another term.</p>`;
+  list.forEach(r => {
+    html += `<div class="range-card">
+      <h4>${r.test}</h4>
+      <div class="range-row"><b>Reference Range</b><span>${r.range}</span></div>
+    </div>`;
+  });
+  document.getElementById('rangesResults').innerHTML = html;
+}
+function searchNormalRanges(q) {
+  q = (q || '').trim().toLowerCase();
+  const list = !q ? LAB_DATA.normalRanges : LAB_DATA.normalRanges.filter(r =>
+    r.test.toLowerCase().includes(q));
+  renderNormalRangesList(list);
+}
+function search(q) {
+  q = (q || '').trim().toLowerCase();
+  const box = document.getElementById('unitsResults');
+  if (!box) return;
+  if (!q) { renderUnitsList(); return; }
+  const results = [];
+  LAB_DATA.units.forEach(u => u.analyses.forEach(a => {
+    if (a.title.toLowerCase().includes(q) || (a.intro || '').toLowerCase().includes(q)) results.push({ uid: u.id, a });
+  }));
+  let html = `<h2 style="padding:12px">🔍 ${results.length} result${results.length === 1 ? '' : 's'}</h2>`;
+  if (!results.length) html += `<p style="padding:0 16px;opacity:.7">No matches — try another term.</p>`;
+  results.forEach(r => { html += `<div class="card" onclick="openAnalysis('${r.uid}','${r.a.id}')">🔬 ${r.a.title}</div>` });
+  box.innerHTML = html;
+}
+function showSearch() {
+  showUnits();
+  setTimeout(() => { const el = document.querySelector('.search'); if (el) el.focus() }, 60);
+}
+
+function openUnit(id) {
+  pushRoute('openUnit', [id]);
+  const u = LAB_DATA.units.find(x => x.id === id);
+  let html = `<div style="padding:12px"><button class="btn secondary" style="width:auto;padding:8px 14px" onclick="showUnits()">← Back</button></div><h2 style="padding:0 12px">${u.name}</h2>`;
+  u.analyses.forEach(a => { html += `<div class="card" onclick="openAnalysis('${id}','${a.id}')">${visited.includes(a.id) ? '✅' : '🔬'} ${a.title}</div>` });
+  document.getElementById('app').innerHTML = html;
+}
+
+function openAnalysis(uid, aid) {
+  if (!isPremium && readCount >= LAB_DATA.settings.freeLimit && !visited.includes(aid)) { showPremium(); return; }
+  pushRoute('openAnalysis', [uid, aid]);
+  const a = LAB_DATA.units.find(u => u.id === uid).analyses.find(x => x.id === aid);
+  if (!visited.includes(aid)) {
+    visited.push(aid);
+    localStorage.setItem('visited', JSON.stringify(visited));
+    if (!isPremium) { readCount++; localStorage.setItem('readCount', readCount) }
+  }
+  document.getElementById('app').innerHTML = `
+  <div class="analysis">
+    <button class="btn secondary" style="width:auto;padding:8px 14px" onclick="openUnit('${uid}')">← Back</button>
+    <h2>${a.title}</h2>
+    <h3>1. Introduction</h3><p>${a.intro}</p>
+    <h3>2. Aim</h3><p>${a.aim}</p>
+    <h3>3. Principles</h3><p>${a.principles}</p>
+    <h3>4. Materials Needed</h3><ul>${a.materials.map(m => `<li>${m}</li>`).join('')}</ul>
+    <h3>5. Procedure</h3><ul>${a.procedure.map(p => `<li>${p}</li>`).join('')}</ul>
+    <h3>6. Possible Result</h3><p>${a.result}</p>
+    <h3>7. Normal Ranges</h3><p>${a.normal}</p>
+    <h3>8. Safety Precautions</h3><ul>${a.safety.map(s => `<li>${s}</li>`).join('')}</ul>
+    <h3>9. Exam Tips</h3><p>${a.tips}</p>
+  </div>`;
+  pushToCloud();
+}
+
+/* ---------- Progress dashboard (premium value-add) ---------- */
+function showProgress() {
+  pushRoute('showProgress');
+  closeMenu(); stopParticles();
+  let html = `<h2 style="padding:12px">📊 My Progress</h2>`;
+  const totalAll = LAB_DATA.units.reduce((s, u) => s + u.analyses.length, 0);
+  const doneAll = visited.length;
+  html += `<div class="card">
+    <b>Overall: ${doneAll}/${totalAll} analyses studied</b>
+    <div class="progress-bar"><div class="progress-fill" style="width:${totalAll ? (doneAll / totalAll * 100) : 0}%"></div></div>
+  </div>`;
+  LAB_DATA.units.forEach(u => {
+    const done = u.analyses.filter(a => visited.includes(a.id)).length;
+    const pct = u.analyses.length ? (done / u.analyses.length * 100) : 0;
+    html += `<div class="card" onclick="openUnit('${u.id}')">
+      <b>${u.name}</b> — ${done}/${u.analyses.length}
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  });
+  if (!isPremium) html += `<p style="padding:0 16px;opacity:.7">🔒 Sign up for Premium to sync this progress across your devices.</p>`;
+  if (isPremium) html += `<div style="padding:16px"><button class="btn secondary" onclick="clearUserData()">🧹 Clear Read &amp; Q&amp;A History</button></div>`;
+  document.getElementById('app').innerHTML = html;
+}
+
+/* ---------- Clear Data (Premium-only) ----------
+   Wipes locally-tracked read history and Q&A answers, then pushes
+   the cleared state to Firestore so it stays cleared across devices. */
+function clearUserData() {
+  if (!isPremium) { toast('Clear Data is a Premium feature.'); return; }
+  if (!confirm('This clears your read history and Q&A answers on every synced device. This cannot be undone. Continue?')) return;
+  visited = [];
+  localStorage.setItem('visited', '[]');
+  localStorage.setItem('qa_answers', '{}');
+  readCount = 0;
+  localStorage.setItem('readCount', '0');
+  pushToCloud();
+  toast('🧹 History cleared');
+  showProgress();
+}
+
+/* ---------- Unit Converter (previously an empty stub) ---------- */
+const CONVERSIONS = {
+  glucose:  { label: 'Glucose', from: 'mg/dL', to: 'mmol/L', factor: 1/18 },
+  urea:     { label: 'Urea', from: 'mg/dL', to: 'mmol/L', factor: 1/2.8 },
+  creatinine: { label: 'Creatinine', from: 'mg/dL', to: 'µmol/L', factor: 88.4 },
+  cholesterol: { label: 'Cholesterol', from: 'mg/dL', to: 'mmol/L', factor: 1/38.67 },
+  bilirubin: { label: 'Bilirubin', from: 'mg/dL', to: 'µmol/L', factor: 17.1 },
+  calcium:  { label: 'Calcium', from: 'mg/dL', to: 'mmol/L', factor: 1/4 },
+  hemoglobin: { label: 'Hemoglobin', from: 'g/dL', to: 'g/L', factor: 10 }
+};
+function showConverter() {
+  if (!isPremium) { showPremium(); return }
+  pushRoute('showConverter');
+  closeMenu(); stopParticles();
+  let opts = Object.entries(CONVERSIONS).map(([k, v]) => `<option value="${k}">${v.label} (${v.from} ↔ ${v.to})</option>`).join('');
+  document.getElementById('app').innerHTML = `
+  <div style="padding:16px">
+    <h2>🧮 Unit Converter</h2>
+    <label>Analyte</label>
+    <select id="convType" class="search" style="width:100%;margin:8px 0" onchange="renderConverter()">${opts}</select>
+    <div id="convBody"></div>
+  </div>`;
+  renderConverter();
+}
+function renderConverter() {
+  const key = document.getElementById('convType').value;
+  const c = CONVERSIONS[key];
+  document.getElementById('convBody').innerHTML = `
+    <label>${c.from}</label>
+    <input class="search" style="width:100%" type="number" id="fromVal" oninput="convertFrom('${key}')" placeholder="Enter value in ${c.from}">
+    <label style="margin-top:10px;display:block">${c.to}</label>
+    <input class="search" style="width:100%" type="number" id="toVal" oninput="convertTo('${key}')" placeholder="Enter value in ${c.to}">`;
+}
+function convertFrom(key) {
+  const c = CONVERSIONS[key], v = parseFloat(document.getElementById('fromVal').value);
+  document.getElementById('toVal').value = isNaN(v) ? '' : +(v * c.factor).toFixed(3);
+}
+function convertTo(key) {
+  const c = CONVERSIONS[key], v = parseFloat(document.getElementById('toVal').value);
+  document.getElementById('fromVal').value = isNaN(v) ? '' : +(v / c.factor).toFixed(3);
+}
+
+/* ---------- Q&A ---------- */
+function showQA() {
+  pushRoute('showQA');
+  closeMenu(); stopParticles();
+  let html = `<h2 style="padding:12px">❓ Examination Questions</h2>`;
+  LAB_DATA.questions.forEach((q) => {
+    let saved = JSON.parse(localStorage.getItem('qa_answers') || '{}');
+    let userAns = saved[q.id];
+    let locked = userAns === undefined;
+    html += `
+    <div class="card" id="q${q.id}">
+      <b>Q${q.id}: ${q.question}</b>
+      <div style="margin:10px 0">
+        ${q.options.map((opt, i) => `
+          <label style="display:block;margin:5px 0">
+            <input type="radio" name="q${q.id}" value="${i}" ${userAns == i ? 'checked' : ''} onchange="saveAnswer(${q.id},${i})"> ${opt}
+          </label>
+        `).join('')}
+      </div>
+      <button id="btn${q.id}" class="btn" onclick="toggleAns(${q.id})" ${locked ? 'disabled' : ''} style="${locked ? 'opacity:0.5' : ''}">
+        ${locked ? 'Select an answer first' : 'Show Answer ▼'}
+      </button>
+      <div id="ans${q.id}" class="hidden" style="margin-top:10px;padding:10px;background:var(--lightgray);border-radius:8px">
+        <b>Answer:</b> ${q.answer}<br>
+        <b>Explanation:</b> ${q.explanation}
+      </div>
+    </div>`;
+  });
+  document.getElementById('app').innerHTML = html;
+}
+function saveAnswer(qid, ans) {
+  let saved = JSON.parse(localStorage.getItem('qa_answers') || '{}');
+  saved[qid] = ans;
+  localStorage.setItem('qa_answers', JSON.stringify(saved));
+  document.getElementById(`btn${qid}`).disabled = false;
+  document.getElementById(`btn${qid}`).style.opacity = 1;
+  document.getElementById(`btn${qid}`).innerText = 'Show Answer ▼';
+  pushToCloud();
+}
+function toggleAns(qid) {
+  let ansDiv = document.getElementById(`ans${qid}`);
+  let btn = document.getElementById(`btn${qid}`);
+  if (ansDiv.classList.contains('hidden')) { ansDiv.classList.remove('hidden'); btn.innerText = 'Hide Answer ▲'; }
+  else { ansDiv.classList.add('hidden'); btn.innerText = 'Show Answer ▼'; }
+}
+function showFAQs() {
+  pushRoute('showFAQs');
+  closeMenu(); stopParticles();
+  let html = `<h2 style="padding:12px">📖 FAQs</h2>`;
+  LAB_DATA.faqs.forEach(f => { html += `<div class="card"><b>${f.q}</b><p>${f.a}</p></div>` });
+  document.getElementById('app').innerHTML = html;
+}
+
+/* =========================================================
+   PREMIUM — Google sign-in required, ₦2,200 every 2 months (subscription,
+   not a one-time charge). Paystack's `plan` parameter drives recurring
+   billing; see the Cloud Function in BACKEND_SPEC.md for verification +
+   webhook handling that keeps this in sync when Paystack auto-renews.
+   ========================================================= */
+function showPremium() {
+  pushRoute('showPremium');
+  closeMenu(); stopParticles();
+  const perksHtml = LAB_DATA.perks.map(p => `<div class="perk">${p}</div>`).join('');
+  if (isPremium) {
+    const days = Math.max(0, Math.ceil((premiumExpiry - Date.now()) / 86400000));
+    document.getElementById('app').innerHTML = `
+    <div class="premium">
+      <h2>👑 You're Premium!</h2>
+      <p>Renews in ${days} day${days === 1 ? '' : 's'}.</p>
+      <div style="text-align:left;max-width:340px;margin:16px auto">${perksHtml}</div>
+      <button class="btn secondary" onclick="showUnits()">Continue Learning</button>
+    </div>`;
+    return;
+  }
+  if (!currentUser) {
+    document.getElementById('app').innerHTML = `
+    <div class="premium">
+      <h2>🔒 Unlock LabGuru Premium</h2>
+      <div style="text-align:left;max-width:340px;margin:16px auto">${perksHtml}</div>
+      <h3>₦${LAB_DATA.settings.premiumPrice.toLocaleString()} every 2 months</h3>
+      <p style="opacity:.75;font-size:.85rem">Google sign-in is required so your subscription and progress can sync across devices.</p>
+      <button class="btn" onclick="signInGoogle()">Sign in with Google to Continue</button>
+    </div>`;
+    return;
+  }
+  document.getElementById('app').innerHTML = `
+  <div class="premium">
+    <h2>🔒 Unlock LabGuru Premium</h2>
+    <div style="text-align:left;max-width:340px;margin:16px auto">${perksHtml}</div>
+    <h3>₦${LAB_DATA.settings.premiumPrice.toLocaleString()} every 2 months</h3>
+    <p style="opacity:.7;font-size:.85rem">Billed to ${currentUser.email} · cancel anytime from your Paystack receipt email</p>
+    <button class="btn" onclick="pay()">Subscribe with Paystack</button>
+  </div>`;
+}
+
+function activatePremium() {
+  premiumExpiry = Date.now() + LAB_DATA.settings.premiumDurationDays * 86400000;
+  isPremium = true;
+  localStorage.setItem('isPremium', 'true');
+  localStorage.setItem('premiumExpiry', premiumExpiry);
+  pushToCloud();
+  toast('🎉 Premium activated for 2 months!');
+  showUnits();
+}
+
+async function pay() {
+  if (!currentUser) { toast('Please sign in with Google first.'); signInGoogle(); return; }
+  if (!navigator.onLine) { toast('You need an internet connection to subscribe.'); return; }
+  // Paystack test mode uses a pk_test_ public key: no real money moves, so if the
+  // backend can't confirm the charge (e.g. verifyEndpoint isn't deployed yet, or its
+  // PAYSTACK_SECRET is a live key that can't see test transactions) we still unlock
+  // locally instead of leaving a successful test payment stuck. Live keys (pk_live_)
+  // always require a successful server-side verification before unlocking.
+  const isTestMode = String(LAB_DATA.settings.paystackPublicKey || '').startsWith('pk_test_');
+  let handler = PaystackPop.setup({
+    key: LAB_DATA.settings.paystackPublicKey,
+    email: currentUser.email,
+    plan: LAB_DATA.settings.paystackPlanCode, // recurring plan — Paystack handles the 2-month auto-charge
+    metadata: { uid: currentUser.uid, custom_fields: [{ display_name: "App", variable_name: "app", value: "LabGuru" }] },
+    callback: function (res) {
+      fetch(LAB_DATA.settings.verifyEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reference: res.reference, uid: currentUser.uid })
+      }).then(r => r.json()).then(data => {
+        if (data.status) {
+          activatePremium();
+        } else if (isTestMode) {
+          console.warn('LabGuru: verifyEndpoint rejected a test-mode payment — unlocking locally anyway. Set PAYSTACK_SECRET on the backend to your Paystack TEST secret key to get real verification in test mode.');
+          activatePremium();
+        } else {
+          toast('Verification failed — please contact support.');
+        }
+      }).catch(() => {
+        if (isTestMode) {
+          console.warn('LabGuru: verifyEndpoint was unreachable during a test-mode payment — unlocking locally anyway. Deploy /api/verify-payment (see verifyEndpoint in data.js) for real verification.');
+          activatePremium();
+        } else {
+          toast('Payment received — verifying… check back shortly.');
+        }
+      });
+    },
+    onClose: () => {}
+  });
+  handler.openIframe();
+}
+
+/* =========================================================
+   AUTH — Google only, required only to pay or get notifications.
+   Everything else works fully signed-out and offline.
+   ========================================================= */
+function signInGoogle() {
+  // Uses a full-page redirect instead of signInWithPopup so no browser-style popup
+  // window ever opens (popups get blocked by many mobile/in-app browsers anyway).
+  // The result is picked up by getRedirectResult() below once Google sends us back.
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithRedirect(provider).catch(() => toast('Sign-in failed — please try again.'));
+}
+function signOutUser() { auth.signOut().then(() => toast('Signed out')); }
+
+auth.getRedirectResult().then((result) => {
+  if (result && result.user) toast('Signed in ✅');
+}).catch((err) => {
+  if (err.code !== 'auth/no-current-user' && err.code !== 'auth/null-user') toast('Sign-in failed — please try again.');
+});
+
+auth.onAuthStateChanged((user) => {
+  currentUser = user;
+  const statusEl = document.getElementById('authStatus');
+  const googleBtn = document.getElementById('googleBtn');
+  const signOutBtn = document.getElementById('signOutBtn');
+  const notifRow = document.getElementById('notifRow');
+  if (user) {
+    statusEl.textContent = `Signed in as ${user.displayName || user.email}`;
+    googleBtn.classList.add('hidden');
+    signOutBtn.classList.remove('hidden');
+    notifRow.classList.remove('hidden');
+    updateNotifLabel();
+    refreshFcmTokenSilently();
+    syncFromCloud();
+  } else {
+    statusEl.textContent = 'Not signed in';
+    googleBtn.classList.remove('hidden');
+    signOutBtn.classList.add('hidden');
+    notifRow.classList.add('hidden');
+  }
+});
+
+/* =========================================================
+   SYNC — local storage is the source of truth for instant/offline use;
+   Firestore is merged in on top once signed in, then kept in sync.
+   ========================================================= */
+function checkPremiumActive() { return premiumExpiry > Date.now(); }
+
+function pushToCloud() {
+  if (!currentUser || !navigator.onLine) return;
+  // NOTE: isPremium/premiumExpiry are intentionally NOT sent here.
+  // firestore.rules blocks any client write that changes those two
+  // fields (they may only be set by the trusted verifyPayment/webhook
+  // Cloud Functions). Since Firestore rejects the WHOLE write when a
+  // protected field is included and doesn't match the stored value,
+  // bundling them in here used to cause every other field in this same
+  // write — including fcmToken — to silently fail to save too.
+  const payload = {
+    email: currentUser.email,
+    readCount,
+    visited,
+    qa_answers: JSON.parse(localStorage.getItem('qa_answers') || '{}'),
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+  // Only include fcmToken when we actually have one, so a page reload
+  // (which used to reset the in-memory token to null) can never wipe
+  // out a previously-saved, still-valid token in Firestore.
+  if (fcmToken) payload.fcmToken = fcmToken;
+  db.collection('users').doc(currentUser.uid).set(payload, { merge: true }).catch(() => {});
+}
+
+function syncFromCloud() {
+  if (!currentUser) return;
+  db.collection('users').doc(currentUser.uid).get().then((doc) => {
+    if (doc.exists) {
+      const d = doc.data();
+      if (d.premiumExpiry && d.premiumExpiry > premiumExpiry) premiumExpiry = d.premiumExpiry;
+      isPremium = checkPremiumActive();
+      localStorage.setItem('isPremium', String(isPremium));
+      localStorage.setItem('premiumExpiry', String(premiumExpiry));
+
+      const localAnswers = JSON.parse(localStorage.getItem('qa_answers') || '{}');
+      const mergedAnswers = Object.assign({}, d.qa_answers || {}, localAnswers);
+      localStorage.setItem('qa_answers', JSON.stringify(mergedAnswers));
+
+      const mergedVisited = Array.from(new Set([...(d.visited || []), ...visited]));
+      visited = mergedVisited;
+      localStorage.setItem('visited', JSON.stringify(visited));
+    }
+    pushToCloud();
+  }).catch(() => {});
+}
+
+/* =========================================================
+   NOTIFICATIONS — token stored in Firestore so a backend/Cloud
+   Function can send new-analysis alerts and study reminders
+   (see BACKEND_SPEC.md for the scheduled function).
+   ========================================================= */
+function enableNotifications() {
+  if (!currentUser) { toast('Sign in with Google to enable notifications.'); signInGoogle(); return; }
+  if (!messaging) { toast('Notifications are not supported on this browser.'); return; }
+  Notification.requestPermission().then((perm) => {
+    if (perm !== 'granted') { toast('Notifications permission denied.'); updateNotifLabel(); return; }
+    messaging.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: swRegistration }).then((token) => {
+      fcmToken = token;
+      localStorage.setItem('fcmToken', token);
+      db.collection('users').doc(currentUser.uid).set({
+        fcmToken: token, notificationsEnabled: true, email: currentUser.email
+      }, { merge: true }).then(() => {
+        updateNotifLabel();
+        toast('🔔 Notifications enabled!');
+      });
+    }).catch(() => toast('Could not enable notifications — please try again.'));
+  });
+}
+/* Reflects the ACTUAL current state (permission + a saved token),
+   instead of only updating right after a click — so the label doesn't
+   keep showing "Enable Notifications" as On after a reload, or keep
+   showing On after permission/token silently become invalid. */
+function updateNotifLabel() {
+  const label = document.getElementById('notifLabel');
+  if (!label) return;
+  const enabled = !!fcmToken && typeof Notification !== 'undefined' && Notification.permission === 'granted';
+  label.textContent = enabled ? 'Notifications On ✅' : 'Enable Notifications';
+}
+/* Silently re-fetches the FCM token on sign-in (e.g. every app open)
+   when permission was already granted. FCM tokens can rotate/expire;
+   previously the app only ever fetched a token once, right when the
+   button was first clicked, so a rotated token was never replaced —
+   the backend kept sending to a dead token and those sends failed
+   forever after. This keeps the saved token fresh automatically. */
+function refreshFcmTokenSilently() {
+  if (!messaging || !currentUser || typeof Notification === 'undefined' || Notification.permission !== 'granted') { updateNotifLabel(); return; }
+  messaging.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: swRegistration }).then((token) => {
+    if (token && token !== fcmToken) {
+      fcmToken = token;
+      localStorage.setItem('fcmToken', token);
+      db.collection('users').doc(currentUser.uid).set({ fcmToken: token, notificationsEnabled: true }, { merge: true }).catch(() => {});
+    }
+    updateNotifLabel();
+  }).catch(() => updateNotifLabel());
+}
+if (messaging) {
+  messaging.onMessage((payload) => {
+    const title = (payload.notification && payload.notification.title) || 'LabGuru';
+    const body = (payload.notification && payload.notification.body) || '';
+    toast(`🔔 ${title}: ${body}`, 5000);
+  });
+}
+
+/* ---------- Offline banner ---------- */
+function updateOnlineStatus() {
+  document.getElementById('offlineBanner').classList.toggle('hidden', navigator.onLine);
+}
+window.addEventListener('online', () => { updateOnlineStatus(); if (currentUser) syncFromCloud(); });
+window.addEventListener('offline', updateOnlineStatus);
+
+/* ---------- Init ---------- */
+document.documentElement.style.setProperty('--font', localStorage.getItem('font') || '16px');
+if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+updateOnlineStatus();
+showHome();
+
+if ('serviceWorker' in navigator) {
+  // already registered above; nothing further needed here.
+}
+</script>
+</body>
+</html>
