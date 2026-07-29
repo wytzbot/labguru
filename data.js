@@ -3,8 +3,8 @@ const LAB_DATA = {
     freeLimit:5,
     premiumPrice:2200,
     premiumDurationDays:60, // renews every 2 months
-    paystackPublicKey:"pk_test_c7e019ceeeed3e83bcdd2d0e55bf6419ec18e9ad", 
-    paystackPlanCode:"PLN_bbrr3qjnhkh7onb", 
+    paystackPublicKey:"pk_live_03887f82b23709cbf59e138ceeb9ca38eca18c1c", 
+    paystackPlanCode:"PLN_sv012aslx53nxh1", 
     verifyEndpoint:"https://labguru-five.vercel.app/api/verify-payment"
   },
   perks:[
