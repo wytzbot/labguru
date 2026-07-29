@@ -16,256 +16,813 @@ const LAB_DATA = {
     "🆕 All future units and analyses as they're added"
   ],
   units:[
-    {id:"hematology",name:"Hematology",analyses:[
+        // ==========================================
+  // UNIT 2: CLINICAL CHEMISTRY (10 ANALYSES)
+  // ==========================================
+  {
+    id: "clinical_chemistry",
+    name: "Clinical Chemistry",
+    analyses: [
       {
-        id:"pcv",
-        title:"Packed Cell Volume (PCV)",
-        intro:"Packed Cell Volume (PCV), also known as Hematocrit (Hct), is a fundamental hematological test that measures the proportion of whole blood occupied by red blood cells (erythrocytes), expressed as a percentage or decimal fraction. It provides a direct estimation of total red blood cell mass in the body.\n\nThis test is routinely performed during complete blood counts, pre-operative screenings, blood donation evaluations, and monitoring of critically ill patients. It serves as a key diagnostic metric for evaluating anemia, polycythemia, and hydration status.\n\nIn Medical Laboratory Science, mastering PCV measurement is essential because it offers a highly accurate and reproducible assessment of oxygen-carrying capacity without requiring expensive automated machinery.",
-        aim:"To accurately measure the percentage volume of packed red blood cells in an anticoagulated whole blood specimen using the microhematocrit method.",
-        principles:"Anticoagulated whole blood is drawn into a capillary tube and centrifuged at high speed (12,000 rpm) for 5 minutes. Due to the higher specific gravity of erythrocytes compared to plasma and leukocytes, centrifugal force causes the red blood cells to pack tightly at the distal sealed end of the tube. The height of the packed red cell column is then compared against the total column height to determine the percentage occupied by red cells.",
-        materials:["EDTA anticoagulated blood sample or capillary blood","Microhematocrit capillary tubes (plain for EDTA blood, heparinized for direct capillary blood)","Non-absorbent sealing clay (plasticine)","Microhematocrit centrifuge (capable of 11,000-15,000 rpm)","Microhematocrit reader board","Lint-free tissue paper and alcohol swabs"],
-        procedure:[
-          "1. Inspect the blood sample to ensure proper mixing and absence of clots.",
-          "2. Invert the EDTA blood container gently 8 to 10 times to create a uniform suspension.",
-          "3. Insert one end of the capillary tube into the blood sample at a slight angle and allow blood to enter by capillary action until 2/3 to 3/4 full.",
-          "4. Carefully wipe the outside of the capillary tube with tissue paper, wiping away from the open filling orifice.",
-          "5. Seal the dry end of the tube by pushing it vertically into the sealing clay two to three times to form a 4-6 mm plug.",
-          "6. Place the tube in the radial slot of the microhematocrit centrifuge with the sealed end facing outward toward the outer rim.",
-          "7. Balance the centrifuge rotor by placing another prepared capillary tube opposite to the first.",
-          "8. Secure the inner rotor lid tightly and close the main top cover of the centrifuge.",
-          "9. Centrifuge at 12,000 rpm for exactly 5 minutes.",
-          "10. Allow the centrifuge to stop naturally without manual braking.",
-          "11. Remove the tube and place it on the microhematocrit reader board.",
-          "12. Align the bottom of the red cell column (above the clay) with the 0% mark and the top of the plasma column with the 100% mark.",
-          "13. Read the percentage value corresponding to the top junction of the packed red cell column (just below the buffy coat)."
+        id: "fbg",
+        title: "Fasting Blood Glucose (FBG)",
+        intro: "Fasting Blood Glucose (FBG) measures the concentration of glucose in the blood after an overnight fast of at least 8 to 12 hours. It serves as a primary diagnostic indicator for carbohydrate metabolic disorders, specifically Diabetes Mellitus.\n\nIn physiological conditions, blood glucose levels are tightly regulated within narrow limits by pancreatic hormones: insulin (which promotes cellular glucose uptake and glycogenesis) and glucagon (which stimulates glycogenolysis and gluconeogenesis).\n\nIn Medical Laboratory Science, accurate enzymatic estimation of FBG is critical for diagnosing type 1 and type 2 diabetes, detecting gestational diabetes, and monitoring glycemic control in diabetic management programs.",
+        aim: "To quantitatively determine the concentration of glucose in plasma or serum using the Glucose Oxidase-Peroxidase (GOD-POD) enzymatic method.",
+        principles: "Glucose is oxidized by Glucose Oxidase (GOD) to form Gluconate and Hydrogen Peroxide (H₂O₂). The formed H₂O₂ then reacts with 4-aminoaminophenazone and phenol in the presence of Peroxidase (POD) to yield a pink/red quinoneimine dye. The intensity of the color formed is directly proportional to the glucose concentration in the sample and is measured spectrophotometrically at 500–540 nm.",
+        materials: [
+          "Fluoride-oxalate anticoagulated plasma or serum sample",
+          "Glucose reagent (containing GOD, POD, 4-aminoaminophenazone, and phenol buffer)",
+          "Glucose standard solution (e.g., 100 mg/dL or 5.55 mmol/L)",
+          "Spectrophotometer or semi-automated chemistry analyzer",
+          "Cuvettes and precision micropipettes (10 µL, 1000 µL)",
+          "Water bath or incubator maintained at 37°C"
         ],
-        result:"An elevated PCV suggests hemoconcentration, polycythemia, or severe dehydration. A low PCV indicates anemia, overhydration, or recent fluid administration. A thick white layer above the red cell mass indicates leukocytosis.",
-        normal:"Adult Male: 40% - 54%\nAdult Female: 37% - 47%\nInfant: 30% - 40%",
-        safety:["Wear gloves and laboratory coat at all times.","Handle capillary glass tubes with care to prevent breakage and sharp puncture injuries.","Do not open the centrifuge cover while the rotor is spinning."],
-        tips:"Rule of 3: Hb (g/dL) x 3 ≈ PCV (%). Always read the PCV value at the top of the red cell column, excluding the buffy coat layer."
+        procedure: [
+          "1. Set up three clean cuvettes/test tubes labeled: Blank, Standard, and Test.",
+          "2. Pipette 1,000 µL (1.0 mL) of GOD-POD working reagent into all three tubes.",
+          "3. Add 10 µL of distilled water to the Blank tube.",
+          "4. Add 10 µL of Glucose Standard to the Standard tube.",
+          "5. Add 10 µL of patient sample (plasma/serum) to the Test tube.",
+          "6. Mix the contents of each tube thoroughly by gentle inversion.",
+          "7. Incubate all tubes in a 37°C water bath for exactly 10 minutes (or 20 minutes at room temperature 20–25°C).",
+          "8. Zero the spectrophotometer at 500 nm using the Blank solution.",
+          "9. Read and record the absorbance values of the Standard (Abs_Std) and Test (Abs_Test).",
+          "10. Calculate result: Glucose Concentration (mg/dL) = (Abs_Test / Abs_Std) × Concentration of Standard."
+        ],
+        result: "Fasting plasma glucose ≥ 126 mg/dL (7.0 mmol/L) on two separate occasions is diagnostic for Diabetes Mellitus. Values between 100–125 mg/dL indicate Impaired Fasting Glucose (Pre-diabetes). Low levels (< 70 mg/dL) indicate Hypoglycemia.",
+        normal: "Fasting Normal Range: 70 – 99 mg/dL (3.9 – 5.5 mmol/L)",
+        safety: [
+          "Handle blood specimens as potentially infectious biohazards.",
+          "Fluoride oxalate tubes contain potassium oxalate; wear chemical-resistant gloves.",
+          "Calibrate and zero the spectrophotometer prior to every analytical batch."
+        ],
+        tips: "Sodium fluoride in grey-top tubes inhibits glycolysis by blocking the enzyme enolase. If serum tubes without glycolysis inhibitors are used, plasma/serum must be separated within 30 minutes to avoid falsely low glucose results."
       },
       {
-        id:"hb",
-        title:"Hemoglobin Estimation - Sahli Method",
-        intro:"Hemoglobin is an iron-containing metalloprotein present inside red blood cells responsible for oxygen transport from the lungs to peripheral tissues and returning carbon dioxide back to the lungs.\n\nThe Sahli method (acid hematin method) is a quantitative visual colorimetric assay used in resource-limited settings to measure hemoglobin concentration. It forms a core practical exercise in hematology training.\n\nAccurate hemoglobin estimation is indispensable for classifying anemias, assessing hemorrhage severity, and evaluating blood donors.",
-        aim:"To estimate the hemoglobin concentration in a blood sample using Sahli's acid hematin comparator method.",
-        principles:"Hemoglobin in anticoagulated blood is converted into a dark brown compound called acid hematin by action of N/10 Hydrochloric Acid (HCl). The intensity of the brown color formed is directly proportional to the concentration of hemoglobin. The solution is diluted with distilled water until its color matches the standard brown glass comparison block in the comparator box.",
-        materials:["Sahli hemoglobinometer (comparator box with standard color glass)","Sahli graduated tube (marked in g/dL and %)","20 µL Sahli hemoglobin pipette","N/10 Hydrochloric acid (HCl)","Distilled water in a dropper bottle","Stirring rod and blood sample"],
-        procedure:[
-          "1. Place N/10 HCl into the graduated Sahli tube up to the lowest mark (2 g/dL or 10%).",
-          "2. Mix the EDTA blood sample thoroughly by gentle inversion.",
-          "3. Draw blood into the Sahli pipette up to the 20 µL mark without air bubbles.",
-          "4. Wipe the excess blood off the outside of the pipette tip using gauze.",
-          "5. Dispense the blood into the Sahli tube containing N/10 HCl and rinse the pipette by drawing up and expelling the mixture twice.",
-          "6. Mix the contents with a glass stirrer and leave the tube at room temperature for exactly 10 minutes to complete conversion to acid hematin.",
-          "7. Place the tube in the Sahli comparator box.",
-          "8. Add distilled water drop by drop, mixing with the glass stirrer after each drop, until the solution color matches the standard glass strips.",
-          "9. Read the meniscus of the liquid column against the g/dL scale under good light."
+        id: "creatinine",
+        title: "Serum Creatinine Estimation (Jaffé Method)",
+        intro: "Creatinine is a nitrogenous breakdown byproduct of creatine phosphate metabolism in skeletal muscle. It is produced at a relatively constant rate proportional to muscle mass and excreted freely by the renal glomeruli without significant tubular reabsorption.\n\nSerum creatinine is the most widely utilized biomarker for assessing renal excretory function and estimating Glomerular Filtration Rate (eGFR).\n\nMeasurement of serum creatinine helps detect acute kidney injury (AKI), monitor chronic kidney disease (CKD) progression, and evaluate nephrotoxic drug administration risks.",
+        aim: "To quantitatively measure serum creatinine concentration using the alkaline picrate (Jaffé) colorimetric reaction.",
+        principles: "Creatinine reacts with picric acid in an alkaline medium to form a yellow-orange creatinine-picrate complex. The rate of complex formation (kinetic method) or endpoint color intensity is directly proportional to the creatinine concentration and is measured spectrophotometrically at 490–520 nm.",
+        materials: [
+          "Non-hemolyzed serum or heparinized plasma",
+          "Picric acid reagent (Reagent 1)",
+          "Sodium hydroxide buffer (Reagent 2)",
+          "Creatinine standard (e.g., 2.0 mg/dL or 177 µmol/L)",
+          "Spectrophotometer with kinetic measuring capability (500 nm)"
         ],
-        result:"Dark brown solution matching standard indicates measured Hb level. Color lighter than standard initially suggests anemia. Delayed reading produces falsely high results.",
-        normal:"Adult Male: 13.5 - 17.5 g/dL\nAdult Female: 12.0 - 15.5 g/dL",
-        safety:["HCl is corrosive; handle with care and avoid contact with skin.","Dispose of pipettes and contaminated materials into biohazard bins."],
-        tips:"Wait the full 10 minutes for complete acid hematin formation. Shorter wait times cause falsely low hemoglobin readings."
+        procedure: [
+          "1. Prepare working reagent by mixing equal volumes of Picric Acid and Sodium Hydroxide.",
+          "2. Set spectrophotometer wavelength to 500 nm and adjust temperature to 37°C.",
+          "3. Pipette 1.0 mL of working reagent into clean cuvettes labeled Standard and Test.",
+          "4. Add 100 µL of Creatinine Standard to the Standard cuvette, mix, and start timer instantly.",
+          "5. Record absorbance at 30 seconds (A1) and at 90 seconds (A2) to calculate change in absorbance (ΔA_Std = A2 - A1).",
+          "6. Add 100 µL of Patient Serum to the Test cuvette, mix immediately, and start timer.",
+          "7. Record absorbance at 30 seconds (A1) and 90 seconds (A2) to obtain change in absorbance (ΔA_Test = A2 - A1).",
+          "8. Calculate: Serum Creatinine (mg/dL) = (ΔA_Test / ΔA_Std) × Standard Concentration."
+        ],
+        result: "Elevated serum creatinine indicates impaired Glomerular Filtration Rate (renal failure, urinary tract obstruction, severe dehydration). Low levels may reflect reduced muscle mass or muscle wasting conditions.",
+        normal: "Adult Male: 0.7 – 1.3 mg/dL (62 – 115 µmol/L)\nAdult Female: 0.5 – 1.1 mg/dL (44 – 97 µmol/L)",
+        safety: [
+          "Picric acid is toxic and explosive when dry; handle liquid solutions carefully and wipe spills immediately.",
+          "Sodium hydroxide is caustic; avoid skin or eye contact."
+        ],
+        tips: "Use the kinetic Jaffé method rather than the endpoint method to minimize interference from non-creatinine chromogens like protein, ketoacids, bilirubin, and cephalosporins."
       },
       {
-        id:"esr",
-        title:"Erythrocyte Sedimentation Rate (ESR)",
-        intro:"Erythrocyte Sedimentation Rate measures the distance in millimeters that red blood cells fall in anticoagulated whole blood within one hour under standardized vertical conditions.\n\nESR is a non-specific acute-phase reactant test used to detect systemic inflammation, tissue necrosis, autoimmune diseases, and infection.\n\nWhile not diagnostic of a specific disease, it serves as a valuable tool for monitoring response to therapy in conditions like Temporal Arteritis and Polymyalgia Rheumatica.",
-        aim:"To determine the rate of erythrocyte settling in a specified Westergren tube over a one-hour period.",
-        principles:"When blood stands undisturbed in a vertical tube, erythrocytes aggregate to form stacks called rouleaux due to decreased negative cell surface charges (zeta potential). Acute-phase plasma proteins like fibrinogen, globulins, and C-reactive protein neutralize surface charges, accelerating rouleaux formation and increasing the settling rate.",
-        materials:["Westergren ESR tube (calibrated 0-200 mm)","Westergren ESR stand (level and vertical)","3.8% Sodium Citrate anticoagulant","Venous blood specimen","Timer"],
-        procedure:[
-          "1. Mix 4 parts venous blood with 1 part 3.8% Sodium Citrate anticoagulant (or use EDTA blood diluted with saline).",
-          "2. Mix the diluted blood thoroughly.",
-          "3. Draw blood into the Westergren tube up to the exact 0 mm mark at the top.",
-          "4. Mount the tube perfectly vertical in the Westergren ESR rack.",
-          "5. Ensure the rack is placed on a vibration-free horizontal bench away from direct sunlight and heat.",
-          "6. Start the timer for exactly 60 minutes.",
-          "7. At the end of 60 minutes, read the distance from the bottom of the plasma meniscus to the top of the settled cell column in mm."
+        id: "urea",
+        title: "Serum Urea Estimation (Berthelot Method)",
+        intro: "Urea is the chief end-product of protein nitrogen catabolism synthesized exclusively in the liver through the urea cycle and excreted principally by the kidneys.\n\nEvaluation of blood urea nitrogen (BUN) or serum urea is routine in assessing renal function, monitoring renal replacement therapy, and differentiating pre-renal, renal, and post-renal azotemia.",
+        aim: "To quantitatively determine serum urea concentration using the enzymatic Berthelot reaction.",
+        principles: "Urea is hydrolyzed by the enzyme Urease into ammonia and carbon dioxide. The liberated ammonia reacts with hypochlorite and phenol in the presence of sodium nitroprusside (catalyst) to form a blue indophenol dye. The intensity of the blue color is measured spectrophotometrically at 560–580 nm and is directly proportional to the urea concentration.",
+        materials: [
+          "Serum or lithium heparin plasma sample",
+          "Urease reagent",
+          "Phenol/Nitroprusside reagent (Reagent A)",
+          "Sodium Hypochlorite reagent (Reagent B)",
+          "Urea standard (e.g., 50 mg/dL or 8.3 mmol/L)",
+          "Spectrophotometer (570 nm) and water bath (37°C)"
         ],
-        result:"High ESR indicates acute or chronic inflammation, tissue destruction, malignancy, or severe anemia. Low ESR is observed in polycythemia or red cell shape abnormalities like sickle cells.",
-        normal:"Adult Male (<50 yrs): <15 mm/hr\nAdult Female (<50 yrs): <20 mm/hr",
-        safety:["Wear protective equipment. Never mouth-pipette blood into Westergren tubes. Clean spills immediately."],
-        tips:"Tubes tilted by just 3 degrees can artificially increase ESR by up to 30%. Always keep the stand strictly vertical."
+        procedure: [
+          "1. Label tubes: Blank, Standard, and Test.",
+          "2. Add 10 µL of distilled water, Standard, and Serum into Blank, Standard, and Test tubes respectively.",
+          "3. Add 100 µL of Urease reagent to all tubes and mix gently.",
+          "4. Incubate at 37°C for 5 minutes to complete urea conversion to ammonia.",
+          "5. Pipette 1.0 mL of Reagent A (Phenol) into all tubes.",
+          "6. Pipette 1.0 mL of Reagent B (Hypochlorite) into all tubes.",
+          "7. Mix thoroughly and incubate at 37°C for 10 minutes.",
+          "8. Zero spectrophotometer at 570 nm using Blank.",
+          "9. Read absorbance of Standard and Test.",
+          "10. Calculate: Serum Urea (mg/dL) = (Abs_Test / Abs_Std) × Standard Concentration."
+        ],
+        result: "Elevated urea (Uremia/Azotemia) occurs in renal dysfunction, GI hemorrhage, high protein intake, or dehydration. Decreased urea occurs in liver failure, severe starvation, or pregnancy.",
+        normal: "Adults: 15 – 45 mg/dL (2.5 – 7.5 mmol/L)",
+        safety: ["Phenol and sodium hypochlorite are hazardous chemicals; avoid inhalation and skin contact."],
+        tips: "Do not use ammonium heparin or sodium fluoride tubes; fluoride inhibits urease enzyme activity, yielding falsely low results."
       },
       {
-        id:"twbc",
-        title:"Total White Blood Cell Count",
-        intro:"White blood cells (leukocytes) are key cells of the immune system responsible for defending the body against infections and foreign pathogens.\n\nTotal White Blood Cell Count measures the total number of circulating leukocytes per microliter (µL) of blood.\n\nIt is essential for evaluating bacterial/viral infections, leukemia, immune suppression, and bone marrow function.",
-        aim:"To enumerate the total concentration of leukocytes in whole blood using an improved Neubauer hemocytometer.",
-        principles:"Whole blood is diluted 1:20 with Turk's diluting fluid. Turk's fluid contains glacial acetic acid which lyses non-nucleated erythrocytes, and Gentian violet dye which stains leukocyte nuclei dark blue for easy microscopic identification.",
-        materials:["Improved Neubauer counting chamber with cover glass","WBC thoma pipette or micropipette","Turk's fluid (Glacial acetic acid + Gentian violet)","Microscope","Capillary tissue paper"],
-        procedure:[
-          "1. Mix the EDTA blood sample thoroughly.",
-          "2. Pipette 380 µL of Turk's fluid into a small tube.",
-          "3. Add 20 µL of whole blood to achieve a 1:20 dilution ratio.",
-          "4. Mix well and let stand for 3 minutes for complete RBC lysis.",
-          "5. Clean the Neubauer chamber and coverslip with ethanol.",
-          "6. Fix the coverslip onto the counting grid until Newton's rings appear.",
-          "7. Load approximately 10 µL of diluted blood beneath the coverslip by capillary action.",
-          "8. Allow cells to settle in a humid chamber for 2 minutes.",
-          "9. Mount chamber on microscope stage and locate grid under 10x objective.",
-          "10. Count leukocytes in the 4 large corner squares using the 'L' rule to avoid double counting.",
-          "11. Calculate total WBC/µL = (Cells Counted × Dilution Factor [20]) / (Volume of 4 Squares [0.4 mm³])."
+        id: "bilirubin",
+        title: "Total & Direct Bilirubin Estimation (Jendrassik-Grof)",
+        intro: "Bilirubin is the principal breakdown pigment derived from the catabolism of hemoglobin heme moieties in the reticuloendothelial system.\n\nSerum bilirubin testing differentiates unconjugated (indirect) hyperbilirubinemia from conjugated (direct) hyperbilirubinemia, aiding in the diagnosis of hemolytic anemia, hepatic cell injury, and biliary tree obstruction.",
+        aim: "To determine total and direct (conjugated) serum bilirubin levels using the Jendrassik-Grof diazo method.",
+        principles: "Direct (conjugated) bilirubin reacts rapidly with diazotized sulfanilic acid in an acidic medium to form red azobilirubin. Total bilirubin determination requires an accelerator (Caffeine-Sodium Benzoate) to release unconjugated bilirubin from albumin, allowing all bilirubin to react with the diazo reagent. Addition of tartrate reagent converts red azobilirubin into a blue complex measured at 600 nm.",
+        materials: [
+          "Serum sample (protected from direct light)",
+          "Sulfanilic acid reagent",
+          "Sodium nitrite reagent (forms diazo reagent when combined)",
+          "Caffeine accelerator reagent",
+          "Alkaline Tartrate reagent",
+          "Spectrophotometer (600 nm)"
         ],
-        result:"Elevated WBC (Leukocytosis) indicates bacterial infection, leukemia, or inflammation. Low WBC (Leukopenia) indicates bone marrow depression, viral infections, or chemotherapy treatment.",
-        normal:"Adults: 4,000 - 11,000 cells/µL",
-        safety:["Turk's fluid contains acetic acid; handle with care. Dispose of fluid waste according to chemical safety guidelines."],
-        tips:"Include cells touching upper and left borders; exclude cells touching lower and right borders of grid squares."
+        procedure: [
+          "1. Label tubes for Total Bilirubin and Direct Bilirubin.",
+          "2. Prepare fresh Diazo reagent by mixing Sulfanilic acid and Sodium Nitrite.",
+          "3. **Total Bilirubin:** Add caffeine accelerator (1.0 mL), serum (200 µL), and diazo reagent (500 µL). Incubate for 10 minutes.",
+          "4. Add alkaline tartrate reagent (1.0 mL) to stop reaction and turn solution blue.",
+          "5. **Direct Bilirubin:** Omit caffeine accelerator; mix serum (200 µL) with saline and diazo reagent (500 µL). Incubate for 5 minutes.",
+          "6. Add alkaline tartrate reagent (1.0 mL).",
+          "7. Read absorbance at 600 nm against corresponding specimen blanks.",
+          "8. Calculate concentration using standard calibration factors."
+        ],
+        result: "Predominant direct hyperbilirubinemia indicates post-hepatic obstructive jaundice or cholestasis. Predominant indirect hyperbilirubinemia indicates pre-hepatic hemolysis or Gilbert syndrome.",
+        normal: "Total Bilirubin: 0.2 – 1.2 mg/dL\nDirect Bilirubin: 0.0 – 0.3 mg/dL",
+        safety: ["Protect samples from light. Bilirubin degrades rapidly when exposed to direct sunlight or ambient room light."],
+        tips: "Indirect Bilirubin is calculated by subtracting Direct Bilirubin from Total Bilirubin: Indirect = Total - Direct."
       },
       {
-        id:"platelet",
-        title:"Platelet Count",
-        intro:"Platelets (thrombocytes) are small, non-nucleated cell fragments produced by megakaryocytes in the bone marrow vital for primary hemostasis and clot formation.\n\nDirect manual platelet count evaluates the concentration of platelets per microliter of blood.\n\nIt is crucial for diagnosing bleeding disorders, monitoring thrombocytopenia, and managing patients on cytotoxic drug therapy.",
-        aim:"To manually count platelets in whole blood using a hemocytometer under a light microscope.",
-        principles:"Blood is diluted 1:100 with Rees-Ecker diluting fluid (or 1% ammonium oxalate). The fluid preserves platelets while lysing red blood cells. Platelets appear under the light microscope as small, highly refractile, round or oval structures.",
-        materials:["Improved Neubauer counting chamber","Rees-Ecker fluid or 1% Ammonium Oxalate","Platelet/RBC pipette","Phase-contrast or standard light microscope","Cover glass"],
-        procedure:[
-          "1. Mix EDTA blood sample thoroughly.",
-          "2. Dilute 20 µL of blood into 1980 µL of 1% ammonium oxalate (1:100 dilution).",
-          "3. Mix gently for 10 minutes to allow complete lysis of red blood cells.",
-          "4. Clean Neubauer chamber and place coverslip firmly on grid.",
-          "5. Charge the chamber carefully with diluted sample without overfilling.",
-          "6. Place chamber in a moist petri dish for 15 minutes to allow platelets to settle without drying out.",
-          "7. Focus on the central large square of the grid under 40x objective.",
-          "8. Count refractile platelets in 5 small squares within the center square.",
-          "9. Calculate: Total Platelets/µL = Cells Counted × 100 × 10 / 0.2."
+        id: "alt",
+        title: "Alanine Aminotransferase (ALT / SGPT) Assay",
+        intro: "Alanine Aminotransferase (ALT), formerly SGPT, is an intracellular enzyme found predominantly in hepatocytes. Small amounts are also present in kidney and heart tissue.\n\nALT release into the bloodstream serves as a highly specific enzyme biomarker for hepatocellular damage, acute hepatitis, and liver disease toxicity.",
+        aim: "To measure serum ALT activity using a kinetic UV enzymatic method.",
+        principles: "ALT catalyzes the transamination of L-alanine and α-ketoglutarate to produce pyruvate and L-glutamate. In an indicator reaction, Lactate Dehydrogenase (LDH) reduces pyruvate to lactate while oxidizing NADH to NAD+. The rate of decrease in absorbance at 340 nm due to NADH oxidation is directly proportional to ALT activity.",
+        materials: [
+          "Unhemolyzed serum sample",
+          "ALT working reagent (containing L-alanine, α-ketoglutarate, NADH, and LDH buffer)",
+          "Spectrophotometer with temperature control at 37°C (340 nm)"
         ],
-        result:"Thrombocytopenia (<150,000/µL) increases bleeding risk (purpura, petechiae). Thrombocytosis (>450,000/µL) increases thrombosis risk or indicates myeloproliferative disorder.",
-        normal:"Adults: 150,000 - 450,000 cells/µL",
-        safety:["Prevent aerosol creation during mixing. Dispose of blood-contaminated fluids in biohazard containers."],
-        tips:"Platelets clump easily in EDTA if left standing. Always check sample for micro-clots before loading."
+        procedure: [
+          "1. Pre-warm ALT working reagent to 37°C.",
+          "2. Pipette 1.0 mL of ALT working reagent into a clean temperature-controlled cuvette.",
+          "3. Add 100 µL of serum sample and mix instantly.",
+          "4. Place cuvette into spectrophotometer set at 340 nm and 37°C.",
+          "5. Record initial absorbance after 1 minute, then start timer.",
+          "6. Read absorbance values at exactly 1, 2, and 3 minutes.",
+          "7. Calculate mean change in absorbance per minute (ΔA/min).",
+          "8. Calculate ALT activity (U/L) = ΔA/min × Kinetic Factor (1746)."
+        ],
+        result: "Markedly elevated ALT (> 10x upper limit) occurs in acute viral hepatitis, toxic liver injury (paracetamol overdose), or ischemic hepatitis. Moderate elevation occurs in fatty liver disease, cirrhosis, and chronic hepatitis.",
+        normal: "Adult Males: < 45 U/L\nAdult Females: < 34 U/L",
+        safety: ["Avoid hemolyzed samples. RBCs contain minor amounts of ALT that can artifactually alter values."],
+        tips: "Reagents containing NADH are sensitive to light and heat; keep reagents refrigerated at 2–8°C."
       },
       {
-        id:"diff",
-        title:"Differential White Blood Cell Count",
-        intro:"Differential WBC count determines the relative percentage of each of the five main types of white blood cells: Neutrophils, Lymphocytes, Monocytes, Eosinophils, and Basophils.\n\nIt provides valuable qualitative and quantitative data regarding immune system function, allergic reactions, parasitic burdens, and hematological malignancies.",
-        aim:"To identify and count 100 white blood cells on a stained peripheral blood smear to determine individual cell percentages.",
-        principles:"A thin peripheral blood film is prepared, fixed with methanol, and stained with Romanowsky stain (Leishman stain). The cell types are identified based on nuclear morphology, chromatin pattern, and cytoplasmic granulations under oil immersion microscopy.",
-        materials:["Leishman stain","Phosphate buffer solution (pH 6.8)","Clean glass slides","Oil immersion oil","Microscope","Cell counter key/tally counter"],
-        procedure:[
-          "1. Prepare a thin blood film on a clean glass slide and air dry.",
-          "2. Place slide on staining rack and flood with Leishman stain for 2 minutes (fixation step).",
-          "3. Add double the volume of pH 6.8 phosphate buffer to the stain.",
-          "4. Mix gently by blowing through a pipette until a metallic green scum forms.",
-          "5. Allow staining reaction to proceed for 10 to 12 minutes.",
-          "6. Wash slide gently under running tap water to remove excess stain.",
-          "7. Wipe back of slide clean and air dry vertically.",
-          "8. Place a drop of immersion oil on the thin feathered edge of the film.",
-          "9. Examine under 100x oil immersion objective using a battlement pattern movement.",
-          "10. Classify and count 100 consecutive leukocytes and express each type as a percentage."
+        id: "ast",
+        title: "Aspartate Aminotransferase (AST / SGOT) Assay",
+        intro: "Aspartate Aminotransferase (AST), formerly SGOT, is a pyridoxal phosphate-dependent enzyme present in cardiac muscle, liver tissue, skeletal muscle, kidneys, and erythrocytes.\n\nWhile less liver-specific than ALT, AST measurement evaluated alongside ALT (De Ritis ratio) aids in evaluating myocardial injury, liver cirrhosis, and skeletal muscle trauma.",
+        aim: "To quantitatively determine serum AST activity using a kinetic UV spectrophotometric assay.",
+        principles: "AST transfers an amino group from L-aspartate to α-ketoglutarate, forming oxaloacetate and L-glutamate. Malate Dehydrogenase (MDH) then reduces oxaloacetate to malate while oxidizing NADH to NAD+. The rate of decrease in absorbance measured at 340 nm is proportional to AST activity.",
+        materials: [
+          "Clear serum specimen",
+          "AST working reagent (L-aspartate, α-ketoglutarate, NADH, MDH)",
+          "UV spectrophotometer (340 nm, 37°C)"
         ],
-        result:"Neutrophilia indicates bacterial infection; Lymphocytosis indicates viral infection; Eosinophilia indicates parasitic infection or allergies; Monocytosis indicates chronic inflammation/TB.",
-        normal:"Neutrophils: 40-75%\nLymphocytes: 20-45%\nMonocytes: 2-10%\nEosinophils: 1-6%\nBasophils: 0-1%",
-        safety:["Handle methanol-containing stains in ventilated areas away from open flames."],
-        tips:"Always perform counting in the monolayer zone (feathered edge region) where red cells lie adjacent without overlapping."
+        procedure: [
+          "1. Incubate AST working reagent at 37°C prior to testing.",
+          "2. Pipette 1.0 mL of working reagent into a cuvette.",
+          "3. Add 100 µL of unhemolyzed serum sample and mix immediately.",
+          "4. Insert cuvette into spectrophotometer calibrated at 340 nm.",
+          "5. Record initial absorbance after 60 seconds.",
+          "6. Take consecutive readings at 1, 2, and 3 minutes.",
+          "7. Determine average absorbance change per minute (ΔA/min).",
+          "8. Calculate AST Activity (U/L) = ΔA/min × Kinetic Factor."
+        ],
+        result: "Elevated AST occurs in myocardial infarction, acute hepatitis, alcoholic liver disease, muscular dystrophy, and severe tissue necrosis. De Ritis ratio (AST/ALT) > 2.0 strongly suggests alcoholic liver injury.",
+        normal: "Adults: < 35 U/L",
+        safety: ["Hemolysis must be strictly avoided; erythrocytes contain 15 times higher AST activity than serum."],
+        tips: "Always check for specimen hemolysis before running AST assays."
       },
       {
-        id:"film",
-        title:"Peripheral Blood Film Preparation",
-        intro:"Preparation of a high-quality peripheral blood film (PBF) is the fundamental manual technique in hematology upon which morphology examinations depend.\n\nA well-made film enables detailed evaluation of red cell morphology, leukocyte differential counts, and platelet estimations.",
-        aim:"To prepare a thin, uniform blood smear with an ideal feathered edge suitable for microscopic examination.",
-        principles:"A small drop of blood placed on a clean slide is spread forward using a smooth spreader slide held at a specific angle (30-45°). Capillary action pulls blood along the spreader edge, producing a smooth, thin monolayer of blood cells when pushed forward rapidly.",
-        materials:["Clean grease-free glass slides","Spreader slide with smooth polished edges","EDTA anticoagulated blood sample","Capillary tube or applicator stick"],
-        procedure:[
-          "1. Select clean, lint-free, grease-free glass slides.",
-          "2. Place a small drop of well-mixed blood (approx 3-5 µL) near the frosted end of the slide.",
-          "3. Place the slide on a flat, stable surface.",
-          "4. Hold a spreader slide at a 30 to 45 degree angle in front of the drop.",
-          "5. Draw the spreader back gently into contact with the drop of blood.",
-          "6. Allow the blood to spread along 3/4 of the width of the spreader edge.",
-          "7. Smoothly and rapidly push the spreader forward across the slide maintaining constant pressure and angle.",
-          "8. Wave the slide rapidly in the air to dry the blood film quickly, preventing cellular distortion."
+        id: "alp",
+        title: "Alkaline Phosphatase (ALP) Estimation",
+        intro: "Alkaline Phosphatase (ALP) represents a family of zinc metalloenzymes that hydrolyze phosphate esters under alkaline pH conditions. It is concentrated in hepatobiliary osteoblasts, placental tissue, and renal tubules.\n\nSerum ALP measurement serves as a primary marker for hepatobiliary obstruction and metabolic bone disorders.",
+        aim: "To determine serum ALP enzyme activity using p-Nitrophenylphosphate (pNPP) kinetic method.",
+        principles: "ALP hydrolyzes p-Nitrophenylphosphate (pNPP) in an alkaline buffer (pH 10.4) to yield p-Nitrophenol and inorganic phosphate. The rate of yellow p-Nitrophenol formation is measured spectrophotometrically at 405 nm and is directly proportional to ALP activity.",
+        materials: [
+          "Serum sample",
+          "ALP Substrate Buffer (pNPP in Diethanolamine or AMP buffer, pH 10.4)",
+          "Spectrophotometer (405 nm, 37°C)"
         ],
-        result:"Ideal film covers 2/3 of slide length, has a straight bullet/feathered edge, contains no tailing, ridges, or holes, and shows a monolayer under microscope.",
-        normal:"N/A (Procedure/Technique evaluation)",
-        safety:["Avoid direct skin contact with blood. Dispose of used spreader slides safely."],
-        tips:"Increasing spreader angle creates thicker films; decreasing angle creates thinner films. Anemic samples require wider angles."
+        procedure: [
+          "1. Pipette 1.0 mL of pre-warmed pNPP reagent into a cuvette.",
+          "2. Add 20 µL of serum sample and mix well.",
+          "3. Load cuvette into spectrophotometer set at 405 nm and 37°C.",
+          "4. Record initial absorbance after 1 minute.",
+          "5. Measure absorbance at 1, 2, and 3 minutes.",
+          "6. Calculate mean ΔA/min.",
+          "7. Calculate ALP Activity (U/L) = ΔA/min × Factor (2760)."
+        ],
+        result: "Marked ALP elevation occurs in biliary tract obstruction (gallstones, pancreatic head mass), Paget's disease, osteomalacia, and bone metastases. Physiological elevations occur during childhood bone growth and pregnancy.",
+        normal: "Adults: 40 – 129 U/L (Varies by age and growth phase)",
+        safety: ["Avoid EDTA or Oxalate anticoagulants; they chelate zinc/magnesium ions required for ALP enzyme activity."],
+        tips: "Ensure proper collection tubes are used; complexing anticoagulants artificially inhibit ALP."
       },
       {
-        id:"retic",
-        title:"Reticulocyte Count",
-        intro:"Reticulocytes are immature, non-nucleated red blood cells containing residual ribosomal RNA fragments. They represent the immediate stage between erythroblasts and mature red cells.\n\nThe reticulocyte count serves as a direct measurement of erythropoietic activity in the bone marrow.",
-        aim:"To estimate the percentage of reticulocytes present in whole blood using supravital staining.",
-        principles:"Living, unfixed erythrocytes are incubated with a supravital stain (New Methylene Blue or Brilliant Cresyl Blue). The dye precipitates residual RNA within reticulocytes into visible dark blue reticular networks or granulations.",
-        materials:["New Methylene Blue or Brilliant Cresyl Blue stain","Test tubes","Glass slides and coverslips","Water bath (37°C)","Microscope with oil immersion objective"],
-        procedure:[
-          "1. Mix equal volumes (e.g., 3-4 drops each) of EDTA blood and filtered supravital stain in a small test tube.",
-          "2. Gently shake tube and incubate in 37°C water bath for 15-20 minutes.",
-          "3. After incubation, resuspend red cells by gentle shaking.",
-          "4. Place a small drop of mixture on a slide and prepare a thin blood film.",
-          "5. Air dry the film thoroughly without heating.",
-          "6. Examine under 100x oil immersion objective.",
-          "7. Count total RBCs and reticulocytes until 1,000 total red blood cells are enumerated.",
-          "8. Calculate: Reticulocytes (%) = (Total Reticulocytes Counted / 1000) × 100."
+        id: "tp_alb",
+        title: "Total Protein & Albumin Estimation",
+        intro: "Serum total protein consists primarily of Albumin and Globulin fractions. Albumin, synthesized solely by the liver, maintains plasma oncotic pressure and transports endogenous/exogenous compounds.\n\nEvaluation of Total Protein, Albumin, and the calculated Albumin/Globulin (A/G) ratio aids in diagnosing liver disease, nephrotic syndrome, nutritional status, and plasma cell dyscrasias.",
+        aim: "To quantify total serum protein using the Biuret reaction and albumin using the Bromocresol Green (BCG) dye-binding method.",
+        principles: "Total Protein: Cupric ions in an alkaline Biuret reagent react with peptide bonds in proteins to form a violet-colored coordination complex measured at 540 nm. Albumin: Bromocresol Green dye selectively binds albumin at pH 4.2 to form a green-blue complex measured spectrophotometrically at 630 nm.",
+        materials: [
+          "Serum specimen",
+          "Biuret Reagent & BCG Reagent",
+          "Protein Standard & Albumin Standard",
+          "Spectrophotometer (540 nm & 630 nm)"
         ],
-        result:"Reticulocytosis (>2.5%) indicates active bone marrow erythropoiesis (hemolytic anemia, acute blood loss, response to iron therapy). Reticulocytopenia (<0.5%) indicates marrow aplasia or nutritional deficiency.",
-        normal:"Adults: 0.5% - 2.5%",
-        safety:["Supravital stains stain clothing and skin permanently; handle with protective gloves."],
-        tips:"Reticulocytes must contain at least two or more visible dark blue granules/filaments to be classified as reticulocytes."
+        procedure: [
+          "1. **Total Protein:** Pipette 1.0 mL Biuret reagent into Blank, Standard, Test tubes. Add 20 µL serum to Test, 20 µL Standard to Standard. Incubate 10 mins at 37°C. Read at 540 nm.",
+          "2. **Albumin:** Pipette 1.0 mL BCG reagent into Blank, Standard, Test. Add 10 µL serum to Test, 10 µL Albumin Standard to Standard. Incubate 5 mins at RT. Read at 630 nm.",
+          "3. Calculate Total Protein and Albumin concentrations using standard formulas.",
+          "4. Calculate Globulin = Total Protein - Albumin.",
+          "5. Calculate A/G Ratio = Albumin / Globulin."
+        ],
+        result: "Hypoalbuminemia occurs in hepatic failure, nephrotic syndrome (protein loss), and malnutrition. Hyperglobulinemia occurs in multiple myeloma and chronic infections.",
+        normal: "Total Protein: 6.0 – 8.3 g/dL\nAlbumin: 3.5 – 5.0 g/dL\nA/G Ratio: 1.1 – 2.2",
+        safety: ["Biuret contains strong sodium hydroxide; avoid contact with eyes or skin."],
+        tips: "Do not leave BCG reactions standing too long; globulins slowly bind dye after extended incubation times."
       },
       {
-        id:"bt",
-        title:"Bleeding Time (Duke / Ivy Method)",
-        intro:"Bleeding time is an in vivo functional assay measuring primary hemostasis—specifically the interaction between platelets and the vascular wall to form a primary platelet plug.\n\nIt helps detect platelet functional disorders, von Willebrand disease, and vascular wall abnormalities.",
-        aim:"To measure the time required for standard micro-incisional capillary bleeding to cease naturally.",
-        principles:"A standardized shallow puncture is made on the skin surface. The elapsed time from puncture initiation until bleeding stops completely is recorded as bleeding time.",
-        materials:["Standardized lancet (2 mm depth)","Filter paper (Whatman No. 1)","Stopwatch","Alcohol swab","Sphygmomanometer (Ivy method)"],
-        procedure:[
-          "1. For Ivy method: Place blood pressure cuff on upper arm and inflate to constant 40 mmHg pressure.",
-          "2. Clean volar surface of forearm with 70% alcohol and let air dry completely.",
-          "3. Make a firm puncture (2 mm deep) using a sterile lancet and start stopwatch simultaneously.",
-          "4. Every 30 seconds, touch the edge of filter paper to the drop of blood without touching the skin incision.",
-          "5. Repeat blotting every 30 seconds at different clean spots on filter paper.",
-          "6. Stop the stopwatch the exact moment blood no longer transfers to filter paper.",
-          "7. Record total time elapsed in minutes."
+        id: "electrolytes",
+        title: "Serum Electrolytes (Sodium & Potassium via ISE)",
+        intro: "Sodium ($Na^+$) and Potassium ($K^+$) are major extracellular and intracellular cations, respectively. They maintain osmolality, neuromuscular excitability, cardiac rhythm, and acid-base equilibrium.\n\nElectrolyte profiling is critical in emergency medicine, renal monitoring, endocrine pathology, and fluid replacement management.",
+        aim: "To measure serum sodium and potassium concentrations using Ion-Selective Electrode (ISE) potentiometry.",
+        principles: "Ion-Selective Electrodes contain specialized membranes (e.g., crown-ether/valinomycin for potassium, selective glass for sodium) that develop an electrical potential proportional to the activity of specific ions in solution. The potential difference relative to a reference electrode is converted into electrolyte concentration via the Nernst equation.",
+        materials: [
+          "Non-hemolyzed serum or heparinized plasma",
+          "ISE Electrolyte Analyzer",
+          "Calibrator Solutions A and B",
+          "Cleaning and conditioning reagents"
         ],
-        result:"Prolonged bleeding time (>9 min) occurs in thrombocytopenia, platelet dysfunction (Glanzmann's), von Willebrand disease, and aspirin therapy.",
-        normal:"Duke Method: 1 - 5 minutes\nIvy Method: 2 - 9 minutes",
-        safety:["Dispose of lancets immediately into puncture-resistant sharps boxes. Prevent blood contamination."],
-        tips:"Never allow filter paper to touch skin incision directly, as this dislodges forming platelet plugs and prolongs bleeding time artificially."
+        procedure: [
+          "1. Perform routine daily calibration of ISE analyzer using Calibrators A and B.",
+          "2. Ensure slope values for $Na^+$ and $K^+$ fall within accepted quality control bounds.",
+          "3. Aspirate 100 µL of serum sample into the analyzer probe.",
+          "4. Allow the system to measure electrical potential across selective membranes.",
+          "5. Record digital concentrations displayed for $Na^+$ and $K^+$ in mmol/L."
+        ],
+        result: "Hyponatremia ($Na^+ < 135$) / Hypernatremia ($Na^+ > 145$) indicate hydration/renal disorders. Hypokalemia ($K^+ < 3.5$) / Hyperkalemia ($K^+ > 5.0$) pose severe risks for cardiac arrhythmias.",
+        normal: "Sodium ($Na^+$): 135 – 145 mmol/L\nPotassium ($K^+$): 3.5 – 5.0 mmol/L",
+        safety: ["Avoid even minimal hemolysis. Red blood cells contain $20\times$ higher potassium than serum, causing falsely high potassium readings."],
+        tips: "In cases of marked hyperkalemia, inspect the serum sample for hemolysis or prolonged delay in serum separation."
       },
       {
-        id:"ct",
-        title:"Clotting Time (Lee-White Method)",
-        intro:"Clotting time measures the duration required for whole blood to form a firm fibrin clot in vitro without addition of exogenous tissue thromboplastin.\n\nIt evaluates the overall functional integrity of the intrinsic and common coagulation pathways.",
-        aim:"To measure the intrinsic blood coagulation pathway efficiency by timing clot formation in glass tubes.",
-        principles:"Venous blood collected without anticoagulants is exposed to a glass surface. Glass acts as a negative surface contact factor, activating Factor XII and initiating the intrinsic clotting cascade leading to fibrin clot creation.",
-        materials:["Dry glass test tubes (13 x 100 mm)","Water bath maintained at 37°C","Syringe and needle for venipuncture","Stopwatch"],
-        procedure:[
-          "1. Label three glass tubes (1, 2, 3) and place in 37°C water bath.",
-          "2. Perform clean, atraumatic venipuncture and draw 3-5 mL whole blood.",
-          "3. Start stopwatch immediately upon blood entry into syringe.",
-          "4. Transfer 1 mL blood gently into each of the 3 glass tubes.",
-          "5. Incubate tubes in 37°C water bath.",
-          "6. After 3 minutes, tilt tube 1 gently to 45 degrees every 30 seconds until blood clots completely.",
-          "7. Once tube 1 clots, examine tube 2 every 30 seconds until clotted.",
-          "8. Once tube 2 clots, examine tube 3 every 30 seconds until solid.",
-          "9. Record time when tube 3 forms a solid clot as the final clotting time."
+        id: "lipid_panel",
+        title: "Total Cholesterol Estimation (CHOD-PAP Method)",
+        intro: "Cholesterol is a sterol lipophilic compound synthesized by hepatocytes and absorbed from dietary sources. It serves as a precursor for steroid hormones, bile acids, and cellular membrane structure.\n\nMeasurement of total serum cholesterol forms a core component of cardiovascular risk assessment and dyslipidemia classification.",
+        aim: "To quantitatively determine total serum cholesterol using the enzymatic CHOD-PAP endpoint method.",
+        principles: "Cholesterol esters are hydrolyzed by Cholesterol Esterase into free cholesterol and fatty acids. Cholesterol Oxidase (CHOD) oxidizes free cholesterol to Cholesten-3-one and Hydrogen Peroxide ($H_2O_2$). Peroxidase (PAP) then couples $H_2O_2$ with 4-aminoantipyrine and phenol to form a pink quinoneimine dye measured at 500 nm.",
+        materials: [
+          "Fasting serum sample",
+          "CHOD-PAP enzymatic reagent",
+          "Cholesterol standard (200 mg/dL)",
+          "Spectrophotometer (500 nm, 37°C)"
         ],
-        result:"Prolonged clotting time indicates severe deficiency of clotting factors (Hemophilia A/B), presence of circulating anticoagulants/heparin, or severe hypofibrinogenemia.",
-        normal:"Lee-White Method: 5 - 10 minutes",
-        safety:["Clean venipuncture avoids contamination with tissue factor which falsely shortens clotting time."],
-        tips:"Avoid excessive tilting of tubes during incubation, as mechanical agitation disrupts early fibrin strands and delays visible clotting."
+        procedure: [
+          "1. Label tubes: Blank, Standard, Test.",
+          "2. Add 1.0 mL CHOD-PAP reagent to each tube.",
+          "3. Add 10 µL distilled water to Blank, 10 µL Standard to Standard, and 10 µL Serum to Test.",
+          "4. Mix gently and incubate at 37°C for 10 minutes.",
+          "5. Zero instrument at 500 nm using Blank.",
+          "6. Read absorbance of Standard and Test.",
+          "7. Calculate Total Cholesterol (mg/dL) = (Abs_Test / Abs_Std) × 200."
+        ],
+        result: "Desirable: < 200 mg/dL. Borderline High: 200 – 239 mg/dL. High: ≥ 240 mg/dL (increased risk of atherosclerosis and coronary artery disease).",
+        normal: "Desirable Level: < 200 mg/dL (< 5.2 mmol/L)",
+        safety: ["Serum specimens should be collected after a 12-hour overnight fast for accurate baseline lipid evaluation."],
+        tips: "Ensure patient fasts overnight prior to sampling to avoid postprandial chylomicronemia interference."
       }
-    ]}
-  ],
-  questions:[
-    {id:1,q:"What is the normal PCV range for adult male?",options:["30-40%","40-54%","55-65%","35-45%"],answer:1,exp:"Normal PCV for males is 40-54%. Females: 37-47%. Low PCV indicates anemia."},
-    {id:2,q:"Which method is used for Hemoglobin estimation in Sahli's method?",options:["Cyanmethemoglobin","Acid hematin","Oxyhemoglobin","Carboxyhemoglobin"],answer:1,exp:"Sahli method converts Hb to acid hematin with N/10 HCl and color is matched."},
-    {id:3,q:"ESR is markedly raised in:",options:["Polycythemia","Inflammation","Dehydration","Hemoconcentration"],answer:1,exp:"ESR increases in inflammation due to fibrinogen and immunoglobulins causing rouleaux formation."},
-    {id:4,q:"Normal WBC count range is:",options:["2000-5000","4000-11000","12000-20000","5000-15000"],answer:1,exp:"Normal total WBC count is 4000-11000 cells/μL."},
-    {id:5,q:"Platelets are counted using:",options:["WBC pipette","Platelet pipette and Rees-Ecker fluid","RBC pipette","Direct method"],answer:1,exp:"Platelet count uses 1:100 dilution with Rees-Ecker fluid in Neubauer chamber."}
-  ],
-  normalRanges:[
-    {test:"Packed Cell Volume (PCV)",desc:"Proportion of whole blood made up of red cells",male:"40-54%",female:"37-47%",infant:"30-40%"},
-    {test:"Hemoglobin (Hb)",desc:"Oxygen-carrying protein concentration in blood",male:"13.5-17.5 g/dL",female:"12-15.5 g/dL",infant:"9.5-14 g/dL"},
-    {test:"Erythrocyte Sedimentation Rate (ESR)",desc:"Rate red cells settle in 1 hour; inflammation marker",male:"0-15 mm/hr",female:"0-20 mm/hr",infant:"0-10 mm/hr"},
-    {test:"Total White Blood Cell Count (TWBC)",desc:"Total leukocytes per microlitre of blood",male:"4,000-11,000/µL",female:"4,000-11,000/µL",infant:"6,000-17,500/µL"},
-    {test:"Platelet Count",desc:"Number of clotting cells per microlitre",male:"150,000-450,000/µL",female:"150,000-450,000/µL",infant:"150,000-450,000/µL"}
-  ],
-  faqs:[
-    {q:"What is LabGuru?",a:"LabGuru is a Medical Laboratory Science (MLS) learning companion covering principles, procedures, results and exam tips across Hematology, Chemistry, Microbiology, Immunology and more."},
-    {q:"Does LabGuru work offline?",a:"Yes — once you've opened the app online at least once, it caches itself and works fully offline."}
-  ]
-};
+    ]
+  },
+
+  // ======================================================
+  // UNIT 3: MEDICAL MICROBIOLOGY & PARASITOLOGY (10 ANALYSES)
+  // ======================================================
+  {
+    id: "microbiology",
+    name: "Medical Microbiology & Parasitology",
+    analyses: [
+      {
+        id: "gram_stain",
+        title: "Gram Staining Technique",
+        intro: "Gram staining is the single most essential differential staining procedure in clinical bacteriology. Developed by Hans Christian Gram in 1884, it classifies bacteria into two broad structural groups: Gram-positive and Gram-negative.\n\nThe differential response depends upon fundamental structural differences in bacterial cell walls: Gram-positive bacteria possess a thick layer of peptidoglycan, while Gram-negative bacteria have a thin peptidoglycan layer enclosed by an outer lipopolysaccharide membrane.\n\nGram staining provides rapid diagnostic guidance for initiating empirical antimicrobial therapy in suspected bacterial infections.",
+        aim: "To differentiate bacterial isolates based on cell wall composition and observe bacterial cell morphology, arrangement, and staining characteristics under oil immersion light microscopy.",
+        principles: "Bacteria are stained with primary dye Crystal Violet and treated with Gram's Iodine (mordant) to form an insoluble Crystal Violet-Iodine (CV-I) complex inside the cell. Decolorizer (95% Ethanol or Acetone-Alcohol) is applied: Gram-positive cell walls dehydrate, shrinking pores and trapping the CV-I complex (retaining purple color). Gram-negative cell walls lose their lipid outer membrane and peptidoglycan pores dissolve, releasing the CV-I complex. The counterstain (Safranin or Dilute Carbol Fuchsin) stains decolorized Gram-negative cells pink/red.",
+        materials: [
+          "Glass slides with bacterial smear",
+          "Crystal Violet (Primary Stain)",
+          "Gram's Iodine (Mordant)",
+          "Decolorizer (95% Ethanol or Acetone-Alcohol mixture)",
+          "Safranin or Neutral Red (Counterstain)",
+          "Bunsen burner / spirit lamp",
+          "Microscope with 100x oil immersion objective"
+        ],
+        procedure: [
+          "1. Prepare a thin bacterial smear on a clean slide, air dry completely, and heat-fix by passing quickly through a flame 2–3 times.",
+          "2. Place slide on staining rack and flood with Crystal Violet for 60 seconds.",
+          "3. Gently rinse off primary stain with clean running tap water.",
+          "4. Flood slide with Gram's Iodine mordant for 60 seconds.",
+          "5. Rinse slide gently with water.",
+          "6. Decolorize by tilting slide and adding 95% Ethanol dropwise for 5–10 seconds until solvent runs clear. Immediately rinse with water to stop decolorization.",
+          "7. Counterstain by flooding slide with Safranin for 45–60 seconds.",
+          "8. Gently rinse with water, blot dry with bibulous paper, and air dry.",
+          "9. Examine under microscope using 100x oil immersion objective."
+        ],
+        result: "Gram-positive bacteria stain Deep Purple/Blue (e.g., Staphylococcus aureus, Streptococcus pneumoniae). Gram-negative bacteria stain Pink/Red (e.g., Escherichia coli, Pseudomonas aeruginosa).",
+        normal: "Sterile body fluids (CSF, blood, pleural fluid) should show no organisms on Gram stain.",
+        safety: [
+          "Fix slides carefully to prevent shedding viable pathogens during staining.",
+          "Flammable alcohols must be kept away from open Bunsen burner flames."
+        ],
+        tips: "Decolorization is the most critical step. Over-decolorization turns Gram-positive cells red (false negative), while under-decolorization leaves Gram-negative cells purple (false positive)."
+      },
+      {
+        id: "zn_stain",
+        title: "Ziehl-Neelsen (ZN) Staining for Acid-Fast Bacilli",
+        intro: "Ziehl-Neelsen (ZN) staining is a specialized differential acid-fast staining technique used to detect Mycobacteria species, most notably *Mycobacterium tuberculosis*.\n\nMycobacterial cell walls contain complex mycolic acids and high lipid content, making them resistant to standard Gram stains. Acid-fast organisms retain primary stain even after intensive acid-alcohol decolorization.",
+        aim: "To demonstrate Acid-Fast Bacilli (AFB) in clinical specimens like sputum.",
+        principles: "Concentrated Carbol Fuchsin primary stain is driven into the lipid mycolic acid cell wall using heat. Acid-Alcohol decolorizer is applied: non-acid-fast bacteria lose color, while acid-fast bacilli resist decolorization. Methylene Blue counterstain stains background cellular debris and non-acid-fast bacteria light blue.",
+        materials: [
+          "Sputum smear slide",
+          "Strong Carbol Fuchsin stain",
+          "3% Acid-Alcohol decolorizer (3% HCl in 95% Ethanol)",
+          "0.3% Methylene Blue counterstain",
+          "Bunsen burner / spirit lamp"
+        ],
+        procedure: [
+          "1. Prepare thin sputum smear, air dry, and heat fix.",
+          "2. Place slide on staining rack and flood completely with Carbol Fuchsin.",
+          "3. Heat underside of slide gently with flame until steam rises (do not boil) for 5 minutes, maintaining stain volume.",
+          "4. Rinse slide gently with tap water.",
+          "5. Decolorize with 3% Acid-Alcohol for 2–3 minutes until smear appears pale pink.",
+          "6. Rinse with water.",
+          "7. Counterstain with Methylene Blue for 1 minute.",
+          "8. Rinse, blot dry, and examine under 100x oil immersion objective.",
+          "9. Screen at least 100 fields before reporting AFB negative."
+        ],
+        result: "Acid-Fast Bacilli (AFB) appear as bright red/pink thin rods against a blue background. Non-acid-fast organisms stain blue.",
+        normal: "Negative: No Acid-Fast Bacilli seen in 100 oil immersion fields.",
+        safety: ["Handle sputum samples in Biosafety Cabinet Class II to prevent tuberculosis aerosol inhalation."],
+        tips: "Never let Carbol Fuchsin dry out during the heating step; add extra stain if necessary."
+      },
+      {
+        id: "mp_microscopy",
+        title: "Malaria Parasite Microscopy (Thick & Thin Smears)",
+        intro: "Malaria parasite microscopy remains the reference gold standard for definitive diagnosis, species identification, and parasite density quantification of Plasmodium species (P. falciparum, P. vivax, P. malariae, P. ovale, P. knowlesi).\n\nMicroscopic examination involves two complementary techniques on the same slide: a Thick Blood Film (optimized for high detection sensitivity) and a Thin Blood Film (optimized for species identification and morphological detail).\n\nPrompt diagnosis is crucial for preventing severe malaria complications, particularly in Plasmodium falciparum infections.",
+        aim: "To detect, identify species, and calculate parasite density of Plasmodium parasites in blood specimens using Field's or Giemsa staining.",
+        principles: "Field's stain and Giemsa stain are polychromatic Romanowsky stains containing methylene blue and eosin. In thick films, red blood cells are lysed (dehemoglobinized) by water during staining, concentrating parasites for easy detection. In thin films, methanol fixes erythrocytes intact, allowing observation of intracytoplasmic parasite morphology and erythrocyte inclusion bodies (Schüffner's/Maurer's dots).",
+        materials: [
+          "Whole blood (capillary fingerstick or EDTA blood)",
+          "Clean grease-free glass slides",
+          "Absolute Methanol (for fixing thin film only)",
+          "Giemsa stain (diluted 1:10 with buffer pH 7.2) or Field's Stain A and B",
+          "Phosphate buffer water (pH 7.1–7.2)",
+          "Microscope with 100x oil immersion lens"
+        ],
+        procedure: [
+          "1. Place a small drop of blood for thin film and a larger drop (3 µL) for thick film on the same clean slide.",
+          "2. Spread thin film using a spreader slide at a 30° angle; spread thick film into a uniform circle of ~1 cm diameter using a slide corner.",
+          "3. Air dry slide thoroughly in a horizontal position for at least 30 minutes (do not heat thick film!).",
+          "4. Fix ONLY the thin film by dipping it briefly into absolute methanol for 5–10 seconds (protect thick film from methanol vapors).",
+          "5. Stain with diluted Giemsa (10% solution) for 20 minutes (or use rapid Field's staining: Field's A 5s, water wash, Field's B 5s, water wash).",
+          "6. Wash gently with phosphate buffer water (pH 7.2) and air dry standing vertically.",
+          "7. Examine thick film under 100x oil immersion objective for presence of parasites (screen at least 100 fields before reporting negative).",
+          "8. If positive, examine thin film under 100x oil immersion to identify species and developmental stages (trophozoites, schizonts, gametocytes).",
+          "9. Calculate parasite density: (Parasites Counted / WBCs Counted [usually 200]) × Patient Total WBC Count (or standard 8,000/µL)."
+        ],
+        result: "Positive slide exhibits malaria parasites: Plasmodium falciparum shows delicate ring forms (double chromatin dots) and banana-shaped gametocytes. Parasite density reported as parasites/µL of blood.",
+        normal: "Negative: No malaria parasites seen (NPS) after examining 100 high-power thick fields.",
+        safety: [
+          "Always handle unfixed thick blood films with gloves as potential biohazards.",
+          "Dispose of lancets and stained slides in appropriate biohazard containers."
+        ],
+        tips: "Buffer pH must be kept strictly between 7.1 and 7.2. Acidic buffer prevents proper chromatin staining, making parasites difficult to detect."
+      },
+      {
+        id: "urine_analysis",
+        title: "Routine Urine Microscopy & Chemical Urinalysis",
+        intro: "Urinalysis is a fundamental diagnostic screening tool evaluating renal function, urinary tract infections, metabolic status (e.g., diabetes mellitus), and liver conditions.",
+        aim: "To perform physical, chemical, and microscopic examination of urine.",
+        principles: "Chemical evaluation uses reagent strip dipsticks containing specific enzyme pads (e.g., glucose oxidase, leukocyte esterase). Microscopic analysis evaluates centrifuged urine sediment to detect cellular elements, casts, crystals, and microorganisms.",
+        materials: [
+          "Fresh midstream urine sample",
+          "10-parameter urinalysis dipstick strips",
+          "Centrifuge and conical centrifuge tubes",
+          "Glass slides, coverslips, microscope"
+        ],
+        procedure: [
+          "1. Inspect urine for color and clarity.",
+          "2. Dip reagent strip into uncentrifuged urine, remove immediately, and wipe edge against tube rim.",
+          "3. Read strip reactions at designated time intervals against color chart.",
+          "4. Pour 10 mL urine into centrifuge tube and spin at 2,000 rpm for 5 minutes.",
+          "5. Decant supernatant, resuspend sediment button in remaining 0.5 mL urine.",
+          "6. Transfer a drop of sediment to slide, cover with coverslip, and examine under 10x and 40x objectives."
+        ],
+        result: "Pyuria (>5 WBC/HPF) and Nitrituria indicate UTI. Proteinuria indicates glomerular pathology. Casts reflect renal tubular pathology.",
+        normal: "WBC: 0-4/HPF; RBC: 0-2/HPF; Protein/Glucose: Negative",
+        safety: ["Handle urine samples as biohazards; wear nitrile gloves."],
+        tips: "Examine urine sediment promptly. Alkaline urine causes cellular breakdown on standing."
+      },
+      {
+        id: "stool_wet_mount",
+        title: "Stool Microscopy for Ova & Parasites (Wet Mount)",
+        intro: "Stool direct wet mount examination detects intestinal protozoa cysts, trophozoites, and helminth ova in gastrointestinal parasite infections.",
+        aim: "To identify intestinal parasites in fecal specimens using saline and iodine wet preparations.",
+        principles: "Saline preparations preserve protozoan trophozoite motility. Iodine preparations stain protozoan nuclear structures and glycogen vacuoles, aiding identification.",
+        materials: [
+          "Fresh stool specimen",
+          "0.85% Normal Saline & Lugol's Iodine",
+          "Glass slides, coverslips, wooden applicator sticks"
+        ],
+        procedure: [
+          "1. Place a drop of Saline on left side of slide and Iodine on right side.",
+          "2. Using applicator stick, mix a tiny amount of stool (~2 mg) into saline and iodine drops to form uniform suspensions.",
+          "3. Place coverslips over each suspension.",
+          "4. Examine under 10x and 40x objectives."
+        ],
+        result: "Identifies parasites such as *Entamoeba histolytica* cysts/trophozoites, *Giardia lamblia*, and helminth eggs (*Ascaris*, Hookworm).",
+        normal: "No parasites seen (NPS).",
+        safety: ["Wear gloves and lab coat; stool contains enteric pathogens."],
+        tips: "Examine saline mounts immediately to observe active motility of trophozoites."
+      },
+      {
+        id: "formal_ether",
+        title: "Formal-Ether Stool Concentration Technique",
+        intro: "Concentration methods increase detection sensitivity for intestinal parasites when parasite density is low in unconcentrated wet mounts.",
+        aim: "To concentrate helminth eggs, larvae, and protozoan cysts from fecal samples.",
+        principles: "Formalin preserves parasite morphology, while Ethyl Acetate (or Ether) dissolves fecal fats and debris. Centrifugation separates parasites into the bottom sediment.",
+        materials: [
+          "10% Formol-Saline solution",
+          "Ethyl Acetate / Ether",
+          "Gauze strainer, centrifuge tubes, centrifuge"
+        ],
+        procedure: [
+          "1. Emulsify 1 g stool in 7 mL 10% Formol-saline.",
+          "2. Strain suspension through wet gauze into centrifuge tube.",
+          "3. Add 3 mL Ethyl Acetate, stopper tube, and shake vigorously for 1 minute.",
+          "4. Centrifuge at 3,000 rpm for 1 minute.",
+          "5. Four layers form: top solvent layer, fatty plug, formalin layer, and bottom sediment.",
+          "6. Loosen fatty plug with stick and decant top 3 layers.",
+          "7. Transfer sediment drop to slide, add iodine, cover, and examine microscopically."
+        ],
+        result: "High-yield concentration of eggs and cysts in bottom sediment.",
+        normal: "No ova or cysts seen.",
+        safety: ["Ether and Ethyl Acetate are highly flammable; use in a well-ventilated area."],
+        tips: "Do not shake tubes near open flames."
+      },
+      {
+        id: "koh_prep",
+        title: "Potassium Hydroxide (KOH) Fungal Preparation",
+        intro: "KOH preparation dissolves keratinous material in skin, hair, and nail specimens, allowing rapid visualization of fungal elements.",
+        aim: "To detect fungal hyphae, pseudohyphae, and budding yeast cells in superficial mycotic infections.",
+        principles: "10-20% KOH digests human keratin and proteinaceous debris without damaging chitinous fungal cell walls.",
+        materials: [
+          "Skin scrapings, hair clips, or nail clippings",
+          "10–20% KOH solution",
+          "Glass slides, coverslips, slide burner"
+        ],
+        procedure: [
+          "1. Place specimen on a clean glass slide.",
+          "2. Add 1-2 drops of 10% KOH solution.",
+          "3. Apply coverslip and warm slide gently over flame (do not boil).",
+          "4. Allow to sit for 15-30 minutes for complete keratin digestion.",
+          "5. Examine under 10x and 40x objectives."
+        ],
+        result: "Fungal elements appear as clear, refractile branching septate hyphae or budding yeast cells.",
+        normal: "No fungal elements observed.",
+        safety: ["KOH is strongly caustic; avoid direct skin contact."],
+        tips: "Do not boil KOH; boiling creates crystal artifacts that mask fungal hyphae."
+      },
+      {
+        id: "ast_kirby_bauer",
+        title: "Antimicrobial Susceptibility Testing (Kirby-Bauer)",
+        intro: "Antimicrobial susceptibility testing guides clinical selection of effective antibiotic therapy against isolated pathogenic bacteria.",
+        aim: "To evaluate bacterial susceptibility to specific antibiotic discs using agar disc diffusion.",
+        principles: "Antibiotics diffuse outward from paper discs into Mueller-Hinton agar inoculated with a standardized bacterial lawn (0.5 McFarland standard). Inhibitory zone diameters correlate with bacterial sensitivity or resistance.",
+        materials: [
+          "Bacterial isolate culture",
+          "0.5 McFarland turbidity standard",
+          "Mueller-Hinton Agar (MHA) plates",
+          "Antibiotic disc dispenser and discs",
+          "Calipers/Ruler"
+        ],
+        procedure: [
+          "1. Prepare bacterial suspension to match 0.5 McFarland standard.",
+          "2. Dip sterile cotton swab into suspension and streak evenly across MHA plate in 3 directions to form a complete lawn.",
+          "3. Apply antibiotic discs firmly onto agar surface.",
+          "4. Incubate plate inverted at 35–37°C for 16–18 hours.",
+          "5. Measure zone of inhibition diameters in mm and interpret as Sensitive, Intermediate, or Resistant using CLSI guidelines."
+        ],
+        result: "Measures bacterial inhibition zones around antibiotic discs.",
+        normal: "Interpret against CLSI standard tables.",
+        safety: ["Standard biohazard precautions for bacterial cultures apply."],
+        tips: "Ensure agar depth is strictly 4 mm. Excessively thick agar causes artificially smaller zones."
+      },
+      {
+        id: "blood_culture",
+        title: "Blood Culture Technique",
+        intro: "Blood cultures isolate systemic bacterial and fungal pathogens from patients with suspected bacteremia, sepsis, or infective endocarditis.",
+        aim: "To recover viable microbial pathogens from circulating blood.",
+        principles: "Blood is inoculated into enriched broth media (e.g., Tryptic Soy Broth) under aseptic conditions and incubated to facilitate organism proliferation.",
+        materials: [
+          "Blood culture bottles (Aerobic and Anaerobic)",
+          "70% Alcohol & Chlorhexidine/Iodine antiseptics",
+          "Venipuncture equipment"
+        ],
+        procedure: [
+          "1. Clean venipuncture site rigorously with 70% alcohol followed by Chlorhexidine/Iodine; allow to dry 60 seconds.",
+          "2. Disinfect rubber tops of blood culture bottles.",
+          "3. Draw 10–20 mL blood per set in adults.",
+          "4. Inoculate blood directly into aerobic and anaerobic culture bottles (1:10 blood-to-broth ratio).",
+          "5. Incubate bottles at 35–37°C for up to 5–7 days, observing daily for turbidity, hemolysis, or gas production.",
+          "6. Perform subcultures on solid media when growth is flagged."
+        ],
+        result: "Growth indicates bacteremia/sepsis. Growth requires subculture, Gram stain, and AST identification.",
+        normal: "No growth after 5–7 days incubation.",
+        safety: ["Aseptic skin preparation is vital to prevent skin flora contamination (*S. epidermidis*)."],
+        tips: "Maintain a 1:10 blood-to-broth volume ratio to neutralize natural blood antibacterial factors."
+      },
+      {
+        id: "widal_test",
+        title: "Widal Agglutination Test for Typhoid Fever",
+        intro: "The Widal test measures serum agglutinating antibodies against Salmonella enterica serovars Typhi and Paratyphi antigens in suspected enteric fever.",
+        aim: "To detect O (somatic) and H (flagellar) antibodies against *Salmonella* species.",
+        principles: "Patient serum antibodies react with standardized dead *Salmonella* bacterial suspensions (O and H antigens) to yield visible agglutination clumps.",
+        materials: [
+          "Patient serum",
+          "Salmonella Typhi O, H, Paratyphi AH, BH antigen suspensions",
+          "Agglutination slide / test tubes"
+        ],
+        procedure: [
+          "1. **Slide Screen:** Place 1 drop of serum in 4 slide circles; add 1 drop of O, H, AH, BH antigens.",
+          "2. Mix each circle and rock slide for 1 minute; observe for agglutination.",
+          "3. **Tube Titration:** If positive, prepare serial dilutions of serum (1:20 to 1:320) in saline.",
+          "4. Add equal volume of antigen to each tube.",
+          "5. Incubate tubes at 37°C for 4 hours (O antigen) or overnight (H antigen).",
+          "6. Examine for visible agglutination flakes."
+        ],
+        result: "Significant antibody titers (O titer ≥ 1:160, H titer ≥ 1:160) support diagnosis of active typhoid fever in endemic regions.",
+        normal: "Titers < 1:80",
+        safety: ["Treat serum samples as biohazards."],
+        tips: "Paired serum samples collected 10 days apart showing a 4-fold rise in titer provide definitive diagnostic proof."
+      }
+    ]
+  },
+
+  // =================================================================
+  // UNIT 4: BLOOD TRANSFUSION & IMMUNOHEMATOLOGY (10 ANALYSES)
+  // =================================================================
+  {
+    id: "blood_transfusion",
+    name: "Blood Transfusion & Immunohematology",
+    analyses: [
+      {
+        id: "abo_rh",
+        title: "ABO & Rh (Rhesus) Blood Grouping",
+        intro: "ABO and Rhesus (Rh) blood grouping is the foundation of pre-transfusion safety, forensic testing, and obstetric care. The ABO system categorizes blood into groups A, B, AB, and O based on inherited carbohydrate antigens on the erythrocyte surface and naturally occurring reciprocal IgM antibodies in serum.\n\nThe Rh system primary clinical focus is the D antigen (RhD). Individuals possessing the D antigen are classified RhD-positive, while those lacking it are RhD-negative.\n\nMatching donor and recipient ABO and RhD types prevents life-threatening acute intravascular hemolytic transfusion reactions and Hemolytic Disease of the Fetus and Newborn (HDFN).",
+        aim: "To determine the ABO blood group and Rh (D) status of an individual using forward (cell) grouping and reverse (serum) grouping techniques.",
+        principles: "Forward grouping tests patient red blood cells with known commercial monoclonal antisera (Anti-A, Anti-B, Anti-D) to detect corresponding cell membrane antigens. Reverse grouping tests patient serum/plasma with known standard A1 and B red blood cells to detect circulating antibodies. Specific antigen-antibody reaction produces visible agglutination (clumping) of red cells.",
+        materials: [
+          "Patient EDTA anticoagulated whole blood or cell suspension",
+          "Monoclonal Anti-A, Anti-B, and Anti-D (Rh) reagents",
+          "Standard A1 and B reagent red blood cell suspensions (for reverse grouping)",
+          "Clean white ceramic tile or glass slides / glass test tubes",
+          "Applicator sticks and timer"
+        ],
+        procedure: [
+          "1. **Forward Grouping (Tile Method):** Place 3 separate drops of 10-20% patient red cell suspension on a clean white tile labeled A, B, and D.",
+          "2. Add 1 drop of Anti-A reagent to circle A, 1 drop of Anti-B to circle B, and 1 drop of Anti-D to circle D.",
+          "3. Mix each circle using a clean, separate applicator stick.",
+          "4. Rock the tile gently back and forth for 2 minutes while observing for hemagglutination under direct light.",
+          "5. **Reverse Grouping (Tube Method):** Label two tubes A-cells and B-cells.",
+          "6. Add 2 drops of patient serum/plasma into each tube.",
+          "7. Add 1 drop of Standard A1 red cell suspension to tube A, and 1 drop of Standard B red cell suspension to tube B.",
+          "8. Mix gently and centrifuge at 1,000 g for 1 minute (or incubate at room temperature for 15 minutes).",
+          "9. Gently resuscitate the cell button and inspect visually for agglutination or hemolysis."
+        ],
+        result: "Agglutination in Anti-A = Group A. Agglutination in Anti-B = Group B. Agglutination in both = Group AB. No agglutination in either = Group O. Agglutination in Anti-D = Rh Positive. Reverse grouping results must confirm forward grouping findings.",
+        normal: "N/A (Normal phenotype depends on individual genetics: A, B, AB, or O; RhD Positive or Negative).",
+        safety: [
+          "Treat all blood samples as potentially infectious for hepatitis, HIV, and other bloodborne pathogens.",
+          "Dispose of blood-contaminated tiles, sticks, and tubes in biohazard sharp boxes."
+        ],
+        tips: "Always perform reverse grouping alongside forward grouping in adult samples. Discrepancies between forward and reverse grouping must be resolved before releasing blood for transfusion."
+      },
+      {
+        id: "crossmatch",
+        title: "Crossmatching / Compatibility Testing",
+        intro: "Crossmatching is the final serological safeguard performed prior to blood transfusion to ensure compatibility between donor red cells and recipient serum.",
+        aim: "To demonstrate serological compatibility between donor red cells and recipient serum before blood administration.",
+        principles: "Major Crossmatch tests recipient serum against donor red blood cells. Minor Crossmatch tests recipient red blood cells against donor serum. The Indirect Antiglobulin Test (AHG phase) detects non-agglutinating IgG antibodies.",
+        materials: [
+          "Recipient serum and donor red cell suspension (3-5%)",
+          "Anti-Human Globulin (AHG / Coombs) reagent",
+          "22% Bovine Serum Albumin (BSA) or LISS",
+          "Test tubes, 37°C incubator, centrifuge"
+        ],
+        procedure: [
+          "1. **Saline Phase:** Mix 2 drops recipient serum with 1 drop donor cell suspension in a test tube. Centrifuge at 1,000 rpm for 1 min; observe for hemagglutination or hemolysis.",
+          "2. **Thermolabile Phase:** Add 2 drops 22% BSA/LISS to tube and incubate at 37°C for 15-30 minutes.",
+          "3. Centrifuge and examine for agglutination.",
+          "4. **AHG Phase:** Wash cells 3 times with isotonic saline.",
+          "5. Add 2 drops AHG reagent, centrifuge, and check for macroscopic and microscopic agglutination."
+        ],
+        result: "Absence of agglutination/hemolysis at all phases indicates donor blood is COMPATIBLE for recipient.",
+        normal: "Compatible crossmatch.",
+        safety: ["Incompatible transfusions can trigger acute hemolytic reactions and acute renal failure."],
+        tips: "Always confirm negative AHG results by adding IgG-coated check cells (Coombs control cells)."
+      },
+      {
+        id: "dat",
+        title: "Direct Antiglobulin Test (DAT / Direct Coombs)",
+        intro: "The Direct Antiglobulin Test detects in vivo sensitization of red blood cells by autoantibodies, alloantibodies, or complement components.",
+        aim: "To detect antibodies or complement bound *in vivo* to patient erythrocytes.",
+        principles: "Patient red cells are washed to remove unbound serum proteins. Anti-Human Globulin (AHG) reagent is added. If red cells are coated with IgG or C3d, AHG bridges adjacent cells, causing visible agglutination.",
+        materials: [
+          "Patient EDTA blood sample",
+          "Polyspecific Anti-Human Globulin (AHG) reagent",
+          "Isotonic saline, centrifuge, test tubes"
+        ],
+        procedure: [
+          "1. Prepare a 3-5% suspension of patient red blood cells.",
+          "2. Wash red cells 3–4 times with clean isotonic saline, decanting completely after each wash.",
+          "3. Add 2 drops AHG reagent to 1 drop washed cell button.",
+          "4. Centrifuge at 1,000 rpm for 1 minute.",
+          "5. Resuspend cell button gently and read for macro/microscopic agglutination."
+        ],
+        result: "Positive DAT indicates Autoimmune Hemolytic Anemia (AIHA), Hemolytic Disease of Newborn (HDFN), or Transfusion Reaction.",
+        normal: "Negative DAT (No agglutination).",
+        safety: ["Inadequate cell washing causes false-negative results due to neutralization of AHG by unbound serum globulins."],
+        tips: "Always wash red cells thoroughly before adding AHG reagent."
+      },
+      {
+        id: "iat",
+        title: "Indirect Antiglobulin Test (IAT / Indirect Coombs)",
+        intro: "The Indirect Antiglobulin Test detects unexpected circulating anti-red cell antibodies present *in vitro* in patient serum or plasma.",
+        aim: "To screen recipient serum for irregular IgG red cell antibodies prior to transfusion or during prenatal testing.",
+        principles: "Patient serum is incubated at 37°C with commercial reagent red blood cells. If unexpected IgG antibodies are present, they bind *in vitro* to cell membrane antigens. Unbound antibodies are washed away, and AHG is added to induce agglutination.",
+        materials: [
+          "Patient serum sample",
+          "Standard screening red cell panel (O cells)",
+          "LISS / 22% BSA",
+          "AHG reagent, 37°C incubator, centrifuge"
+        ],
+        procedure: [
+          "1. Add 2 drops patient serum and 1 drop screening red cells into test tube.",
+          "2. Add 2 drops LISS enhancement media.",
+          "3. Incubate at 37°C for 15 minutes.",
+          "4. Wash red cells 3 times with saline.",
+          "5. Add 2 drops AHG reagent, centrifuge 1 minute, and inspect for agglutination."
+        ],
+        result: "Positive IAT indicates presence of irregular IgG red cell antibodies (e.g., Anti-D, Anti-K, Anti-Fya).",
+        normal: "Negative IAT.",
+        safety: ["Prevent contamination of AHG reagent with serum proteins."],
+        tips: "Add Coombs control cells to all negative tubes to validate test accuracy."
+      },
+      {
+        id: "rh_titration",
+        title: "Rh Antibody Titration",
+        intro: "Rh antibody titration quantifies the concentration of circulating Anti-D antibodies in maternal serum to assess risk of Hemolytic Disease of the Fetus and Newborn (HDFN).",
+        aim: "To determine the highest serum dilution containing detectable Anti-D antibodies.",
+        principles: "Maternal serum is serially diluted in saline and tested against $Rh(D)$-positive $O$ indicator red blood cells using the Indirect Antiglobulin technique.",
+        materials: [
+          "RhD-negative maternal serum",
+          "O RhD-positive red cell suspension (3%)",
+          "Isotonic saline, AHG reagent, test tubes, 37°C incubator"
+        ],
+        procedure: [
+          "1. Set up a row of 10 test tubes labeled 1:1 to 1:512.",
+          "2. Perform doubling serial dilutions of maternal serum in saline across tubes.",
+          "3. Add 1 drop $O\ Rh(D)$-positive red cells to each tube.",
+          "4. Incubate at 37°C for 30 minutes.",
+          "5. Wash cells 3 times with saline, add AHG reagent, centrifuge, and read agglutination.",
+          "6. Record highest serum dilution showing $1+$ agglutination as the antibody titer."
+        ],
+        result: "Titer $\ge 1:16$ is critical, requiring close fetal monitoring via Doppler ultrasound.",
+        normal: "No antibody detected (Titer 0).",
+        safety: ["Handle blood specimens with standard biohazard care."],
+        tips: "Always test current sample alongside previous frozen sample to confirm true titer changes."
+      },
+      {
+        id: "weak_d",
+        title: "Weak D ($D^u$) Testing",
+        intro: "Weak D testing identifies variants of the RhD antigen that show reduced antigen expression and fail to agglutinate directly with standard Anti-D reagent in immediate spin testing.",
+        aim: "To confirm RhD status in individuals showing negative or weak direct agglutination with Anti-D antiserum.",
+        principles: "Red blood cells incubated with monoclonal Anti-D antiserum at 37°C bind anti-D IgG molecules if Weak D antigen is present. Addition of AHG reagent after washing crosslinks cell-bound IgG, causing agglutination.",
+        materials: [
+          "Patient 3% red cell suspension",
+          "IgG Anti-D reagent",
+          "AHG reagent, 37°C incubator, centrifuge"
+        ],
+        procedure: [
+          "1. Mix 1 drop cell suspension with 1 drop IgG Anti-D reagent in a test tube.",
+          "2. Incubate at 37°C for 15–30 minutes.",
+          "3. Wash cells 3 times with isotonic saline.",
+          "4. Add 2 drops AHG reagent, centrifuge, and read for agglutination.",
+          "5. If agglutination occurs, report as Weak D Positive (Rh Positive)."
+        ],
+        result: "Agglutination at AHG phase = Weak D Positive (Rh Positive). No agglutination = Rh Negative.",
+        normal: "N/A (Phenotypic variant).",
+        safety: ["Blood donors who test Weak D Positive must be classified as Rh Positive."],
+        tips: "If DAT is positive, Weak D testing cannot be interpreted accurately."
+      },
+      {
+        id: "vdrl_rpr",
+        title: "Syphilis Screening (RPR / VDRL Test)",
+        intro: "Rapid Plasma Reagin (RPR) and VDRL tests screen blood donors and patients for non-treponemal antibodies generated during *Treponema pallidum* (Syphilis) infection.",
+        aim: "To screen blood units and serum for reagin antibodies associated with syphilis.",
+        principles: "Reagin antibodies in patient serum bind carbon-conjugated cardiolipin-lecithin-cholesterol antigen particles, causing macroscopic flocculation.",
+        materials: [
+          "Serum or plasma sample",
+          "RPR cardiolipin antigen suspension",
+          "RPR card, rotator (100 rpm), micro-dispensing needle"
+        ],
+        procedure: [
+          "1. Dispense 50 µL serum onto test circle on RPR card.",
+          "2. Add 1 drop (~17 µL) RPR antigen using needle.",
+          "3. Place card on mechanical rotator at 100 rpm for 8 minutes.",
+          "4. Inspect immediately under direct light for black charcoal flocculation clumps."
+        ],
+        result: "Flocculation clumps = Reactive (Screen positive). Smooth suspension = Non-reactive.",
+        normal: "Non-reactive.",
+        safety: ["Reactive donor blood units must be discarded to prevent transfusion-transmitted syphilis."],
+        tips: "All reactive non-treponemal RPR screens require confirmatory testing using specific treponemal assays (e.g., TPHA or FTA-ABS)."
+      },
+      {
+        id: "hbsag",
+        title: "Hepatitis B Surface Antigen (HBsAg) Screening",
+        intro: "Hepatitis B Surface Antigen (HBsAg) screening is a mandatory pre-transfusion safety test used to identify and discard infectious blood units.",
+        aim: "To screen blood donors for active Hepatitis B Virus (HBV) infection.",
+        principles: "Rapid immunochromatographic assay using membrane strip coated with Anti-HBsAg antibodies. $HBsAg$ in serum binds conjugated antibodies to form a visible colored line.",
+        materials: [
+          "Serum or plasma specimen",
+          "HBsAg rapid test cassettes",
+          "Sample diluent buffer"
+        ],
+        procedure: [
+          "1. Place test cassette on flat surface.",
+          "2. Dispense 2-3 drops (~80 µL) serum into sample well.",
+          "3. Wait 15 minutes.",
+          "4. Read lines: Two lines (Control + Test) = Reactive; One line (Control only) = Non-reactive."
+        ],
+        result: "Two colored bands = Reactive (HBV positive). One band at C line = Non-reactive.",
+        normal: "Non-reactive.",
+        safety: ["HBV is highly infectious; handle serum with biohazard containment."],
+        tips: "Do not read test strips after 20 minutes to prevent false-positive readings."
+      },
+      {
+        id: "hcv",
+        title: "Hepatitis C Virus (HCV) Antibody Screening",
+        intro: "Screening blood donors for anti-HCV antibodies prevents transfusion-transmitted Hepatitis C virus infection and subsequent liver cirrhosis.",
+        aim: "To detect antibodies against Hepatitis C Virus in serum or plasma.",
+        principles: "Lateral flow immunochromatographic assay utilizing recombinant HCV antigens bound to membrane test zones to capture circulating anti-HCV antibodies.",
+        materials: [
+          "Serum, plasma, or whole blood",
+          "HCV rapid test device",
+          "Assay buffer solution"
+        ],
+        procedure: [
+          "1. Add 10 µL serum to sample well of HCV cassette.",
+          "2. Add 2 drops buffer solution.",
+          "3. Incubate at room temperature for 15 minutes.",
+          "4. Observe control (C) and test (T) line region."
+        ],
+        result: "Bands at Control and Test = Reactive. Band at Control only = Non-reactive.",
+        normal: "Non-reactive.",
+        safety: ["Discard reactive donor units immediately following biohazard waste protocols."],
+        tips: "Always verify presence of Control line before reporting valid results."
+      },
+      {
+        id: "hiv_rapid",
+        title: "HIV 1/2 Rapid Screening Assay",
+        intro: "Mandatory screening of all donated blood units for HIV-1 and HIV-2 antibodies/antigens prevents transfusion-transmitted Acquired Immunodeficiency Syndrome (AIDS).",
+        aim: "To screen blood donors for antibodies against HIV-1 and HIV-2.",
+        principles: "Qualitative membrane immunochromatographic assay utilizing synthetic HIV-1 and HIV-2 envelope antigens (gp41, gp120, gp36) to capture anti-HIV antibodies.",
+        materials: [
+          "Serum, plasma, or whole blood sample",
+          "HIV 1/2 rapid test cassette",
+          "Assay buffer"
+        ],
+        procedure: [
+          "1. Dispense 50 µL serum into sample port.",
+          "2. Add 1 drop buffer.",
+          "3. Read result at 15 minutes.",
+          "4. Observe for appearance of Control and Test line bands."
+        ],
+        result: "Two lines (C and T) = Reactive for HIV antibodies. Single line (C) = Non-reactive.",
+        normal: "Non-reactive.",
+        safety: ["Strict adherence to Universal Precautions is mandatory."],
+        tips: "Follow national testing algorithm guidelines (e.g., serial or parallel testing) for diagnostic confirmation."
+      }
+    ]
+  },
+       
+];
