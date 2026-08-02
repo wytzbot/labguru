@@ -10,7 +10,7 @@ Wyte Tech Company ("we", "us") operates LabGuru. This Privacy Policy explains wh
 
 **Usage data:** analyses you've read, Q&A answers, and study progress, so your progress can sync across your devices.
 
-**Payment info:** subscription payments are processed by Paystack. We receive confirmation of successful payment and a reference ID — we never see or store your card details.
+**Payment info:** subscription payments are processed by Flutterwave. We receive confirmation of successful payment and a reference ID — we never see or store your card details.
 
 **Notification token:** if you enable notifications, we store a device token (via Firebase Cloud Messaging) so we can send you study reminders and updates.
 
@@ -20,7 +20,7 @@ To provide and sync the app's features, verify and manage your Premium subscript
 
 ## Third-Party Services
 
-We use Google Firebase (authentication, database, hosting, messaging) and Paystack (payment processing). These providers process data under their own privacy policies.
+We use Google Firebase (authentication, database, hosting, messaging) and Flutterwave (payment processing). These providers process data under their own privacy policies.
 
 ## Data Retention & Your Rights
 

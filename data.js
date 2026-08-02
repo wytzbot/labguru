@@ -1,13 +1,15 @@
 const LAB_DATA = {
   settings:{
     freeLimit:5,
-    premiumPrice:2200,
+    premiumPrice:2.5,
+    premiumCurrency:"USD",
     premiumDurationDays:60, // renews every 2 months
-    paystackPublicKey:"pk_live_03887f82b23709cbf59e138ceeb9ca38eca18c1c", 
-    paystackPlanCode:"PLN_sv012aslx53nxh1", 
+    // TODO: paste your Flutterwave PUBLIC key here (starts with FLWPUBK_ — test keys start FLWPUBK_TEST-)
+    flutterwavePublicKey:"FLWPUBK_TEST-REPLACE_ME-X",
     verifyEndpoint:"https://labguru-five.vercel.app/api/verify-payment"
   },
   perks:[
+    "🚫 No ads, ever",
     "🔓 Unlimited analyses — no daily read limit",
     "🧮 Full unit converter for lab values",
     "📊 Personal progress dashboard by unit",
@@ -2311,7 +2313,7 @@ const LAB_DATA = {
     { q: "Does LabGuru work offline?", a: "Yes. Once a page has loaded, LabGuru is a Progressive Web App (PWA) and continues to work without an internet connection, including your saved bookmarks and reminders." },
     { q: "How do I install LabGuru on my phone?", a: "Open LabGuru in your mobile browser, then choose \"Add to Home Screen\" (Safari) or \"Install App\" (Chrome) from the browser menu." },
     { q: "What does Premium include?", a: "Premium removes the daily analysis limit, unlocks the full unit converter, gives you a personal progress dashboard, study reminders, and full offline access synced across your devices." },
-    { q: "How do I cancel my Premium subscription?", a: "Premium renews automatically every 2 months via Paystack. You can cancel anytime from your Paystack subscription management email or by contacting support." },
+    { q: "How do I cancel my Premium subscription?", a: "Premium renews automatically every 2 months via Flutterwave. You can cancel anytime from your Flutterwave subscription management email or by contacting support." },
     { q: "Are the normal reference ranges suitable for clinical use?", a: "The ranges provided are for educational/study purposes and may vary slightly between laboratories, analyzers, and reagent kits. Always confirm against your own lab's validated reference intervals for clinical decisions." }
   ],
 

@@ -85,6 +85,22 @@ mark{background:yellow}
 .modal-actions{display:flex;gap:10px;margin-top:18px}
 .modal-actions .btn{margin-top:0}
 .footer-link{cursor:pointer;text-decoration:underline}
+/* ---------- Ad interstitial (skippable, house ad for our other app) ---------- */
+.ad-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:800;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:.25s}
+.ad-overlay.active{opacity:1;pointer-events:auto}
+.ad-topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:#fff;font-size:.8rem}
+.ad-topbar span.label{opacity:.6}
+.ad-skip{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:.85rem;font-weight:600;cursor:pointer}
+.ad-skip:disabled{opacity:.5;cursor:default}
+.ad-carousel{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.ad-slide{flex:0 0 100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;padding:0 18px}
+.ad-slide img{max-width:100%;max-height:62vh;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.ad-dots{display:flex;justify-content:center;gap:6px;padding:12px 0}
+.ad-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35)}
+.ad-dots span.on{background:#fff}
+.ad-bottom{padding:16px 20px 28px;text-align:center}
+.ad-bottom .btn{max-width:340px;margin:0 auto}
+.ad-bottom p{color:rgba(255,255,255,.6);font-size:.75rem;margin-top:10px}
 </style>
 </head>
 <body>
@@ -144,7 +160,7 @@ mark{background:yellow}
   </div>
 </div>
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -351,12 +367,12 @@ function showPrivacyPolicy() {
     <h3>Information We Collect</h3>
     <p>Account info: when you sign in with Google, we receive your name, email address, and profile photo via Firebase Authentication.</p>
     <p>Usage data: analyses you've read, Q&amp;A answers, and study progress, so your progress can sync across your devices.</p>
-    <p>Payment info: subscription payments are processed by Paystack. We receive confirmation of successful payment and a reference ID — we never see or store your card details.</p>
+    <p>Payment info: subscription payments are processed by Flutterwave. We receive confirmation of successful payment and a transaction reference — we never see or store your card details.</p>
     <p>Notification token: if you enable notifications, we store a device token (via Firebase Cloud Messaging) so we can send you study reminders and updates.</p>
     <h3>How We Use Information</h3>
     <p>To provide and sync the app's features, verify and manage your Premium subscription, send notifications you've opted into, and improve the app.</p>
     <h3>Third-Party Services</h3>
-    <p>We use Google Firebase (authentication, database, hosting, messaging) and Paystack (payment processing). These providers process data under their own privacy policies.</p>
+    <p>We use Google Firebase (authentication, database, hosting, messaging) and Flutterwave (payment processing). These providers process data under their own privacy policies.</p>
     <h3>Data Retention &amp; Your Rights</h3>
     <p>You can clear your read history and Q&amp;A answers anytime from My Progress (Premium feature). To request deletion of your account data entirely, contact us at the email below.</p>
     <h3>Children's Privacy</h3>
@@ -377,7 +393,7 @@ function showTerms() {
     <h3>Accounts</h3>
     <p>Signing in with Google is required to purchase Premium, sync progress across devices, and receive notifications. You're responsible for keeping your account secure.</p>
     <h3>Free Tier &amp; Premium Subscription</h3>
-    <p>Free accounts can access a limited number of analyses. Premium unlocks full access and is billed on a recurring basis via Paystack at the price shown in-app. Subscriptions renew automatically until cancelled; you can cancel anytime from your Paystack receipt email. Premium access is granted only after payment is verified by our servers.</p>
+    <p>Free accounts can access a limited number of analyses. Premium unlocks full access and is billed on a recurring basis via Flutterwave at the price shown in-app. Subscriptions renew automatically until cancelled; you can cancel anytime from your Flutterwave receipt email. Premium access is granted only after payment is verified by our servers.</p>
     <h3>Refunds</h3>
     <p>Payments are generally non-refundable except where required by law. Contact us if you believe you were charged in error.</p>
     <h3>Prohibited Conduct</h3>
@@ -708,10 +724,10 @@ function showFAQs() {
 }
 
 /* =========================================================
-   PREMIUM — Google sign-in required, ₦2,200 every 2 months (subscription,
-   not a one-time charge). Paystack's `plan` parameter drives recurring
-   billing; see the Cloud Function in BACKEND_SPEC.md for verification +
-   webhook handling that keeps this in sync when Paystack auto-renews.
+   PREMIUM — Google sign-in required, $2.5 every 2 months. The client
+   collects payment via Flutterwave's inline checkout, then /api/verify-payment
+   confirms it server-side before granting access. /api/flutterwave-webhook
+   is the source of truth for renewals — set it in the Flutterwave dashboard.
    ========================================================= */
 function showPremium() {
   pushRoute('showPremium');
@@ -733,7 +749,7 @@ function showPremium() {
     <div class="premium">
       <h2>🔒 Unlock LabGuru Premium</h2>
       <div style="text-align:left;max-width:340px;margin:16px auto">${perksHtml}</div>
-      <h3>₦${LAB_DATA.settings.premiumPrice.toLocaleString()} every 2 months</h3>
+      <h3>$${LAB_DATA.settings.premiumPrice} every 2 months</h3>
       <p style="opacity:.75;font-size:.85rem">Google sign-in is required so your subscription and progress can sync across devices.</p>
       <button class="btn" onclick="signInGoogle()">Sign in with Google to Continue</button>
     </div>`;
@@ -743,9 +759,9 @@ function showPremium() {
   <div class="premium">
     <h2>🔒 Unlock LabGuru Premium</h2>
     <div style="text-align:left;max-width:340px;margin:16px auto">${perksHtml}</div>
-    <h3>₦${LAB_DATA.settings.premiumPrice.toLocaleString()} every 2 months</h3>
-    <p style="opacity:.7;font-size:.85rem">Billed to ${currentUser.email} · cancel anytime from your Paystack receipt email</p>
-    <button class="btn" onclick="pay()">Subscribe with Paystack</button>
+    <h3>$${LAB_DATA.settings.premiumPrice} every 2 months</h3>
+    <p style="opacity:.7;font-size:.85rem">Billed to ${currentUser.email} · cancel anytime from your Flutterwave receipt email</p>
+    <button class="btn" onclick="pay()">Subscribe with Flutterwave</button>
   </div>`;
 }
 
@@ -762,26 +778,35 @@ function activatePremium() {
 async function pay() {
   if (!currentUser) { toast('Please sign in with Google first.'); signInGoogle(); return; }
   if (!navigator.onLine) { toast('You need an internet connection to subscribe.'); return; }
-  // Paystack test mode uses a pk_test_ public key: no real money moves, so if the
-  // backend can't confirm the charge (e.g. verifyEndpoint isn't deployed yet, or its
-  // PAYSTACK_SECRET is a live key that can't see test transactions) we still unlock
-  // locally instead of leaving a successful test payment stuck. Live keys (pk_live_)
-  // always require a successful server-side verification before unlocking.
-  const isTestMode = String(LAB_DATA.settings.paystackPublicKey || '').startsWith('pk_test_');
-  let handler = PaystackPop.setup({
-    key: LAB_DATA.settings.paystackPublicKey,
-    email: currentUser.email,
-    plan: LAB_DATA.settings.paystackPlanCode, // recurring plan — Paystack handles the 2-month auto-charge
-    metadata: { uid: currentUser.uid, custom_fields: [{ display_name: "App", variable_name: "app", value: "LabGuru" }] },
+  // Flutterwave TEST public keys start with FLWPUBK_TEST- (no real money moves).
+  // As with the old Paystack flow: if the backend can't confirm the charge in
+  // test mode (verify endpoint not deployed yet, or FLW_SECRET_KEY isn't a
+  // matching test key) we still unlock locally so a successful test payment
+  // never gets stuck. LIVE keys always require successful server-side
+  // verification — no local-only fallback in production.
+  const isTestMode = String(LAB_DATA.settings.flutterwavePublicKey || '').startsWith('FLWPUBK_TEST-');
+  // tx_ref embeds the uid so verify-payment.js / the webhook can grant
+  // premium to the right account without needing to ask for an email.
+  const txRef = `labguru-${currentUser.uid}-${Date.now()}`;
+
+  FlutterwaveCheckout({
+    public_key: LAB_DATA.settings.flutterwavePublicKey,
+    tx_ref: txRef,
+    amount: LAB_DATA.settings.premiumPrice,
+    currency: LAB_DATA.settings.premiumCurrency,
+    payment_options: 'card, mobilemoney, ussd',
+    customer: { email: currentUser.email, name: currentUser.displayName || currentUser.email },
+    customizations: { title: 'LabGuru Premium', description: `${LAB_DATA.settings.premiumDurationDays}-day Premium access` },
+    meta: { uid: currentUser.uid, app: 'LabGuru' },
     callback: function (res) {
       fetch(LAB_DATA.settings.verifyEndpoint, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reference: res.reference, uid: currentUser.uid })
+        body: JSON.stringify({ transaction_id: res.transaction_id, tx_ref: res.tx_ref, uid: currentUser.uid })
       }).then(r => r.json()).then(data => {
         if (data.status) {
           activatePremium();
         } else if (isTestMode) {
-          console.warn('LabGuru: verifyEndpoint rejected a test-mode payment — unlocking locally anyway. Set PAYSTACK_SECRET on the backend to your Paystack TEST secret key to get real verification in test mode.');
+          console.warn('LabGuru: verifyEndpoint rejected a test-mode payment — unlocking locally anyway. Set FLW_SECRET_KEY on the backend to your Flutterwave TEST secret key to get real verification in test mode.');
           activatePremium();
         } else {
           toast('Verification failed — please contact support.');
@@ -795,9 +820,8 @@ async function pay() {
         }
       });
     },
-    onClose: () => {}
+    onclose: function () {}
   });
-  handler.openIframe();
 }
 
 /* =========================================================
@@ -1016,6 +1040,93 @@ if (messaging) {
     toast(`🔔 ${title}: ${body}`, 5000);
   });
 }
+
+/* =========================================================
+   AD INTERSTITIAL — a house ad for our other app (WyNote), shown to
+   free-tier users. Always skippable (skip button just has a short
+   3s delay, like a standard interstitial) — never blocks or traps
+   the user. Premium removes it entirely; that's one of the things
+   Premium pays for. Shown at app-open and when the app is resumed
+   from the background after being away a while (our "entrance/exit"
+   moments on the web — there's no reliable exit-intent signal on
+   mobile browsers).
+   ========================================================= */
+const AD_IMAGES = ['/ads/ad-1.jpg', '/ads/ad-2.jpg', '/ads/ad-3.jpg', '/ads/ad-4.jpg', '/ads/ad-5.jpg'];
+const AD_TARGET_URL = 'https://wynote.vercel.app';
+const AD_MIN_GAP_MS = 3 * 60 * 1000; // don't show more than once every 3 minutes
+
+function maybeShowAd() {
+  if (isPremium) return; // Premium = ad-free, always
+  if (document.getElementById('adOverlay')) return; // already showing
+  const last = Number(localStorage.getItem('lastAdShownAt') || 0);
+  if (Date.now() - last < AD_MIN_GAP_MS) return;
+  showAdOverlay();
+}
+
+function showAdOverlay() {
+  localStorage.setItem('lastAdShownAt', String(Date.now()));
+  const slides = AD_IMAGES.map((src, i) => `<div class="ad-slide"><img src="${src}" alt="WyNote — PDF tools" loading="${i === 0 ? 'eager' : 'lazy'}"></div>`).join('');
+  const dots = AD_IMAGES.map((_, i) => `<span data-i="${i}" class="${i === 0 ? 'on' : ''}"></span>`).join('');
+  const div = document.createElement('div');
+  div.id = 'adOverlay';
+  div.className = 'ad-overlay';
+  div.innerHTML = `
+    <div class="ad-topbar">
+      <span class="label">Advertisement</span>
+      <button class="ad-skip" id="adSkipBtn" disabled onclick="closeAdOverlay()">Skip 3</button>
+    </div>
+    <div class="ad-carousel" id="adCarousel">${slides}</div>
+    <div class="ad-dots" id="adDots">${dots}</div>
+    <div class="ad-bottom">
+      <button class="btn" onclick="window.open('${AD_TARGET_URL}', '_blank'); closeAdOverlay();">Try WyNote — Free PDF Tools</button>
+      <p>Go Premium to remove ads entirely</p>
+    </div>`;
+  document.body.appendChild(div);
+  requestAnimationFrame(() => div.classList.add('active'));
+
+  // Skip button: standard 3-second delay, then always tappable — never
+  // requires scrolling through every slide first.
+  let secondsLeft = 3;
+  const skipBtn = document.getElementById('adSkipBtn');
+  const countdown = setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft <= 0) {
+      clearInterval(countdown);
+      skipBtn.disabled = false;
+      skipBtn.textContent = 'Skip ✕';
+    } else {
+      skipBtn.textContent = `Skip ${secondsLeft}`;
+    }
+  }, 1000);
+
+  // Update dots as the user scrolls through the carousel (purely optional —
+  // they can skip at any time once the countdown above finishes).
+  const carousel = document.getElementById('adCarousel');
+  carousel.addEventListener('scroll', () => {
+    const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+    document.querySelectorAll('#adDots span').forEach((d, i) => d.classList.toggle('on', i === idx));
+  });
+}
+
+function closeAdOverlay() {
+  const div = document.getElementById('adOverlay');
+  if (!div) return;
+  div.classList.remove('active');
+  setTimeout(() => div.remove(), 250);
+}
+
+// "Entrance": first load of the app.
+window.addEventListener('load', () => setTimeout(maybeShowAd, 800));
+// "Exit and back again": app was backgrounded/minimized and the user has
+// now returned to it — the closest reliable equivalent to an app resume ad.
+let adBackgroundedAt = null;
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    adBackgroundedAt = Date.now();
+  } else if (adBackgroundedAt && Date.now() - adBackgroundedAt > 20000) {
+    setTimeout(maybeShowAd, 400);
+  }
+});
 
 /* ---------- Offline banner ---------- */
 function updateOnlineStatus() {

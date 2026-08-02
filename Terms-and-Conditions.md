@@ -14,7 +14,7 @@ Signing in with Google is required to purchase Premium, sync progress across dev
 
 ## Free Tier & Premium Subscription
 
-Free accounts can access a limited number of analyses. Premium unlocks full access and is billed on a recurring basis via Paystack at the price shown in-app. Subscriptions renew automatically until cancelled; you can cancel anytime from your Paystack receipt email. Premium access is granted only after payment is verified by our servers.
+Free accounts can access a limited number of analyses. Premium unlocks full access and is billed on a recurring basis via Flutterwave at the price shown in-app. Subscriptions renew automatically until cancelled; you can cancel anytime from your Flutterwave receipt email. Premium access is granted only after payment is verified by our servers.
 
 ## Refunds
 
