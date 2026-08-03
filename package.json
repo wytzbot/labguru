@@ -1,7 +1,7 @@
 {
   "name": "labguru-functions",
   "description": "Cloud Functions for LabGuru: Flutterwave verification/webhook + FCM notifications",
-  "engines": { "node": "18" },
+  "engines": { "node": "24" },
   "main": "index.js",
   "dependencies": {
     "firebase-admin": "^12.1.0",
