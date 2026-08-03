@@ -5,7 +5,7 @@ const LAB_DATA = {
     premiumCurrency:"USD",
     premiumDurationDays:60, // renews every 2 months
     // TODO: paste your Flutterwave PUBLIC key here (starts with FLWPUBK_ — test keys start FLWPUBK_TEST-)
-    flutterwavePublicKey:"FLWPUBK_TEST-REPLACE_ME-X",
+    flutterwavePublicKey:"FLWPUBK_TEST-f3da861ee43126611124e75d502c73d4-X",
     verifyEndpoint:"https://labguru-five.vercel.app/api/verify-payment",
     // House-ad screenshots (WyNote promo). List them here in whatever order
     // and under whatever filename/path they actually land at in your repo —
@@ -14,11 +14,11 @@ const LAB_DATA = {
     // Each entry is the path GitHub/Vercel serves that file at, e.g. if the
     // file sits at the repo root it's just "/Screenshot_whatever.jpg".
     adImages:[
-      "/ads/ad-1.jpg",
-      "/ads/ad-2.jpg",
-      "/ads/ad-3.jpg",
-      "/ads/ad-4.jpg",
-      "/ads/ad-5.jpg"
+      "/ad-1.jpg",
+      "/ad-2.jpg",
+      "/ad-3.jpg",
+      "/ad-4.jpg",
+      "/ad-5.jpg"
     ]
   },
   perks:[
